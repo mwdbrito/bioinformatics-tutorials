@@ -5,8 +5,10 @@ theme:
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
-    - navigation.tabs
-    - content.code.copy
+    - navigation.tabs         # Cria as abas superiores (Início, Bioinformática, Ferramentas)
+    - navigation.sections     # Organiza os subtemas em blocos visuais na lateral esquerda
+    - navigation.top          # Adiciona um botão "Voltar ao topo"
+    - content.code.copy       # Botão de copiar código
   palette:
     - scheme: default
       primary: teal
@@ -28,9 +30,23 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
+  - toc:                      # Configuração do menu da direita (Tópicos da postagem)
+      permalink: true         # Cria um ícone de link ao lado dos títulos para facilitar o compartilhamento
 
 nav:
   - Início: index.md
-  - Ferramentas e Infra:
-    - Singularity (Apptainer): singularity_tutorial.md
-    - MkDocs e GitHub Pages: tutorial_mkdocs.md
+  - MwInSilico:
+    - "Postagens":
+      - "post1": post1_dogma_central.md
+  - Bioinformática:
+    - Análise de Dados:
+      - "Introdução à Análise": bioinfo/analise/introducao.md
+    - Bancos de Dados Públicos:
+      - "Exploração do TCGA/GDC": bioinfo/bancos/exploracao_tcga.md
+    - Plots:
+      - "Gráficos em R": bioinfo/plots/graficos_r.md
+    - Transcriptoma:
+      - "Pipeline RNA-Seq": bioinfo/transcriptoma/rnaseq.md
+  - Ferramentas e Infraestrutura:
+    - "Singularity (Apptainer)": singularity_tutorial.md
+    - "MkDocs e GitHub Pages": tutorial_mkdocs.md
