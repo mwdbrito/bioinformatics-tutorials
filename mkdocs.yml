@@ -25,6 +25,8 @@ theme:
 
 markdown_extensions:
   - admonition
+  - footnotes                 # Faz as citações [^1] virarem notas de rodapé clicáveis de verdade
+  - md_in_html                # Permite usar markdown (ex.: imagens) dentro de tags HTML como <center>
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
@@ -37,16 +39,17 @@ nav:
   - Início: index.md
   - MwInSilico:
     - "Postagens":
-      - "post1": post1_dogma_central.md
+      - "O Dogma Central da Biologia": mwinsilico/post1_dogma_central.md
   - Bioinformática:
     - Análise de Dados:
       - "Introdução à Análise": bioinfo/analise/introducao.md
     - Bancos de Dados Públicos:
       - "Exploração do TCGA/GDC": bioinfo/bancos/exploracao_tcga.md
     - Plots:
-      - "Gráficos em R": bioinfo/plots/graficos_r.md
+      - "Gráficos em R": bioinfo/plot/graficos_r.md
     - Transcriptoma:
-      - "Pipeline RNA-Seq": bioinfo/transcriptoma/rnaseq.md
+      - "Pipeline RNA-Seq (GEO → DEGs)": bioinfo/transcriptoma/rnaseq.md
+      - "Container Apptainer do Pipeline": bioinfo/transcriptoma/apptainer_sandbox.md
   - Ferramentas e Infraestrutura:
-    - "Singularity (Apptainer)": singularity_tutorial.md
+    - "Apptainer/Singularity — Guia Geral": singularity_tutorial.md
     - "MkDocs e GitHub Pages": tutorial_mkdocs.md

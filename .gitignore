@@ -1,0 +1,14 @@
+# Build do MkDocs (gerado via "mkdocs build" / "mkdocs gh-deploy")
+# Não precisa ir para a branch main — a mkdocs gh-deploy publica direto na gh-pages
+site/
+
+# Metadados do Windows que às vezes vazam ao compactar pastas baixadas da internet
+*Zone.Identifier*
+
+# Diversos
+.DS_Store
+__pycache__/
+*.pyc
+
+# Ignorar arquivos :Zone.Identifier
+**/*.Identifier
