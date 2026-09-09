@@ -5,16 +5,16 @@ theme:
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - content.code.copy
+    - navigation.tabs         # Cria as abas superiores (Início, Bioinformática, Ferramentas)
+    - navigation.sections     # Organiza os subtemas em blocos visuais na lateral esquerda
+    - navigation.top          # Adiciona um botão "Voltar ao topo"
+    - content.code.copy       # Botão de copiar código
   palette:
     - scheme: default
       primary: teal
       accent: cyan
       toggle:
-        icon: material/brightness-7
+        icon: material/brightness-7 
         name: Mudar para modo escuro
     - scheme: slate
       primary: teal
@@ -25,15 +25,15 @@ theme:
 
 markdown_extensions:
   - admonition
-  - footnotes
-  - md_in_html
+  - footnotes                 # Faz as citações [^1] virarem notas de rodapé clicáveis de verdade
+  - md_in_html                # Permite usar markdown (ex.: imagens) dentro de tags HTML como <center>
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
-  - toc:
-      permalink: true
+  - toc:                      # Configuração do menu da direita (Tópicos da postagem)
+      permalink: true         # Cria um ícone de link ao lado dos títulos para facilitar o compartilhamento
 
 nav:
   - Início: index.md
