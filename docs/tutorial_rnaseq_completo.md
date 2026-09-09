@@ -33,8 +33,6 @@
 
 Em vez de instalar cada ferramenta manualmente (e correr o risco de versões incompatíveis entre alunos/máquinas), empacotamos tudo em uma imagem Apptainer. Isso é especialmente útil em clusters HPC, onde normalmente você não tem `sudo` para instalar pacotes de sistema, mas o Apptainer roda sem privilégios de root.
 
-> 📦 Quer entender cada etapa da construção do container com mais profundidade (sandbox vs `.sif`, testes ferramenta por ferramenta, boas práticas de disco e memória)? Veja o tutorial complementar: **[Container Apptainer Sandbox para o Pipeline de RNA-Seq](apptainer_sandbox.md)**.
-
 ## O que vai dentro da imagem
 
 | Categoria | Ferramentas |

@@ -5,16 +5,16 @@ theme:
   logo: assets/logo.png
   favicon: assets/logo.png
   features:
-    - navigation.tabs         # Cria as abas superiores (Início, Bioinformática, Ferramentas)
-    - navigation.sections     # Organiza os subtemas em blocos visuais na lateral esquerda
-    - navigation.top          # Adiciona um botão "Voltar ao topo"
-    - content.code.copy       # Botão de copiar código
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
   palette:
     - scheme: default
       primary: teal
       accent: cyan
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: Mudar para modo escuro
     - scheme: slate
       primary: teal
@@ -25,21 +25,21 @@ theme:
 
 markdown_extensions:
   - admonition
-  - footnotes                 # Faz as citações [^1] virarem notas de rodapé clicáveis de verdade
-  - md_in_html                # Permite usar markdown (ex.: imagens) dentro de tags HTML como <center>
+  - footnotes
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
-  - toc:                      # Configuração do menu da direita (Tópicos da postagem)
-      permalink: true         # Cria um ícone de link ao lado dos títulos para facilitar o compartilhamento
+  - toc:
+      permalink: true
 
 nav:
   - Início: index.md
   - MwInSilico:
     - "Postagens":
-      - "O Dogma Central da Biologia": mwinsilico/post1_dogma_central.md
+      - "O Dogma Central da Biologia": post1_dogma_central.md
   - Bioinformática:
     - Análise de Dados:
       - "Introdução à Análise": bioinfo/analise/introducao.md
