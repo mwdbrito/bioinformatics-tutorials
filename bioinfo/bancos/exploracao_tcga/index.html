@@ -6,8 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Repositório de tutoriais, scripts de bioinformática e documentações">
+        <meta name="description" content="Tutoriais, scripts e postagens de bioinformática — genômica, transcriptômica e reprodutibilidade computacional">
       
+      
+        <meta name="author" content="Márcio Wilson">
       
       
       
@@ -17,19 +19,22 @@
         <link rel="next" href="../../plot/graficos_r/">
       
       
+        
+      
+      
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Exploração do TCGA/GDC - Tutoriais e Scripts - Márcio Wilson</title>
+        <title>Exploração do TCGA/GDC - MwInSilico — Márcio Wilson</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.9f615399.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.649f08f9.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -48,11 +53,12 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-    
     
     
   </head>
@@ -67,9 +73,6 @@
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -89,22 +92,24 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Tutoriais e Scripts - Márcio Wilson" class="md-header__button md-logo" aria-label="Tutoriais e Scripts - Márcio Wilson" data-md-component="logo">
+    <a href="../../.." title="MwInSilico — Márcio Wilson" class="md-header__button md-logo" aria-label="MwInSilico — Márcio Wilson" data-md-component="logo">
       
   <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Tutoriais e Scripts - Márcio Wilson
+            MwInSilico — Márcio Wilson
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -123,20 +128,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_2" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_2">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
@@ -144,33 +149,40 @@
       
     
     
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -181,18 +193,25 @@
     </div>
   </div>
 </div>
+      
     
+    
+      <div class="md-header__source">
+        <a href="https://github.com/marciow0205/bioinformatics-tutorials" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marciow0205/bioinformatics-tutorials
+  </div>
+</a>
+      </div>
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -201,9 +220,11 @@
   
   
   
+  
     <li class="md-tabs__item">
       <a href="../../.." class="md-tabs__link">
         
+  
   
     
   
@@ -218,9 +239,30 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../../../sobre/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Sobre
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
     
     
       
+  
   
   
   
@@ -229,6 +271,9 @@
       <li class="md-tabs__item">
         <a href="../../../post1_dogma_central/" class="md-tabs__link">
           
+  
+  
+    
   
   MwInSilico
 
@@ -244,12 +289,14 @@
         
   
   
+  
     
   
   
     
     
       
+  
   
   
     
@@ -260,6 +307,9 @@
       <li class="md-tabs__item md-tabs__item--active">
         <a href="../../analise/introducao/" class="md-tabs__link">
           
+  
+  
+    
   
   Bioinformática
 
@@ -276,11 +326,15 @@
   
   
   
+  
     
     
       <li class="md-tabs__item">
         <a href="../../../singularity_tutorial/" class="md-tabs__link">
           
+  
+  
+    
   
   Ferramentas e Infraestrutura
 
@@ -290,10 +344,35 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -312,13 +391,25 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Tutoriais e Scripts - Márcio Wilson" class="md-nav__button md-logo" aria-label="Tutoriais e Scripts - Márcio Wilson" data-md-component="logo">
+    <a href="../../.." title="MwInSilico — Márcio Wilson" class="md-nav__button md-logo" aria-label="MwInSilico — Márcio Wilson" data-md-component="logo">
       
   <img src="../../../assets/logo.png" alt="logo">
 
     </a>
-    Tutoriais e Scripts - Márcio Wilson
+    MwInSilico — Márcio Wilson
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/marciow0205/bioinformatics-tutorials" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marciow0205/bioinformatics-tutorials
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -327,13 +418,21 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../.." class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Início
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -346,139 +445,81 @@
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../../sobre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
+  
+    Sobre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    MwInSilico
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            MwInSilico
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
-        
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Postagens
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            Postagens
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../post1_dogma_central/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    O Dogma Central da Biologia
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
+          
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
-    Bioinformática
+    
+  
+    MwInSilico
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Bioinformática
+            
+  
+    MwInSilico
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -487,25 +528,49 @@
   
   
   
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
       
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
-        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
+          
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
-    Análise de Dados
+    
+  
+    Postagens
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -514,7 +579,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
-            Análise de Dados
+            
+  
+    Postagens
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -523,13 +592,302 @@
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../../post1_dogma_central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Dogma Central da Biologia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2_sequenciamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequenciamento de DNA: da descoberta às tecnologias modernas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sequenciamento_illumina/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequenciamento Illumina na Prática
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sequenciamento_terceira_geracao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PacBio e Nanopore em Detalhe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sequenciamento_celula_unica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequenciamento de Célula Única
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bioinformática
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bioinformática
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análise de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Análise de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../analise/introducao/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Introdução à Análise
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -553,34 +911,57 @@
     
   
   
+  
+    
+    
+      
+        
+      
     
     
     
       
+      
+        
+          
+          
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
-        
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
+    
+  
     Bancos de Dados Públicos
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            Bancos de Dados Públicos
+            
+  
+    Bancos de Dados Públicos
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -589,6 +970,7 @@
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -600,9 +982,16 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
+  
   <span class="md-ellipsis">
+    
+  
     Exploração do TCGA/GDC
+  
+
+    
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -611,9 +1000,16 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Exploração do TCGA/GDC
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -633,7 +1029,11 @@
       
         <li class="md-nav__item">
   <a href="#1-visao-geral" class="md-nav__link">
-    1. Visão geral
+    <span class="md-ellipsis">
+      
+        1. Visão geral
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="1. Visão geral">
@@ -641,7 +1041,11 @@
         
           <li class="md-nav__item">
   <a href="#11-o-que-este-protocolo-responde" class="md-nav__link">
-    1.1 O que este protocolo responde
+    <span class="md-ellipsis">
+      
+        1.1 O que este protocolo responde
+      
+    </span>
   </a>
   
 </li>
@@ -653,7 +1057,11 @@
       
         <li class="md-nav__item">
   <a href="#2-conceitos-fundamentais-antes-de-comecar" class="md-nav__link">
-    2. Conceitos fundamentais antes de começar
+    <span class="md-ellipsis">
+      
+        2. Conceitos fundamentais antes de começar
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="2. Conceitos fundamentais antes de começar">
@@ -661,28 +1069,44 @@
         
           <li class="md-nav__item">
   <a href="#21-case" class="md-nav__link">
-    2.1 Case
+    <span class="md-ellipsis">
+      
+        2.1 Case
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#22-sample" class="md-nav__link">
-    2.2 Sample
+    <span class="md-ellipsis">
+      
+        2.2 Sample
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#23-portion-analyte-e-aliquot" class="md-nav__link">
-    2.3 Portion, analyte e aliquot
+    <span class="md-ellipsis">
+      
+        2.3 Portion, analyte e aliquot
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#24-file" class="md-nav__link">
-    2.4 File
+    <span class="md-ellipsis">
+      
+        2.4 File
+      
+    </span>
   </a>
   
 </li>
@@ -694,14 +1118,22 @@
       
         <li class="md-nav__item">
   <a href="#3-modelo-geral-do-protocolo" class="md-nav__link">
-    3. Modelo geral do protocolo
+    <span class="md-ellipsis">
+      
+        3. Modelo geral do protocolo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4-ambiente-computacional" class="md-nav__link">
-    4. Ambiente computacional
+    <span class="md-ellipsis">
+      
+        4. Ambiente computacional
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="4. Ambiente computacional">
@@ -709,14 +1141,22 @@
         
           <li class="md-nav__item">
   <a href="#41-requisitos" class="md-nav__link">
-    4.1 Requisitos
+    <span class="md-ellipsis">
+      
+        4.1 Requisitos
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#5-instalacao-do-r-e-bioconductor" class="md-nav__link">
-    5. Instalação do R e Bioconductor
+    <span class="md-ellipsis">
+      
+        5. Instalação do R e Bioconductor
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="5. Instalação do R e Bioconductor">
@@ -724,28 +1164,44 @@
         
           <li class="md-nav__item">
   <a href="#51-verificar-o-r" class="md-nav__link">
-    5.1 Verificar o R
+    <span class="md-ellipsis">
+      
+        5.1 Verificar o R
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#52-instalar-os-pacotes" class="md-nav__link">
-    5.2 Instalar os pacotes
+    <span class="md-ellipsis">
+      
+        5.2 Instalar os pacotes
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#53-carregamento" class="md-nav__link">
-    5.3 Carregamento
+    <span class="md-ellipsis">
+      
+        5.3 Carregamento
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#54-testar-a-api-do-gdc" class="md-nav__link">
-    5.4 Testar a API do GDC
+    <span class="md-ellipsis">
+      
+        5.4 Testar a API do GDC
+      
+    </span>
   </a>
   
 </li>
@@ -762,29 +1218,45 @@
       
         <li class="md-nav__item">
   <a href="#6-definicao-do-projeto-e-principio-explorar-antes-de-selecionar" class="md-nav__link">
-    6. Definição do projeto e princípio "explorar antes de selecionar"
+    <span class="md-ellipsis">
+      
+        6. Definição do projeto e princípio "explorar antes de selecionar"
+      
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="6. Definição do projeto e princípio "explorar antes de selecionar"">
+    <nav class="md-nav" aria-label="6. Definição do projeto e princípio &#34;explorar antes de selecionar&#34;">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#61-funcoes-auxiliares-para-explorar-opcoes" class="md-nav__link">
-    6.1 Funções auxiliares para explorar opções
+    <span class="md-ellipsis">
+      
+        6.1 Funções auxiliares para explorar opções
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#62-mapa-rapido-qual-ferramenta-usar-para-descobrir-cada-opcao" class="md-nav__link">
-    6.2 Mapa rápido: qual ferramenta usar para descobrir cada opção?
+    <span class="md-ellipsis">
+      
+        6.2 Mapa rápido: qual ferramenta usar para descobrir cada opção?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#62-primeiro-nivel-descobrir-os-projetos" class="md-nav__link">
-    6.2 Primeiro nível: descobrir os projetos
+    <span class="md-ellipsis">
+      
+        6.2 Primeiro nível: descobrir os projetos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="6.2 Primeiro nível: descobrir os projetos">
@@ -792,7 +1264,11 @@
         
           <li class="md-nav__item">
   <a href="#procurar-projetos-por-orgao-doenca-ou-palavra-chave" class="md-nav__link">
-    Procurar projetos por órgão, doença ou palavra-chave
+    <span class="md-ellipsis">
+      
+        Procurar projetos por órgão, doença ou palavra-chave
+      
+    </span>
   </a>
   
 </li>
@@ -804,7 +1280,11 @@
         
           <li class="md-nav__item">
   <a href="#63-segundo-nivel-descobrir-as-categorias-disponiveis-no-projeto" class="md-nav__link">
-    6.3 Segundo nível: descobrir as categorias disponíveis no projeto
+    <span class="md-ellipsis">
+      
+        6.3 Segundo nível: descobrir as categorias disponíveis no projeto
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="6.3 Segundo nível: descobrir as categorias disponíveis no projeto">
@@ -812,7 +1292,11 @@
         
           <li class="md-nav__item">
   <a href="#uma-visao-visual" class="md-nav__link">
-    Uma visão visual
+    <span class="md-ellipsis">
+      
+        Uma visão visual
+      
+    </span>
   </a>
   
 </li>
@@ -824,70 +1308,110 @@
         
           <li class="md-nav__item">
   <a href="#64-terceiro-nivel-descobrir-datatype" class="md-nav__link">
-    6.4 Terceiro nível: descobrir data.type
+    <span class="md-ellipsis">
+      
+        6.4 Terceiro nível: descobrir data.type
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#65-quarto-nivel-descobrir-workflowtype" class="md-nav__link">
-    6.5 Quarto nível: descobrir workflow.type
+    <span class="md-ellipsis">
+      
+        6.5 Quarto nível: descobrir workflow.type
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#66-quinto-nivel-descobrir-acesso-open-controlled" class="md-nav__link">
-    6.6 Quinto nível: descobrir acesso (open / controlled)
+    <span class="md-ellipsis">
+      
+        6.6 Quinto nível: descobrir acesso (open / controlled)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#67-sexto-nivel-descobrir-tipos-de-amostra" class="md-nav__link">
-    6.7 Sexto nível: descobrir tipos de amostra
+    <span class="md-ellipsis">
+      
+        6.7 Sexto nível: descobrir tipos de amostra
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#68-setimo-nivel-descobrir-experimentalstrategy" class="md-nav__link">
-    6.8 Sétimo nível: descobrir experimental.strategy
+    <span class="md-ellipsis">
+      
+        6.8 Sétimo nível: descobrir experimental.strategy
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#69-oitavo-nivel-descobrir-platform" class="md-nav__link">
-    6.9 Oitavo nível: descobrir platform
+    <span class="md-ellipsis">
+      
+        6.9 Oitavo nível: descobrir platform
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#610-nono-nivel-descobrir-dataformat" class="md-nav__link">
-    6.10 Nono nível: descobrir data.format
+    <span class="md-ellipsis">
+      
+        6.10 Nono nível: descobrir data.format
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#611-montar-a-consulta-somente-depois-de-selecionar-as-opcoes" class="md-nav__link">
-    6.11 Montar a consulta somente depois de selecionar as opções
+    <span class="md-ellipsis">
+      
+        6.11 Montar a consulta somente depois de selecionar as opções
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#612-decimo-primeiro-nivel-descobrir-barcodesamostras" class="md-nav__link">
-    6.12 Décimo primeiro nível: descobrir barcodes/amostras
+    <span class="md-ellipsis">
+      
+        6.12 Décimo primeiro nível: descobrir barcodes/amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#613-explorador-generico-para-qualquer-coluna" class="md-nav__link">
-    6.13 Explorador genérico para qualquer coluna
+    <span class="md-ellipsis">
+      
+        6.13 Explorador genérico para qualquer coluna
+      
+    </span>
   </a>
   
 </li>
@@ -899,7 +1423,11 @@
       
         <li class="md-nav__item">
   <a href="#7-etapa-1-listar-projetos-disponiveis" class="md-nav__link">
-    7. Etapa 1 — listar projetos disponíveis
+    <span class="md-ellipsis">
+      
+        7. Etapa 1 — listar projetos disponíveis
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="7. Etapa 1 — listar projetos disponíveis">
@@ -907,14 +1435,22 @@
         
           <li class="md-nav__item">
   <a href="#71-filtrar-apenas-tcga" class="md-nav__link">
-    7.1 Filtrar apenas TCGA
+    <span class="md-ellipsis">
+      
+        7.1 Filtrar apenas TCGA
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#72-localizar-um-projeto-especifico" class="md-nav__link">
-    7.2 Localizar um projeto específico
+    <span class="md-ellipsis">
+      
+        7.2 Localizar um projeto específico
+      
+    </span>
   </a>
   
 </li>
@@ -926,14 +1462,22 @@
       
         <li class="md-nav__item">
   <a href="#8-etapa-2-resumo-geral-do-projeto" class="md-nav__link">
-    8. Etapa 2 — resumo geral do projeto
+    <span class="md-ellipsis">
+      
+        8. Etapa 2 — resumo geral do projeto
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#9-etapa-3-inventario-de-arquivos-por-modalidade" class="md-nav__link">
-    9. Etapa 3 — inventário de arquivos por modalidade
+    <span class="md-ellipsis">
+      
+        9. Etapa 3 — inventário de arquivos por modalidade
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="9. Etapa 3 — inventário de arquivos por modalidade">
@@ -941,7 +1485,11 @@
         
           <li class="md-nav__item">
   <a href="#91-resumo-por-acesso" class="md-nav__link">
-    9.1 Resumo por acesso
+    <span class="md-ellipsis">
+      
+        9.1 Resumo por acesso
+      
+    </span>
   </a>
   
 </li>
@@ -953,7 +1501,11 @@
       
         <li class="md-nav__item">
   <a href="#10-etapa-4-consulta-detalhada-de-arquivos-com-gdcquery" class="md-nav__link">
-    10. Etapa 4 — consulta detalhada de arquivos com GDCquery()
+    <span class="md-ellipsis">
+      
+        10. Etapa 4 — consulta detalhada de arquivos com GDCquery()
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="10. Etapa 4 — consulta detalhada de arquivos com GDCquery()">
@@ -961,42 +1513,66 @@
         
           <li class="md-nav__item">
   <a href="#101-exemplo-expressao-genica" class="md-nav__link">
-    10.1 Exemplo: expressão gênica
+    <span class="md-ellipsis">
+      
+        10.1 Exemplo: expressão gênica
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#102-quantidade-de-arquivos-por-acesso" class="md-nav__link">
-    10.2 Quantidade de arquivos por acesso
+    <span class="md-ellipsis">
+      
+        10.2 Quantidade de arquivos por acesso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#103-tipos-de-amostras" class="md-nav__link">
-    10.3 Tipos de amostras
+    <span class="md-ellipsis">
+      
+        10.3 Tipos de amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#104-estrategias-experimentais" class="md-nav__link">
-    10.4 Estratégias experimentais
+    <span class="md-ellipsis">
+      
+        10.4 Estratégias experimentais
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#105-plataformas" class="md-nav__link">
-    10.5 Plataformas
+    <span class="md-ellipsis">
+      
+        10.5 Plataformas
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#106-data-category-e-data-type" class="md-nav__link">
-    10.6 Data category e data type
+    <span class="md-ellipsis">
+      
+        10.6 Data category e data type
+      
+    </span>
   </a>
   
 </li>
@@ -1008,7 +1584,11 @@
       
         <li class="md-nav__item">
   <a href="#11-etapa-5-inventario-amplo-de-categorias-de-dados" class="md-nav__link">
-    11. Etapa 5 — inventário amplo de categorias de dados
+    <span class="md-ellipsis">
+      
+        11. Etapa 5 — inventário amplo de categorias de dados
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="11. Etapa 5 — inventário amplo de categorias de dados">
@@ -1016,7 +1596,11 @@
         
           <li class="md-nav__item">
   <a href="#111-descobrir-categorias-a-partir-dos-resultados" class="md-nav__link">
-    11.1 Descobrir categorias a partir dos resultados
+    <span class="md-ellipsis">
+      
+        11.1 Descobrir categorias a partir dos resultados
+      
+    </span>
   </a>
   
 </li>
@@ -1028,7 +1612,11 @@
       
         <li class="md-nav__item">
   <a href="#12-etapa-6-dados-clinicos" class="md-nav__link">
-    12. Etapa 6 — dados clínicos
+    <span class="md-ellipsis">
+      
+        12. Etapa 6 — dados clínicos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="12. Etapa 6 — dados clínicos">
@@ -1036,7 +1624,11 @@
         
           <li class="md-nav__item">
   <a href="#121-carregar-o-conjunto-clinico" class="md-nav__link">
-    12.1 Carregar o conjunto clínico
+    <span class="md-ellipsis">
+      
+        12.1 Carregar o conjunto clínico
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="12.1 Carregar o conjunto clínico">
@@ -1044,14 +1636,22 @@
         
           <li class="md-nav__item">
   <a href="#122-quantos-registros-clinicos-existem" class="md-nav__link">
-    12.2 Quantos registros clínicos existem?
+    <span class="md-ellipsis">
+      
+        12.2 Quantos registros clínicos existem?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#123-identificar-o-numero-de-cases" class="md-nav__link">
-    12.3 Identificar o número de cases
+    <span class="md-ellipsis">
+      
+        12.3 Identificar o número de cases
+      
+    </span>
   </a>
   
 </li>
@@ -1068,7 +1668,11 @@
       
         <li class="md-nav__item">
   <a href="#13-etapa-7-dados-de-biospecimenes" class="md-nav__link">
-    13. Etapa 7 — dados de biospecímenes
+    <span class="md-ellipsis">
+      
+        13. Etapa 7 — dados de biospecímenes
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="13. Etapa 7 — dados de biospecímenes">
@@ -1076,14 +1680,22 @@
         
           <li class="md-nav__item">
   <a href="#131-quantidade-de-amostras" class="md-nav__link">
-    13.1 Quantidade de amostras
+    <span class="md-ellipsis">
+      
+        13.1 Quantidade de amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#132-tipos-de-amostra" class="md-nav__link">
-    13.2 Tipos de amostra
+    <span class="md-ellipsis">
+      
+        13.2 Tipos de amostra
+      
+    </span>
   </a>
   
 </li>
@@ -1095,14 +1707,22 @@
       
         <li class="md-nav__item">
   <a href="#14-etapa-8-relacionar-paciente-amostra-e-tecido" class="md-nav__link">
-    14. Etapa 8 — relacionar paciente, amostra e tecido
+    <span class="md-ellipsis">
+      
+        14. Etapa 8 — relacionar paciente, amostra e tecido
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#15-etapa-9-acesso-aberto-versus-controlado" class="md-nav__link">
-    15. Etapa 9 — acesso aberto versus controlado
+    <span class="md-ellipsis">
+      
+        15. Etapa 9 — acesso aberto versus controlado
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="15. Etapa 9 — acesso aberto versus controlado">
@@ -1110,14 +1730,22 @@
         
           <li class="md-nav__item">
   <a href="#151-regra-importante" class="md-nav__link">
-    15.1 Regra importante
+    <span class="md-ellipsis">
+      
+        15.1 Regra importante
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#152-tabela-de-acesso" class="md-nav__link">
-    15.2 Tabela de acesso
+    <span class="md-ellipsis">
+      
+        15.2 Tabela de acesso
+      
+    </span>
   </a>
   
 </li>
@@ -1129,7 +1757,11 @@
       
         <li class="md-nav__item">
   <a href="#16-etapa-10-tratamentos" class="md-nav__link">
-    16. Etapa 10 — tratamentos
+    <span class="md-ellipsis">
+      
+        16. Etapa 10 — tratamentos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="16. Etapa 10 — tratamentos">
@@ -1137,7 +1769,11 @@
         
           <li class="md-nav__item">
   <a href="#antes-de-analisar-tratamentos-descobrir-as-variaveis-disponiveis" class="md-nav__link">
-    Antes de analisar tratamentos: descobrir as variáveis disponíveis
+    <span class="md-ellipsis">
+      
+        Antes de analisar tratamentos: descobrir as variáveis disponíveis
+      
+    </span>
   </a>
   
 </li>
@@ -1149,28 +1785,44 @@
       
         <li class="md-nav__item">
   <a href="#17-etapa-11-estagio-tumoral" class="md-nav__link">
-    17. Etapa 11 — estágio tumoral
+    <span class="md-ellipsis">
+      
+        17. Etapa 11 — estágio tumoral
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#18-etapa-12-dados-demograficos" class="md-nav__link">
-    18. Etapa 12 — dados demográficos
+    <span class="md-ellipsis">
+      
+        18. Etapa 12 — dados demográficos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#19-etapa-13-status-vital-e-sobrevida-potencial" class="md-nav__link">
-    19. Etapa 13 — status vital e sobrevida potencial
+    <span class="md-ellipsis">
+      
+        19. Etapa 13 — status vital e sobrevida potencial
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#20-etapa-14-qualidade-e-completude-dos-metadados" class="md-nav__link">
-    20. Etapa 14 — qualidade e completude dos metadados
+    <span class="md-ellipsis">
+      
+        20. Etapa 14 — qualidade e completude dos metadados
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="20. Etapa 14 — qualidade e completude dos metadados">
@@ -1178,7 +1830,11 @@
         
           <li class="md-nav__item">
   <a href="#201-percentual-de-valores-ausentes" class="md-nav__link">
-    20.1 Percentual de valores ausentes
+    <span class="md-ellipsis">
+      
+        20.1 Percentual de valores ausentes
+      
+    </span>
   </a>
   
 </li>
@@ -1190,56 +1846,88 @@
       
         <li class="md-nav__item">
   <a href="#21-etapa-15-disponibilidade-de-tumor-e-normal" class="md-nav__link">
-    21. Etapa 15 — disponibilidade de tumor e normal
+    <span class="md-ellipsis">
+      
+        21. Etapa 15 — disponibilidade de tumor e normal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#22-etapa-16-identificar-possiveis-pares-tumor-normal" class="md-nav__link">
-    22. Etapa 16 — identificar possíveis pares tumor-normal
+    <span class="md-ellipsis">
+      
+        22. Etapa 16 — identificar possíveis pares tumor-normal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#23-etapa-17-quantidade-de-arquivos-por-categoria-e-tipo" class="md-nav__link">
-    23. Etapa 17 — quantidade de arquivos por categoria e tipo
+    <span class="md-ellipsis">
+      
+        23. Etapa 17 — quantidade de arquivos por categoria e tipo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#24-etapa-18-tamanho-dos-arquivos" class="md-nav__link">
-    24. Etapa 18 — tamanho dos arquivos
+    <span class="md-ellipsis">
+      
+        24. Etapa 18 — tamanho dos arquivos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#25-etapa-19-distribuicao-por-centroplataformaestrategia" class="md-nav__link">
-    25. Etapa 19 — distribuição por centro/plataforma/estratégia
+    <span class="md-ellipsis">
+      
+        25. Etapa 19 — distribuição por centro/plataforma/estratégia
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#26-etapa-20-exportar-tabelas-profissionais" class="md-nav__link">
-    26. Etapa 20 — exportar tabelas profissionais
+    <span class="md-ellipsis">
+      
+        26. Etapa 20 — exportar tabelas profissionais
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#27-etapa-21-gerar-uma-planilha-xlsx-consolidada" class="md-nav__link">
-    27. Etapa 21 — gerar uma planilha XLSX consolidada
+    <span class="md-ellipsis">
+      
+        27. Etapa 21 — gerar uma planilha XLSX consolidada
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#28-etapa-22-graficos-exploratorios" class="md-nav__link">
-    28. Etapa 22 — gráficos exploratórios
+    <span class="md-ellipsis">
+      
+        28. Etapa 22 — gráficos exploratórios
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="28. Etapa 22 — gráficos exploratórios">
@@ -1247,14 +1935,22 @@
         
           <li class="md-nav__item">
   <a href="#281-amostras-por-tipo" class="md-nav__link">
-    28.1 Amostras por tipo
+    <span class="md-ellipsis">
+      
+        28.1 Amostras por tipo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#282-arquivos-por-acesso" class="md-nav__link">
-    28.2 Arquivos por acesso
+    <span class="md-ellipsis">
+      
+        28.2 Arquivos por acesso
+      
+    </span>
   </a>
   
 </li>
@@ -1266,42 +1962,66 @@
       
         <li class="md-nav__item">
   <a href="#29-etapa-23-matriz-de-perguntas-e-respostas" class="md-nav__link">
-    29. Etapa 23 — matriz de perguntas e respostas
+    <span class="md-ellipsis">
+      
+        29. Etapa 23 — matriz de perguntas e respostas
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#30-checklist-de-exploracao-antes-de-cada-consulta" class="md-nav__link">
-    30. Checklist de exploração antes de cada consulta
+    <span class="md-ellipsis">
+      
+        30. Checklist de exploração antes de cada consulta
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#31-pipeline-reutilizavel-completo" class="md-nav__link">
-    31. Pipeline reutilizável completo
+    <span class="md-ellipsis">
+      
+        31. Pipeline reutilizável completo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#31-problema-importante-no-script-acima-escopo-e-nomes-de-variaveis" class="md-nav__link">
-    31. Problema importante no script acima: escopo e nomes de variáveis
+    <span class="md-ellipsis">
+      
+        31. Problema importante no script acima: escopo e nomes de variáveis
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#32-versao-recomendada-do-bloco-principal" class="md-nav__link">
-    32. Versão recomendada do bloco principal
+    <span class="md-ellipsis">
+      
+        32. Versão recomendada do bloco principal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#33-etapa-24-consulta-de-modalidades-especificas" class="md-nav__link">
-    33. Etapa 24 — consulta de modalidades específicas
+    <span class="md-ellipsis">
+      
+        33. Etapa 24 — consulta de modalidades específicas
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="33. Etapa 24 — consulta de modalidades específicas">
@@ -1309,28 +2029,44 @@
         
           <li class="md-nav__item">
   <a href="#331-rna-seq-expressao" class="md-nav__link">
-    33.1 RNA-seq / expressão
+    <span class="md-ellipsis">
+      
+        33.1 RNA-seq / expressão
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#332-mirna" class="md-nav__link">
-    33.2 miRNA
+    <span class="md-ellipsis">
+      
+        33.2 miRNA
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#333-mutacoes-snv" class="md-nav__link">
-    33.3 Mutações / SNV
+    <span class="md-ellipsis">
+      
+        33.3 Mutações / SNV
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#334-cnv" class="md-nav__link">
-    33.4 CNV
+    <span class="md-ellipsis">
+      
+        33.4 CNV
+      
+    </span>
   </a>
   
 </li>
@@ -1342,28 +2078,44 @@
       
         <li class="md-nav__item">
   <a href="#34-etapa-25-nao-baixar-dados-ainda" class="md-nav__link">
-    34. Etapa 25 — não baixar dados ainda
+    <span class="md-ellipsis">
+      
+        34. Etapa 25 — não baixar dados ainda
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#35-quando-partir-para-o-download" class="md-nav__link">
-    35. Quando partir para o download
+    <span class="md-ellipsis">
+      
+        35. Quando partir para o download
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#36-protocolo-de-controle-de-qualidade-antes-do-download" class="md-nav__link">
-    36. Protocolo de controle de qualidade antes do download
+    <span class="md-ellipsis">
+      
+        36. Protocolo de controle de qualidade antes do download
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#37-estrutura-recomendada-do-relatorio-final" class="md-nav__link">
-    37. Estrutura recomendada do relatório final
+    <span class="md-ellipsis">
+      
+        37. Estrutura recomendada do relatório final
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="37. Estrutura recomendada do relatório final">
@@ -1371,42 +2123,66 @@
         
           <li class="md-nav__item">
   <a href="#371-resumo-executivo" class="md-nav__link">
-    37.1 Resumo executivo
+    <span class="md-ellipsis">
+      
+        37.1 Resumo executivo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#372-perfil-clinico" class="md-nav__link">
-    37.2 Perfil clínico
+    <span class="md-ellipsis">
+      
+        37.2 Perfil clínico
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#373-perfil-biospecimen" class="md-nav__link">
-    37.3 Perfil biospecimen
+    <span class="md-ellipsis">
+      
+        37.3 Perfil biospecimen
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#374-perfil-molecular" class="md-nav__link">
-    37.4 Perfil molecular
+    <span class="md-ellipsis">
+      
+        37.4 Perfil molecular
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#375-auditoria-de-completude" class="md-nav__link">
-    37.5 Auditoria de completude
+    <span class="md-ellipsis">
+      
+        37.5 Auditoria de completude
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#376-decisao-de-cohort" class="md-nav__link">
-    37.6 Decisão de cohort
+    <span class="md-ellipsis">
+      
+        37.6 Decisão de cohort
+      
+    </span>
   </a>
   
 </li>
@@ -1418,42 +2194,66 @@
       
         <li class="md-nav__item">
   <a href="#38-estrutura-de-pastas-recomendada" class="md-nav__link">
-    38. Estrutura de pastas recomendada
+    <span class="md-ellipsis">
+      
+        38. Estrutura de pastas recomendada
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#39-como-transformar-o-protocolo-em-ferramenta-reutilizavel" class="md-nav__link">
-    39. Como transformar o protocolo em ferramenta reutilizável
+    <span class="md-ellipsis">
+      
+        39. Como transformar o protocolo em ferramenta reutilizável
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#40-extensao-recomendada-tabela-mestre-de-disponibilidade" class="md-nav__link">
-    40. Extensão recomendada — tabela mestre de disponibilidade
+    <span class="md-ellipsis">
+      
+        40. Extensão recomendada — tabela mestre de disponibilidade
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#41-extensao-recomendada-comparacao-entre-varios-projetos" class="md-nav__link">
-    41. Extensão recomendada — comparação entre vários projetos
+    <span class="md-ellipsis">
+      
+        41. Extensão recomendada — comparação entre vários projetos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#42-o-que-este-protocolo-nao-faz" class="md-nav__link">
-    42. O que este protocolo NÃO faz
+    <span class="md-ellipsis">
+      
+        42. O que este protocolo NÃO faz
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#43-interpretacao-dos-principais-numeros" class="md-nav__link">
-    43. Interpretação dos principais números
+    <span class="md-ellipsis">
+      
+        43. Interpretação dos principais números
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="43. Interpretação dos principais números">
@@ -1461,35 +2261,55 @@
         
           <li class="md-nav__item">
   <a href="#nao-confundir-arquivos-com-pacientes" class="md-nav__link">
-    Não confundir arquivos com pacientes
+    <span class="md-ellipsis">
+      
+        Não confundir arquivos com pacientes
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-confundir-samples-com-cases" class="md-nav__link">
-    Não confundir samples com cases
+    <span class="md-ellipsis">
+      
+        Não confundir samples com cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-inferir-acesso-pelo-tipo-do-dado" class="md-nav__link">
-    Não inferir acesso pelo tipo do dado
+    <span class="md-ellipsis">
+      
+        Não inferir acesso pelo tipo do dado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-assumir-ausencia-de-informacao-pela-falta-de-uma-variavel" class="md-nav__link">
-    Não assumir ausência de informação pela falta de uma variável
+    <span class="md-ellipsis">
+      
+        Não assumir ausência de informação pela falta de uma variável
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-interpretar-missingness-como-exclusao-automatica" class="md-nav__link">
-    Não interpretar missingness como exclusão automática
+    <span class="md-ellipsis">
+      
+        Não interpretar missingness como exclusão automática
+      
+    </span>
   </a>
   
 </li>
@@ -1501,28 +2321,44 @@
       
         <li class="md-nav__item">
   <a href="#44-boas-praticas-de-reprodutibilidade" class="md-nav__link">
-    44. Boas práticas de reprodutibilidade
+    <span class="md-ellipsis">
+      
+        44. Boas práticas de reprodutibilidade
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#45-geracao-de-relatorio-html" class="md-nav__link">
-    45. Geração de relatório HTML
+    <span class="md-ellipsis">
+      
+        45. Geração de relatório HTML
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#46-modelo-de-conclusao-para-cada-projeto" class="md-nav__link">
-    46. Modelo de conclusão para cada projeto
+    <span class="md-ellipsis">
+      
+        46. Modelo de conclusão para cada projeto
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#47-referencias-e-documentacao-oficial" class="md-nav__link">
-    47. Referências e documentação oficial
+    <span class="md-ellipsis">
+      
+        47. Referências e documentação oficial
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="47. Referências e documentação oficial">
@@ -1530,21 +2366,33 @@
         
           <li class="md-nav__item">
   <a href="#gdc" class="md-nav__link">
-    GDC
+    <span class="md-ellipsis">
+      
+        GDC
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#tcgabiolinks" class="md-nav__link">
-    TCGAbiolinks
+    <span class="md-ellipsis">
+      
+        TCGAbiolinks
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#referencia-classica" class="md-nav__link">
-    Referência clássica
+    <span class="md-ellipsis">
+      
+        Referência clássica
+      
+    </span>
   </a>
   
 </li>
@@ -1556,21 +2404,33 @@
       
         <li class="md-nav__item">
   <a href="#48-sugestao-de-organizacao-no-seu-mkdocs" class="md-nav__link">
-    48. Sugestão de organização no seu MkDocs
+    <span class="md-ellipsis">
+      
+        48. Sugestão de organização no seu MkDocs
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#49-resultado-esperado-do-protocolo" class="md-nav__link">
-    49. Resultado esperado do protocolo
+    <span class="md-ellipsis">
+      
+        49. Resultado esperado do protocolo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#50-resumo-operacional" class="md-nav__link">
-    50. Resumo operacional
+    <span class="md-ellipsis">
+      
+        50. Resumo operacional
+      
+    </span>
   </a>
   
 </li>
@@ -1597,39 +2457,63 @@
   
   
   
+  
+    
+    
+      
+        
+      
     
     
     
       
+      
+        
+          
+          
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-        
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
+    
+  
     Plots
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            Plots
+            
+  
+    Plots
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
+  
   
   
   
@@ -1637,9 +2521,16 @@
       <a href="../../plot/graficos_r/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Gráficos em R
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -1661,39 +2552,67 @@
   
   
   
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
     
     
     
       
+      
+        
+          
+          
+        
+      
+    
     
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
-        
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
             
   
+  
   <span class="md-ellipsis">
+    
+  
     Transcriptoma
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
-            Transcriptoma
+            
+  
+    Transcriptoma
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
+  
   
   
   
@@ -1701,9 +2620,16 @@
       <a href="../../transcriptoma/rnaseq/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Pipeline RNA-Seq (GEO → DEGs)
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -1717,13 +2643,49 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../transcriptoma/apptainer_sandbox/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Container Apptainer do Pipeline
+  
+
+    
   </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transcriptoma/deseq2_estatistica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DESeq2 e a Estatística por Trás Dele
+  
+
+    
+  </span>
+  
   
 
       </a>
@@ -1752,32 +2714,56 @@
   
   
   
+  
     
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
+  
   <span class="md-ellipsis">
+    
+  
     Ferramentas e Infraestrutura
+  
+
+    
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Ferramentas e Infraestrutura
+            
+  
+    Ferramentas e Infraestrutura
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1786,13 +2772,21 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../../singularity_tutorial/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     Apptainer/Singularity — Guia Geral
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -1806,13 +2800,21 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../../tutorial_mkdocs/" class="md-nav__link">
         
   
+  
   <span class="md-ellipsis">
+    
+  
     MkDocs e GitHub Pages
+  
+
+    
   </span>
+  
   
 
       </a>
@@ -1824,6 +2826,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1854,7 +2883,11 @@
       
         <li class="md-nav__item">
   <a href="#1-visao-geral" class="md-nav__link">
-    1. Visão geral
+    <span class="md-ellipsis">
+      
+        1. Visão geral
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="1. Visão geral">
@@ -1862,7 +2895,11 @@
         
           <li class="md-nav__item">
   <a href="#11-o-que-este-protocolo-responde" class="md-nav__link">
-    1.1 O que este protocolo responde
+    <span class="md-ellipsis">
+      
+        1.1 O que este protocolo responde
+      
+    </span>
   </a>
   
 </li>
@@ -1874,7 +2911,11 @@
       
         <li class="md-nav__item">
   <a href="#2-conceitos-fundamentais-antes-de-comecar" class="md-nav__link">
-    2. Conceitos fundamentais antes de começar
+    <span class="md-ellipsis">
+      
+        2. Conceitos fundamentais antes de começar
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="2. Conceitos fundamentais antes de começar">
@@ -1882,28 +2923,44 @@
         
           <li class="md-nav__item">
   <a href="#21-case" class="md-nav__link">
-    2.1 Case
+    <span class="md-ellipsis">
+      
+        2.1 Case
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#22-sample" class="md-nav__link">
-    2.2 Sample
+    <span class="md-ellipsis">
+      
+        2.2 Sample
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#23-portion-analyte-e-aliquot" class="md-nav__link">
-    2.3 Portion, analyte e aliquot
+    <span class="md-ellipsis">
+      
+        2.3 Portion, analyte e aliquot
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#24-file" class="md-nav__link">
-    2.4 File
+    <span class="md-ellipsis">
+      
+        2.4 File
+      
+    </span>
   </a>
   
 </li>
@@ -1915,14 +2972,22 @@
       
         <li class="md-nav__item">
   <a href="#3-modelo-geral-do-protocolo" class="md-nav__link">
-    3. Modelo geral do protocolo
+    <span class="md-ellipsis">
+      
+        3. Modelo geral do protocolo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#4-ambiente-computacional" class="md-nav__link">
-    4. Ambiente computacional
+    <span class="md-ellipsis">
+      
+        4. Ambiente computacional
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="4. Ambiente computacional">
@@ -1930,14 +2995,22 @@
         
           <li class="md-nav__item">
   <a href="#41-requisitos" class="md-nav__link">
-    4.1 Requisitos
+    <span class="md-ellipsis">
+      
+        4.1 Requisitos
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#5-instalacao-do-r-e-bioconductor" class="md-nav__link">
-    5. Instalação do R e Bioconductor
+    <span class="md-ellipsis">
+      
+        5. Instalação do R e Bioconductor
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="5. Instalação do R e Bioconductor">
@@ -1945,28 +3018,44 @@
         
           <li class="md-nav__item">
   <a href="#51-verificar-o-r" class="md-nav__link">
-    5.1 Verificar o R
+    <span class="md-ellipsis">
+      
+        5.1 Verificar o R
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#52-instalar-os-pacotes" class="md-nav__link">
-    5.2 Instalar os pacotes
+    <span class="md-ellipsis">
+      
+        5.2 Instalar os pacotes
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#53-carregamento" class="md-nav__link">
-    5.3 Carregamento
+    <span class="md-ellipsis">
+      
+        5.3 Carregamento
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#54-testar-a-api-do-gdc" class="md-nav__link">
-    5.4 Testar a API do GDC
+    <span class="md-ellipsis">
+      
+        5.4 Testar a API do GDC
+      
+    </span>
   </a>
   
 </li>
@@ -1983,29 +3072,45 @@
       
         <li class="md-nav__item">
   <a href="#6-definicao-do-projeto-e-principio-explorar-antes-de-selecionar" class="md-nav__link">
-    6. Definição do projeto e princípio "explorar antes de selecionar"
+    <span class="md-ellipsis">
+      
+        6. Definição do projeto e princípio "explorar antes de selecionar"
+      
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="6. Definição do projeto e princípio "explorar antes de selecionar"">
+    <nav class="md-nav" aria-label="6. Definição do projeto e princípio &#34;explorar antes de selecionar&#34;">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#61-funcoes-auxiliares-para-explorar-opcoes" class="md-nav__link">
-    6.1 Funções auxiliares para explorar opções
+    <span class="md-ellipsis">
+      
+        6.1 Funções auxiliares para explorar opções
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#62-mapa-rapido-qual-ferramenta-usar-para-descobrir-cada-opcao" class="md-nav__link">
-    6.2 Mapa rápido: qual ferramenta usar para descobrir cada opção?
+    <span class="md-ellipsis">
+      
+        6.2 Mapa rápido: qual ferramenta usar para descobrir cada opção?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#62-primeiro-nivel-descobrir-os-projetos" class="md-nav__link">
-    6.2 Primeiro nível: descobrir os projetos
+    <span class="md-ellipsis">
+      
+        6.2 Primeiro nível: descobrir os projetos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="6.2 Primeiro nível: descobrir os projetos">
@@ -2013,7 +3118,11 @@
         
           <li class="md-nav__item">
   <a href="#procurar-projetos-por-orgao-doenca-ou-palavra-chave" class="md-nav__link">
-    Procurar projetos por órgão, doença ou palavra-chave
+    <span class="md-ellipsis">
+      
+        Procurar projetos por órgão, doença ou palavra-chave
+      
+    </span>
   </a>
   
 </li>
@@ -2025,7 +3134,11 @@
         
           <li class="md-nav__item">
   <a href="#63-segundo-nivel-descobrir-as-categorias-disponiveis-no-projeto" class="md-nav__link">
-    6.3 Segundo nível: descobrir as categorias disponíveis no projeto
+    <span class="md-ellipsis">
+      
+        6.3 Segundo nível: descobrir as categorias disponíveis no projeto
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="6.3 Segundo nível: descobrir as categorias disponíveis no projeto">
@@ -2033,7 +3146,11 @@
         
           <li class="md-nav__item">
   <a href="#uma-visao-visual" class="md-nav__link">
-    Uma visão visual
+    <span class="md-ellipsis">
+      
+        Uma visão visual
+      
+    </span>
   </a>
   
 </li>
@@ -2045,70 +3162,110 @@
         
           <li class="md-nav__item">
   <a href="#64-terceiro-nivel-descobrir-datatype" class="md-nav__link">
-    6.4 Terceiro nível: descobrir data.type
+    <span class="md-ellipsis">
+      
+        6.4 Terceiro nível: descobrir data.type
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#65-quarto-nivel-descobrir-workflowtype" class="md-nav__link">
-    6.5 Quarto nível: descobrir workflow.type
+    <span class="md-ellipsis">
+      
+        6.5 Quarto nível: descobrir workflow.type
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#66-quinto-nivel-descobrir-acesso-open-controlled" class="md-nav__link">
-    6.6 Quinto nível: descobrir acesso (open / controlled)
+    <span class="md-ellipsis">
+      
+        6.6 Quinto nível: descobrir acesso (open / controlled)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#67-sexto-nivel-descobrir-tipos-de-amostra" class="md-nav__link">
-    6.7 Sexto nível: descobrir tipos de amostra
+    <span class="md-ellipsis">
+      
+        6.7 Sexto nível: descobrir tipos de amostra
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#68-setimo-nivel-descobrir-experimentalstrategy" class="md-nav__link">
-    6.8 Sétimo nível: descobrir experimental.strategy
+    <span class="md-ellipsis">
+      
+        6.8 Sétimo nível: descobrir experimental.strategy
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#69-oitavo-nivel-descobrir-platform" class="md-nav__link">
-    6.9 Oitavo nível: descobrir platform
+    <span class="md-ellipsis">
+      
+        6.9 Oitavo nível: descobrir platform
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#610-nono-nivel-descobrir-dataformat" class="md-nav__link">
-    6.10 Nono nível: descobrir data.format
+    <span class="md-ellipsis">
+      
+        6.10 Nono nível: descobrir data.format
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#611-montar-a-consulta-somente-depois-de-selecionar-as-opcoes" class="md-nav__link">
-    6.11 Montar a consulta somente depois de selecionar as opções
+    <span class="md-ellipsis">
+      
+        6.11 Montar a consulta somente depois de selecionar as opções
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#612-decimo-primeiro-nivel-descobrir-barcodesamostras" class="md-nav__link">
-    6.12 Décimo primeiro nível: descobrir barcodes/amostras
+    <span class="md-ellipsis">
+      
+        6.12 Décimo primeiro nível: descobrir barcodes/amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#613-explorador-generico-para-qualquer-coluna" class="md-nav__link">
-    6.13 Explorador genérico para qualquer coluna
+    <span class="md-ellipsis">
+      
+        6.13 Explorador genérico para qualquer coluna
+      
+    </span>
   </a>
   
 </li>
@@ -2120,7 +3277,11 @@
       
         <li class="md-nav__item">
   <a href="#7-etapa-1-listar-projetos-disponiveis" class="md-nav__link">
-    7. Etapa 1 — listar projetos disponíveis
+    <span class="md-ellipsis">
+      
+        7. Etapa 1 — listar projetos disponíveis
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="7. Etapa 1 — listar projetos disponíveis">
@@ -2128,14 +3289,22 @@
         
           <li class="md-nav__item">
   <a href="#71-filtrar-apenas-tcga" class="md-nav__link">
-    7.1 Filtrar apenas TCGA
+    <span class="md-ellipsis">
+      
+        7.1 Filtrar apenas TCGA
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#72-localizar-um-projeto-especifico" class="md-nav__link">
-    7.2 Localizar um projeto específico
+    <span class="md-ellipsis">
+      
+        7.2 Localizar um projeto específico
+      
+    </span>
   </a>
   
 </li>
@@ -2147,14 +3316,22 @@
       
         <li class="md-nav__item">
   <a href="#8-etapa-2-resumo-geral-do-projeto" class="md-nav__link">
-    8. Etapa 2 — resumo geral do projeto
+    <span class="md-ellipsis">
+      
+        8. Etapa 2 — resumo geral do projeto
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#9-etapa-3-inventario-de-arquivos-por-modalidade" class="md-nav__link">
-    9. Etapa 3 — inventário de arquivos por modalidade
+    <span class="md-ellipsis">
+      
+        9. Etapa 3 — inventário de arquivos por modalidade
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="9. Etapa 3 — inventário de arquivos por modalidade">
@@ -2162,7 +3339,11 @@
         
           <li class="md-nav__item">
   <a href="#91-resumo-por-acesso" class="md-nav__link">
-    9.1 Resumo por acesso
+    <span class="md-ellipsis">
+      
+        9.1 Resumo por acesso
+      
+    </span>
   </a>
   
 </li>
@@ -2174,7 +3355,11 @@
       
         <li class="md-nav__item">
   <a href="#10-etapa-4-consulta-detalhada-de-arquivos-com-gdcquery" class="md-nav__link">
-    10. Etapa 4 — consulta detalhada de arquivos com GDCquery()
+    <span class="md-ellipsis">
+      
+        10. Etapa 4 — consulta detalhada de arquivos com GDCquery()
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="10. Etapa 4 — consulta detalhada de arquivos com GDCquery()">
@@ -2182,42 +3367,66 @@
         
           <li class="md-nav__item">
   <a href="#101-exemplo-expressao-genica" class="md-nav__link">
-    10.1 Exemplo: expressão gênica
+    <span class="md-ellipsis">
+      
+        10.1 Exemplo: expressão gênica
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#102-quantidade-de-arquivos-por-acesso" class="md-nav__link">
-    10.2 Quantidade de arquivos por acesso
+    <span class="md-ellipsis">
+      
+        10.2 Quantidade de arquivos por acesso
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#103-tipos-de-amostras" class="md-nav__link">
-    10.3 Tipos de amostras
+    <span class="md-ellipsis">
+      
+        10.3 Tipos de amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#104-estrategias-experimentais" class="md-nav__link">
-    10.4 Estratégias experimentais
+    <span class="md-ellipsis">
+      
+        10.4 Estratégias experimentais
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#105-plataformas" class="md-nav__link">
-    10.5 Plataformas
+    <span class="md-ellipsis">
+      
+        10.5 Plataformas
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#106-data-category-e-data-type" class="md-nav__link">
-    10.6 Data category e data type
+    <span class="md-ellipsis">
+      
+        10.6 Data category e data type
+      
+    </span>
   </a>
   
 </li>
@@ -2229,7 +3438,11 @@
       
         <li class="md-nav__item">
   <a href="#11-etapa-5-inventario-amplo-de-categorias-de-dados" class="md-nav__link">
-    11. Etapa 5 — inventário amplo de categorias de dados
+    <span class="md-ellipsis">
+      
+        11. Etapa 5 — inventário amplo de categorias de dados
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="11. Etapa 5 — inventário amplo de categorias de dados">
@@ -2237,7 +3450,11 @@
         
           <li class="md-nav__item">
   <a href="#111-descobrir-categorias-a-partir-dos-resultados" class="md-nav__link">
-    11.1 Descobrir categorias a partir dos resultados
+    <span class="md-ellipsis">
+      
+        11.1 Descobrir categorias a partir dos resultados
+      
+    </span>
   </a>
   
 </li>
@@ -2249,7 +3466,11 @@
       
         <li class="md-nav__item">
   <a href="#12-etapa-6-dados-clinicos" class="md-nav__link">
-    12. Etapa 6 — dados clínicos
+    <span class="md-ellipsis">
+      
+        12. Etapa 6 — dados clínicos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="12. Etapa 6 — dados clínicos">
@@ -2257,7 +3478,11 @@
         
           <li class="md-nav__item">
   <a href="#121-carregar-o-conjunto-clinico" class="md-nav__link">
-    12.1 Carregar o conjunto clínico
+    <span class="md-ellipsis">
+      
+        12.1 Carregar o conjunto clínico
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="12.1 Carregar o conjunto clínico">
@@ -2265,14 +3490,22 @@
         
           <li class="md-nav__item">
   <a href="#122-quantos-registros-clinicos-existem" class="md-nav__link">
-    12.2 Quantos registros clínicos existem?
+    <span class="md-ellipsis">
+      
+        12.2 Quantos registros clínicos existem?
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#123-identificar-o-numero-de-cases" class="md-nav__link">
-    12.3 Identificar o número de cases
+    <span class="md-ellipsis">
+      
+        12.3 Identificar o número de cases
+      
+    </span>
   </a>
   
 </li>
@@ -2289,7 +3522,11 @@
       
         <li class="md-nav__item">
   <a href="#13-etapa-7-dados-de-biospecimenes" class="md-nav__link">
-    13. Etapa 7 — dados de biospecímenes
+    <span class="md-ellipsis">
+      
+        13. Etapa 7 — dados de biospecímenes
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="13. Etapa 7 — dados de biospecímenes">
@@ -2297,14 +3534,22 @@
         
           <li class="md-nav__item">
   <a href="#131-quantidade-de-amostras" class="md-nav__link">
-    13.1 Quantidade de amostras
+    <span class="md-ellipsis">
+      
+        13.1 Quantidade de amostras
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#132-tipos-de-amostra" class="md-nav__link">
-    13.2 Tipos de amostra
+    <span class="md-ellipsis">
+      
+        13.2 Tipos de amostra
+      
+    </span>
   </a>
   
 </li>
@@ -2316,14 +3561,22 @@
       
         <li class="md-nav__item">
   <a href="#14-etapa-8-relacionar-paciente-amostra-e-tecido" class="md-nav__link">
-    14. Etapa 8 — relacionar paciente, amostra e tecido
+    <span class="md-ellipsis">
+      
+        14. Etapa 8 — relacionar paciente, amostra e tecido
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#15-etapa-9-acesso-aberto-versus-controlado" class="md-nav__link">
-    15. Etapa 9 — acesso aberto versus controlado
+    <span class="md-ellipsis">
+      
+        15. Etapa 9 — acesso aberto versus controlado
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="15. Etapa 9 — acesso aberto versus controlado">
@@ -2331,14 +3584,22 @@
         
           <li class="md-nav__item">
   <a href="#151-regra-importante" class="md-nav__link">
-    15.1 Regra importante
+    <span class="md-ellipsis">
+      
+        15.1 Regra importante
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#152-tabela-de-acesso" class="md-nav__link">
-    15.2 Tabela de acesso
+    <span class="md-ellipsis">
+      
+        15.2 Tabela de acesso
+      
+    </span>
   </a>
   
 </li>
@@ -2350,7 +3611,11 @@
       
         <li class="md-nav__item">
   <a href="#16-etapa-10-tratamentos" class="md-nav__link">
-    16. Etapa 10 — tratamentos
+    <span class="md-ellipsis">
+      
+        16. Etapa 10 — tratamentos
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="16. Etapa 10 — tratamentos">
@@ -2358,7 +3623,11 @@
         
           <li class="md-nav__item">
   <a href="#antes-de-analisar-tratamentos-descobrir-as-variaveis-disponiveis" class="md-nav__link">
-    Antes de analisar tratamentos: descobrir as variáveis disponíveis
+    <span class="md-ellipsis">
+      
+        Antes de analisar tratamentos: descobrir as variáveis disponíveis
+      
+    </span>
   </a>
   
 </li>
@@ -2370,28 +3639,44 @@
       
         <li class="md-nav__item">
   <a href="#17-etapa-11-estagio-tumoral" class="md-nav__link">
-    17. Etapa 11 — estágio tumoral
+    <span class="md-ellipsis">
+      
+        17. Etapa 11 — estágio tumoral
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#18-etapa-12-dados-demograficos" class="md-nav__link">
-    18. Etapa 12 — dados demográficos
+    <span class="md-ellipsis">
+      
+        18. Etapa 12 — dados demográficos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#19-etapa-13-status-vital-e-sobrevida-potencial" class="md-nav__link">
-    19. Etapa 13 — status vital e sobrevida potencial
+    <span class="md-ellipsis">
+      
+        19. Etapa 13 — status vital e sobrevida potencial
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#20-etapa-14-qualidade-e-completude-dos-metadados" class="md-nav__link">
-    20. Etapa 14 — qualidade e completude dos metadados
+    <span class="md-ellipsis">
+      
+        20. Etapa 14 — qualidade e completude dos metadados
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="20. Etapa 14 — qualidade e completude dos metadados">
@@ -2399,7 +3684,11 @@
         
           <li class="md-nav__item">
   <a href="#201-percentual-de-valores-ausentes" class="md-nav__link">
-    20.1 Percentual de valores ausentes
+    <span class="md-ellipsis">
+      
+        20.1 Percentual de valores ausentes
+      
+    </span>
   </a>
   
 </li>
@@ -2411,56 +3700,88 @@
       
         <li class="md-nav__item">
   <a href="#21-etapa-15-disponibilidade-de-tumor-e-normal" class="md-nav__link">
-    21. Etapa 15 — disponibilidade de tumor e normal
+    <span class="md-ellipsis">
+      
+        21. Etapa 15 — disponibilidade de tumor e normal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#22-etapa-16-identificar-possiveis-pares-tumor-normal" class="md-nav__link">
-    22. Etapa 16 — identificar possíveis pares tumor-normal
+    <span class="md-ellipsis">
+      
+        22. Etapa 16 — identificar possíveis pares tumor-normal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#23-etapa-17-quantidade-de-arquivos-por-categoria-e-tipo" class="md-nav__link">
-    23. Etapa 17 — quantidade de arquivos por categoria e tipo
+    <span class="md-ellipsis">
+      
+        23. Etapa 17 — quantidade de arquivos por categoria e tipo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#24-etapa-18-tamanho-dos-arquivos" class="md-nav__link">
-    24. Etapa 18 — tamanho dos arquivos
+    <span class="md-ellipsis">
+      
+        24. Etapa 18 — tamanho dos arquivos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#25-etapa-19-distribuicao-por-centroplataformaestrategia" class="md-nav__link">
-    25. Etapa 19 — distribuição por centro/plataforma/estratégia
+    <span class="md-ellipsis">
+      
+        25. Etapa 19 — distribuição por centro/plataforma/estratégia
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#26-etapa-20-exportar-tabelas-profissionais" class="md-nav__link">
-    26. Etapa 20 — exportar tabelas profissionais
+    <span class="md-ellipsis">
+      
+        26. Etapa 20 — exportar tabelas profissionais
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#27-etapa-21-gerar-uma-planilha-xlsx-consolidada" class="md-nav__link">
-    27. Etapa 21 — gerar uma planilha XLSX consolidada
+    <span class="md-ellipsis">
+      
+        27. Etapa 21 — gerar uma planilha XLSX consolidada
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#28-etapa-22-graficos-exploratorios" class="md-nav__link">
-    28. Etapa 22 — gráficos exploratórios
+    <span class="md-ellipsis">
+      
+        28. Etapa 22 — gráficos exploratórios
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="28. Etapa 22 — gráficos exploratórios">
@@ -2468,14 +3789,22 @@
         
           <li class="md-nav__item">
   <a href="#281-amostras-por-tipo" class="md-nav__link">
-    28.1 Amostras por tipo
+    <span class="md-ellipsis">
+      
+        28.1 Amostras por tipo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#282-arquivos-por-acesso" class="md-nav__link">
-    28.2 Arquivos por acesso
+    <span class="md-ellipsis">
+      
+        28.2 Arquivos por acesso
+      
+    </span>
   </a>
   
 </li>
@@ -2487,42 +3816,66 @@
       
         <li class="md-nav__item">
   <a href="#29-etapa-23-matriz-de-perguntas-e-respostas" class="md-nav__link">
-    29. Etapa 23 — matriz de perguntas e respostas
+    <span class="md-ellipsis">
+      
+        29. Etapa 23 — matriz de perguntas e respostas
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#30-checklist-de-exploracao-antes-de-cada-consulta" class="md-nav__link">
-    30. Checklist de exploração antes de cada consulta
+    <span class="md-ellipsis">
+      
+        30. Checklist de exploração antes de cada consulta
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#31-pipeline-reutilizavel-completo" class="md-nav__link">
-    31. Pipeline reutilizável completo
+    <span class="md-ellipsis">
+      
+        31. Pipeline reutilizável completo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#31-problema-importante-no-script-acima-escopo-e-nomes-de-variaveis" class="md-nav__link">
-    31. Problema importante no script acima: escopo e nomes de variáveis
+    <span class="md-ellipsis">
+      
+        31. Problema importante no script acima: escopo e nomes de variáveis
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#32-versao-recomendada-do-bloco-principal" class="md-nav__link">
-    32. Versão recomendada do bloco principal
+    <span class="md-ellipsis">
+      
+        32. Versão recomendada do bloco principal
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#33-etapa-24-consulta-de-modalidades-especificas" class="md-nav__link">
-    33. Etapa 24 — consulta de modalidades específicas
+    <span class="md-ellipsis">
+      
+        33. Etapa 24 — consulta de modalidades específicas
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="33. Etapa 24 — consulta de modalidades específicas">
@@ -2530,28 +3883,44 @@
         
           <li class="md-nav__item">
   <a href="#331-rna-seq-expressao" class="md-nav__link">
-    33.1 RNA-seq / expressão
+    <span class="md-ellipsis">
+      
+        33.1 RNA-seq / expressão
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#332-mirna" class="md-nav__link">
-    33.2 miRNA
+    <span class="md-ellipsis">
+      
+        33.2 miRNA
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#333-mutacoes-snv" class="md-nav__link">
-    33.3 Mutações / SNV
+    <span class="md-ellipsis">
+      
+        33.3 Mutações / SNV
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#334-cnv" class="md-nav__link">
-    33.4 CNV
+    <span class="md-ellipsis">
+      
+        33.4 CNV
+      
+    </span>
   </a>
   
 </li>
@@ -2563,28 +3932,44 @@
       
         <li class="md-nav__item">
   <a href="#34-etapa-25-nao-baixar-dados-ainda" class="md-nav__link">
-    34. Etapa 25 — não baixar dados ainda
+    <span class="md-ellipsis">
+      
+        34. Etapa 25 — não baixar dados ainda
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#35-quando-partir-para-o-download" class="md-nav__link">
-    35. Quando partir para o download
+    <span class="md-ellipsis">
+      
+        35. Quando partir para o download
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#36-protocolo-de-controle-de-qualidade-antes-do-download" class="md-nav__link">
-    36. Protocolo de controle de qualidade antes do download
+    <span class="md-ellipsis">
+      
+        36. Protocolo de controle de qualidade antes do download
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#37-estrutura-recomendada-do-relatorio-final" class="md-nav__link">
-    37. Estrutura recomendada do relatório final
+    <span class="md-ellipsis">
+      
+        37. Estrutura recomendada do relatório final
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="37. Estrutura recomendada do relatório final">
@@ -2592,42 +3977,66 @@
         
           <li class="md-nav__item">
   <a href="#371-resumo-executivo" class="md-nav__link">
-    37.1 Resumo executivo
+    <span class="md-ellipsis">
+      
+        37.1 Resumo executivo
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#372-perfil-clinico" class="md-nav__link">
-    37.2 Perfil clínico
+    <span class="md-ellipsis">
+      
+        37.2 Perfil clínico
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#373-perfil-biospecimen" class="md-nav__link">
-    37.3 Perfil biospecimen
+    <span class="md-ellipsis">
+      
+        37.3 Perfil biospecimen
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#374-perfil-molecular" class="md-nav__link">
-    37.4 Perfil molecular
+    <span class="md-ellipsis">
+      
+        37.4 Perfil molecular
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#375-auditoria-de-completude" class="md-nav__link">
-    37.5 Auditoria de completude
+    <span class="md-ellipsis">
+      
+        37.5 Auditoria de completude
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#376-decisao-de-cohort" class="md-nav__link">
-    37.6 Decisão de cohort
+    <span class="md-ellipsis">
+      
+        37.6 Decisão de cohort
+      
+    </span>
   </a>
   
 </li>
@@ -2639,42 +4048,66 @@
       
         <li class="md-nav__item">
   <a href="#38-estrutura-de-pastas-recomendada" class="md-nav__link">
-    38. Estrutura de pastas recomendada
+    <span class="md-ellipsis">
+      
+        38. Estrutura de pastas recomendada
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#39-como-transformar-o-protocolo-em-ferramenta-reutilizavel" class="md-nav__link">
-    39. Como transformar o protocolo em ferramenta reutilizável
+    <span class="md-ellipsis">
+      
+        39. Como transformar o protocolo em ferramenta reutilizável
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#40-extensao-recomendada-tabela-mestre-de-disponibilidade" class="md-nav__link">
-    40. Extensão recomendada — tabela mestre de disponibilidade
+    <span class="md-ellipsis">
+      
+        40. Extensão recomendada — tabela mestre de disponibilidade
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#41-extensao-recomendada-comparacao-entre-varios-projetos" class="md-nav__link">
-    41. Extensão recomendada — comparação entre vários projetos
+    <span class="md-ellipsis">
+      
+        41. Extensão recomendada — comparação entre vários projetos
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#42-o-que-este-protocolo-nao-faz" class="md-nav__link">
-    42. O que este protocolo NÃO faz
+    <span class="md-ellipsis">
+      
+        42. O que este protocolo NÃO faz
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#43-interpretacao-dos-principais-numeros" class="md-nav__link">
-    43. Interpretação dos principais números
+    <span class="md-ellipsis">
+      
+        43. Interpretação dos principais números
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="43. Interpretação dos principais números">
@@ -2682,35 +4115,55 @@
         
           <li class="md-nav__item">
   <a href="#nao-confundir-arquivos-com-pacientes" class="md-nav__link">
-    Não confundir arquivos com pacientes
+    <span class="md-ellipsis">
+      
+        Não confundir arquivos com pacientes
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-confundir-samples-com-cases" class="md-nav__link">
-    Não confundir samples com cases
+    <span class="md-ellipsis">
+      
+        Não confundir samples com cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-inferir-acesso-pelo-tipo-do-dado" class="md-nav__link">
-    Não inferir acesso pelo tipo do dado
+    <span class="md-ellipsis">
+      
+        Não inferir acesso pelo tipo do dado
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-assumir-ausencia-de-informacao-pela-falta-de-uma-variavel" class="md-nav__link">
-    Não assumir ausência de informação pela falta de uma variável
+    <span class="md-ellipsis">
+      
+        Não assumir ausência de informação pela falta de uma variável
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#nao-interpretar-missingness-como-exclusao-automatica" class="md-nav__link">
-    Não interpretar missingness como exclusão automática
+    <span class="md-ellipsis">
+      
+        Não interpretar missingness como exclusão automática
+      
+    </span>
   </a>
   
 </li>
@@ -2722,28 +4175,44 @@
       
         <li class="md-nav__item">
   <a href="#44-boas-praticas-de-reprodutibilidade" class="md-nav__link">
-    44. Boas práticas de reprodutibilidade
+    <span class="md-ellipsis">
+      
+        44. Boas práticas de reprodutibilidade
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#45-geracao-de-relatorio-html" class="md-nav__link">
-    45. Geração de relatório HTML
+    <span class="md-ellipsis">
+      
+        45. Geração de relatório HTML
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#46-modelo-de-conclusao-para-cada-projeto" class="md-nav__link">
-    46. Modelo de conclusão para cada projeto
+    <span class="md-ellipsis">
+      
+        46. Modelo de conclusão para cada projeto
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#47-referencias-e-documentacao-oficial" class="md-nav__link">
-    47. Referências e documentação oficial
+    <span class="md-ellipsis">
+      
+        47. Referências e documentação oficial
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="47. Referências e documentação oficial">
@@ -2751,21 +4220,33 @@
         
           <li class="md-nav__item">
   <a href="#gdc" class="md-nav__link">
-    GDC
+    <span class="md-ellipsis">
+      
+        GDC
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#tcgabiolinks" class="md-nav__link">
-    TCGAbiolinks
+    <span class="md-ellipsis">
+      
+        TCGAbiolinks
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#referencia-classica" class="md-nav__link">
-    Referência clássica
+    <span class="md-ellipsis">
+      
+        Referência clássica
+      
+    </span>
   </a>
   
 </li>
@@ -2777,21 +4258,33 @@
       
         <li class="md-nav__item">
   <a href="#48-sugestao-de-organizacao-no-seu-mkdocs" class="md-nav__link">
-    48. Sugestão de organização no seu MkDocs
+    <span class="md-ellipsis">
+      
+        48. Sugestão de organização no seu MkDocs
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#49-resultado-esperado-do-protocolo" class="md-nav__link">
-    49. Resultado esperado do protocolo
+    <span class="md-ellipsis">
+      
+        49. Resultado esperado do protocolo
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#50-resumo-operacional" class="md-nav__link">
-    50. Resumo operacional
+    <span class="md-ellipsis">
+      
+        50. Resumo operacional
+      
+    </span>
   </a>
   
 </li>
@@ -2806,9 +4299,46 @@
           
           
             <div class="md-content" data-md-component="content">
+              
               <article class="md-content__inner md-typeset">
                 
                   
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:bancos-de-dados" class="md-tag">Bancos de Dados</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:câncer" class="md-tag">Câncer</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:r" class="md-tag">R</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:tcga" class="md-tag">TCGA</a>
+      
+    
+  </nav>
+
+
+  
+  
 
 
 <p>Protocolo de Análise Exploratória do TCGA/GDC com TCGAbiolinks</p>
@@ -5092,22 +6622,75 @@
 
 
 
+
+
+  
+  
+
+
+
+
+
+
                 
               </article>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../analise/introducao/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introdução à Análise">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introdução à Análise
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../plot/graficos_r/" class="md-footer__link md-footer__link--next" aria-label="Next: Gráficos em R">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Gráficos em R
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -5121,6 +6704,43 @@
   
 </div>
       
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/marciow0205" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/marcio-wilson/" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.instagram.com/MWInSilico" target="_blank" rel="noopener" title="Instagram" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="http://lattes.cnpq.br/8280972369170529" target="_blank" rel="noopener" title="Currículo Lattes" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m48 195.8 209.2 86.1c9.8 4 20.2 6.1 30.8 6.1s21-2.1 30.8-6.1l242.4-99.8c9-3.7 14.8-12.4 14.8-22.1s-5.8-18.4-14.8-22.1L318.8 38.1c-9.8-4-20.2-6.1-30.8-6.1s-21 2.1-30.8 6.1L14.8 137.9C5.8 141.6 0 150.3 0 160v296c0 13.3 10.7 24 24 24s24-10.7 24-24zm48 71.7V384c0 53 86 96 192 96s192-43 192-96V267.4l-142.9 58.9c-15.6 6.4-32.2 9.7-49.1 9.7s-33.5-3.3-49.1-9.7L96 267.4z"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -5130,10 +6750,14 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "content.code.copy", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
