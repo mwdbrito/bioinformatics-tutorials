@@ -1,3 +1,10 @@
+---
+tags:
+  - MkDocs
+  - GitHub Pages
+  - Site
+---
+
 # Guia Prático: Como Criar, Publicar e Atualizar um Site de Documentação com MkDocs e GitHub Pages
 
 > **Objetivo:** criar um site de documentação profissional usando **MkDocs + Material for MkDocs**, armazenar os arquivos no GitHub e publicar gratuitamente usando **GitHub Pages**.

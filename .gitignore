@@ -9,3 +9,7 @@ site/
 .DS_Store
 __pycache__/
 *.pyc
+
+# Ambiente virtual Python (se você criar uma venv para o projeto)
+.venv/
+venv/

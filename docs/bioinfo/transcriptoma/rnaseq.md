@@ -1,3 +1,14 @@
+---
+tags:
+  - RNA-Seq
+  - Transcriptômica
+  - Pipeline
+  - Container
+  - DESeq2
+  - Python
+  - R
+---
+
 # Pipeline de RNA-Seq: do GEO aos genes diferencialmente expressos
 ## GEO → download → QC → trimming → STAR/Salmon → DESeq2 → enriquecimento funcional
 
@@ -1999,6 +2010,9 @@ python3 scripts/combinar_contagens_star.py metadados/lista_srr.txt \
 # Parte 9 — Expressão diferencial com DESeq2
 
 Este script funciona com os dois caminhos possíveis (`--tipo star` ou `--tipo salmon`) — a lógica de teste estatístico depois de montado o `DESeqDataSet` é idêntica nos dois casos, só a forma de CARREGAR os dados muda.
+
+!!! tip "Quer entender a estatística por trás deste script, com gráficos interativos?"
+    Este script usa normalização por mediana das razões, dispersão com encolhimento bayesiano, teste de Wald e correção de Benjamini-Hochberg — sem explicar cada um em detalhe aqui, para não repetir conteúdo. O tutorial complementar **[DESeq2 e a Estatística por Trás Dele](deseq2_estatistica.md)** explica cada uma dessas etapas do zero, incluindo por que usar VST/rlog só para visualização e nunca para o teste em si.
 
 ```r
 #!/usr/bin/env Rscript

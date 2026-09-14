@@ -1,0 +1,43 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="898" height="518" rx="16" fill="#ffffff" stroke="#cfd8dc" stroke-width="2"/>
+<text x="40" y="50" font-family='Helvetica, Arial, sans-serif' font-size="19" font-weight="700" fill="#004d40" text-anchor="start">O custo de sequenciar um genoma humano despencou</text>
+<text x="40" y="74" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">escala logarítmica — cada linha do eixo é 10x mais barata que a anterior</text>
+<line x1="130" y1="420.0" x2="840" y2="420.0" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="424.0" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 100</text>
+<line x1="130" y1="368.33333333333337" x2="840" y2="368.33333333333337" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="372.33333333333337" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 1 mil</text>
+<line x1="130" y1="316.66666666666663" x2="840" y2="316.66666666666663" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="320.66666666666663" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 10 mil</text>
+<line x1="130" y1="265.0" x2="840" y2="265.0" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="269.0" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 100 mil</text>
+<line x1="130" y1="213.33333333333331" x2="840" y2="213.33333333333331" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="217.33333333333331" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 1M</text>
+<line x1="130" y1="161.66666666666666" x2="840" y2="161.66666666666666" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="165.66666666666666" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 10M</text>
+<line x1="130" y1="110.0" x2="840" y2="110.0" stroke="#eceff1" stroke-width="1.5"/>
+<text x="116" y="114.0" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="end">US$ 100M</text>
+<path d="M 130.0 110.0 L 315.2173913043478 161.66666666666666 L 346.0869565217391 213.33333333333331 L 438.69565217391306 285.6666666666667 L 562.1739130434783 337.33333333333337 L 716.5217391304348 368.33333333333337 L 840.0 399.3333333333333" fill="none" stroke="#00695c" stroke-width="3.5"/>
+<circle cx="130.0" cy="110.0" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="130.0" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2001</text>
+<text x="185.0" y="132.0" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="600" font-style="normal" fill="#004d40" text-anchor="middle">Projeto Genoma</text>
+<text x="185.0" y="145.0" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="600" font-style="normal" fill="#004d40" text-anchor="middle">Humano concluído</text>
+<circle cx="315.2173913043478" cy="161.66666666666666" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="315.2173913043478" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2007</text>
+<circle cx="346.0869565217391" cy="213.33333333333331" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="346.0869565217391" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2008</text>
+<text x="346.0869565217391" y="195.33333333333331" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="600" font-style="normal" fill="#004d40" text-anchor="middle">chegada do NGS</text>
+<circle cx="438.69565217391306" cy="285.6666666666667" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="438.69565217391306" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2011</text>
+<circle cx="562.1739130434783" cy="337.33333333333337" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="562.1739130434783" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2015</text>
+<circle cx="716.5217391304348" cy="368.33333333333337" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="716.5217391304348" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2020</text>
+<text x="716.5217391304348" y="350.33333333333337" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="600" font-style="normal" fill="#004d40" text-anchor="middle">~US$ 1 mil</text>
+<circle cx="840.0" cy="399.3333333333333" r="6" fill="#004d40" stroke="#ffffff" stroke-width="2"/>
+<text x="840.0" y="442" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">2024</text>
+<text x="840.0" y="381.3333333333333" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="600" font-style="normal" fill="#004d40" text-anchor="middle">~US$ 200–300</text>
+<line x1="130" y1="104" x2="130" y2="420" stroke="#78909c" stroke-width="1.5"/>
+<line x1="130" y1="420" x2="840" y2="420" stroke="#78909c" stroke-width="1.5"/>
+<text x="450.0" y="470" font-family='Helvetica, Arial, sans-serif' font-size="12" font-weight="400" font-style="normal" fill="#455a64" text-anchor="middle">Ano</text>
+<text x="450.0" y="504" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">Baseado em dados amplamente divulgados do NHGRI Genome Sequencing Program (genome.gov/sequencingcosts)</text>
+</svg>

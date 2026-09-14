@@ -1,3 +1,10 @@
+---
+tags:
+  - Apptainer
+  - Container
+  - Reprodutibilidade
+---
+
 # Guia Prático e Avançado de Apptainer (Singularity) para Bioinformática
 
 > **Objetivo:** aprender, do zero, a instalar, configurar, criar, modificar, testar e utilizar containers Apptainer em Linux, WSL ou servidores de pesquisa, com foco em bioinformática e reprodutibilidade.

@@ -1,0 +1,107 @@
+/* ============================================================
+   MwInSilico — estilos próprios (independentes da versão do
+   Material instalada), para o grid de cartões e o cabeçalho.
+   Usa as variáveis de cor do próprio tema, então se adapta
+   automaticamente ao modo claro/escuro.
+   ============================================================ */
+
+/* Grade responsiva de cartões */
+.mw-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* Cada cartão: borda visível, canto arredondado — para nunca ficar
+   ambíguo onde um cartão termina e o outro começa. */
+.mw-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--md-default-bg-color);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.mw-card:hover {
+  border-color: var(--md-primary-fg-color);
+  transform: translateY(-2px);
+}
+
+.mw-card .mw-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+  color: var(--md-primary-fg-color);
+}
+
+.mw-card .mw-card-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--md-default-fg-color);
+}
+
+.mw-card .mw-card-body {
+  flex-grow: 1;
+  font-size: 0.88rem;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 0.8rem;
+}
+
+.mw-card .mw-card-link {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+/* Grade compacta (usada em "Ferramentas do dia a dia") — sem corpo de texto */
+.mw-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.mw-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mw-chip .mw-card-icon {
+  font-size: 1.2rem;
+  color: var(--md-primary-fg-color);
+}
+
+/* Cabeçalho leve da Home/Sobre — sem "quadradão" de cor sólida */
+.mw-header {
+  text-align: center;
+  padding: 1.5rem 0 2rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  margin-bottom: 2rem;
+}
+
+.mw-header img {
+  max-width: 130px;
+}
+
+.mw-header h1 {
+  margin: 0.8rem 0 0.2rem;
+}
+
+.mw-header p {
+  color: var(--md-default-fg-color--light);
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.mw-buttons {
+  text-align: center;
+  margin: 1.5rem 0;
+}

@@ -1,3 +1,8 @@
+---
+tags:
+  - Análise de Dados
+---
+
 # Introdução à Análise de Dados
 
 > 🚧 **Página em construção.** Este tutorial ainda não foi escrito — o arquivo existia vazio no repositório e só está listado aqui para reservar o lugar no menu.

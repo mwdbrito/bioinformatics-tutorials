@@ -1,3 +1,11 @@
+---
+tags:
+  - Postagem
+  - Biologia Molecular
+  - Dogma Central
+  - RNA
+---
+
 # 🧬 O Dogma Central da Biologia evoluiu — e a Bioinformática ajuda a acompanhá-lo
 
 > **Do DNA ao fenótipo: como a Bioinformática transforma dados moleculares em conhecimento biológico.**

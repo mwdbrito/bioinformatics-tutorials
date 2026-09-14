@@ -1,3 +1,11 @@
+---
+tags:
+  - Apptainer
+  - Container
+  - RNA-Seq
+  - Reprodutibilidade
+---
+
 # Tutorial — Criando um container Apptainer Sandbox para o pipeline completo de RNA-Seq
 
 Este tutorial cria um ambiente **Apptainer Sandbox** preparado especificamente para o tutorial:

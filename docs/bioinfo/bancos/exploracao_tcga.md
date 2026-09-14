@@ -1,3 +1,11 @@
+---
+tags:
+  - TCGA
+  - Bancos de Dados
+  - Câncer
+  - R
+---
+
 Protocolo de Análise Exploratória do TCGA/GDC com TCGAbiolinks
 
 > **Criado por:** `Márcio Wilson`
