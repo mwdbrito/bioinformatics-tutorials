@@ -44,7 +44,7 @@ tags:
 
 Em vez de instalar cada ferramenta manualmente (e correr o risco de versões incompatíveis entre alunos/máquinas), empacotamos tudo em uma imagem Apptainer. Isso é especialmente útil em clusters HPC, onde normalmente você não tem `sudo` para instalar pacotes de sistema, mas o Apptainer roda sem privilégios de root.
 
-> 📦 Quer entender cada etapa da construção do container com mais profundidade (sandbox vs `.sif`, testes ferramenta por ferramenta, boas práticas de disco e memória)? Veja o tutorial complementar: **[Container Apptainer Sandbox para o Pipeline de RNA-Seq](apptainer_sandbox.md)**.
+> 📦 Quer entender cada etapa da construção do container com mais profundidade (sandbox vs `.sif`, testes ferramenta por ferramenta, boas práticas de disco e memória)? Veja o tutorial complementar: **[Container Apptainer Sandbox para o Pipeline de RNA-Seq](container-rnaseq.md)**.
 
 ## O que vai dentro da imagem
 
@@ -2012,7 +2012,7 @@ python3 scripts/combinar_contagens_star.py metadados/lista_srr.txt \
 Este script funciona com os dois caminhos possíveis (`--tipo star` ou `--tipo salmon`) — a lógica de teste estatístico depois de montado o `DESeqDataSet` é idêntica nos dois casos, só a forma de CARREGAR os dados muda.
 
 !!! tip "Quer entender a estatística por trás deste script, com gráficos interativos?"
-    Este script usa normalização por mediana das razões, dispersão com encolhimento bayesiano, teste de Wald e correção de Benjamini-Hochberg — sem explicar cada um em detalhe aqui, para não repetir conteúdo. O tutorial complementar **[DESeq2 e a Estatística por Trás Dele](deseq2_estatistica.md)** explica cada uma dessas etapas do zero, incluindo por que usar VST/rlog só para visualização e nunca para o teste em si.
+    Este script usa normalização por mediana das razões, dispersão com encolhimento bayesiano, teste de Wald e correção de Benjamini-Hochberg — sem explicar cada um em detalhe aqui, para não repetir conteúdo. O tutorial complementar **[DESeq2 e a Estatística por Trás Dele](deseq2-estatistica.md)** explica cada uma dessas etapas do zero, incluindo por que usar VST/rlog só para visualização e nunca para o teste em si.
 
 ```r
 #!/usr/bin/env Rscript

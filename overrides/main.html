@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{#
+  Páginas com "serie:" no frontmatter (as postagens) ganham:
+    - acima do título: série, posição na série e tempo de leitura
+    - no final: chamada para o Instagram @MWInSilico
+#}
+
+{% block content %}
+  {% if page.meta and page.meta.serie %}
+    {# conta só o texto: o código dos widgets (<script>) fica de fora #}
+    {% set ns = namespace(palavras=0) %}
+    {% for trecho in page.content.split("</script>") %}
+      {% set ns.palavras = ns.palavras + (trecho.split("<script")[0] | striptags | wordcount) %}
+    {% endfor %}
+    {% set minutos = (ns.palavras / 200) | round(0, "ceil") | int %}
+    <div class="mw-post-meta">
+      <a class="mw-pill" href="{{ 'posts/' | url }}">
+        {% include ".icons/material/book-open-page-variant-outline.svg" %}
+        {{ page.meta.serie }} · parte {{ page.meta.parte }} de {{ page.meta.de }}
+      </a>
+      <span class="twemoji">{% include ".icons/material/clock-outline.svg" %}</span>
+      <span>{{ minutos }} min de leitura</span>
+    </div>
+  {% endif %}
+
+  {{ super() }}
+
+  {% if page.meta and page.meta.serie %}
+    <aside class="mw-cta">
+      <div>
+        <h3>Este texto nasceu no Instagram</h3>
+        <p>Resumos visuais, dicas e bastidores da bioinformática em @MWInSilico.</p>
+      </div>
+      <a class="md-button" href="{{ config.extra.instagram }}" target="_blank" rel="noopener">
+        <span class="twemoji">{% include ".icons/fontawesome/brands/instagram.svg" %}</span>
+        Seguir @MWInSilico
+      </a>
+    </aside>
+  {% endif %}
+{% endblock %}

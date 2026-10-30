@@ -1,11 +1,188 @@
 /* ============================================================
-   MwInSilico — estilos próprios (independentes da versão do
-   Material instalada), para o grid de cartões e o cabeçalho.
-   Usa as variáveis de cor do próprio tema, então se adapta
-   automaticamente ao modo claro/escuro.
+   MwInSilico — estilos próprios
+   Tudo usa as variáveis de cor do Material (teal/cyan), então
+   se adapta sozinho aos modos claro e escuro.
    ============================================================ */
 
-/* Grade responsiva de cartões */
+/* Definidas no elemento que carrega o esquema de cor (e não só no :root),
+   para acompanharem a troca entre modo claro e escuro. */
+:root,
+[data-md-color-scheme] {
+  --mw-radius: 0.75rem;
+  --mw-border: var(--md-default-fg-color--lightest);
+  --mw-muted: var(--md-default-fg-color--light);
+  --mw-tint: color-mix(in srgb, var(--md-primary-fg-color) 8%, transparent);
+  --mw-tint-strong: color-mix(in srgb, var(--md-primary-fg-color) 16%, transparent);
+}
+
+/* Títulos um pouco mais firmes que o padrão do Material */
+.md-typeset h1 { font-weight: 700; letter-spacing: -0.01em; }
+.md-typeset h2 { font-weight: 700; }
+
+/* Imagens dos posts centralizadas e com respiro */
+.md-typeset img[src$=".svg"],
+.md-typeset img[src$=".jpg"] {
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 0.5rem;
+}
+
+/* ---------- Glossário (tooltips de siglas) ---------- */
+.md-typeset abbr {
+  text-decoration: underline dotted var(--md-accent-fg-color);
+  text-underline-offset: 0.2em;
+  cursor: help;
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+
+.mw-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2.5rem 2rem;
+  margin: 0 0 2.5rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 100% 0%, var(--mw-tint-strong), transparent 55%),
+    radial-gradient(circle at 0% 100%, var(--mw-tint), transparent 50%);
+  border: 1px solid var(--mw-border);
+}
+
+.mw-hero-brand,
+.mw-hero-brand > p {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* A logo é branca: fica sobre um selo na cor primária do tema */
+.mw-hero-brand > p { margin: 0; }
+
+.mw-hero-brand img,
+.mw-header img {
+  background: var(--md-primary-fg-color);
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px -12px var(--md-primary-fg-color);
+}
+
+.mw-hero-brand img {
+  width: 64px;
+  height: 64px;
+  padding: 0.6rem;
+  object-fit: contain;
+  margin: 0 !important;
+}
+
+.mw-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .mw-hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .mw-hero h1 .mw-accent { color: var(--md-primary-fg-color); }
+
+.mw-hero-lead {
+  font-size: 1.05rem;
+  color: var(--mw-muted);
+  margin: 1rem 0 1.5rem;
+  max-width: 34rem;
+}
+
+.mw-hero .md-button { margin: 0.25rem 0.4rem 0.25rem 0; }
+
+/* "Terminal" decorativo da Home */
+.mw-terminal {
+  font-family: var(--md-code-font-family);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  background: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  border: 1px solid var(--mw-border);
+  border-radius: var(--mw-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.35);
+}
+
+.mw-terminal-bar {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--mw-border);
+}
+
+.mw-terminal-bar span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--md-default-fg-color--lightest);
+}
+
+.mw-terminal pre {
+  margin: 0 !important;
+  padding: 0.9rem 1.1rem 1.1rem;
+  background: transparent !important;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.mw-terminal .p { color: var(--md-primary-fg-color); font-weight: 700; }
+.mw-terminal .c { color: var(--md-default-fg-color--light); }
+.mw-terminal .k { color: var(--md-accent-fg-color); }
+
+/* Sequência de DNA "rolando" no rodapé do terminal */
+.mw-dna {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  opacity: 0.55;
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+.mw-dna span {
+  display: inline-block;
+  animation: mw-scroll 28s linear infinite;
+}
+
+@keyframes mw-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mw-dna span { animation: none; }
+}
+
+/* Títulos de seção da Home */
+.md-typeset .mw-section-title {
+  margin: 3rem 0 0.3rem;
+  font-size: 1.5rem;
+}
+
+.mw-section-sub {
+  color: var(--mw-muted);
+  margin-top: 0;
+}
+
+/* ============================================================
+   CARTÕES (Home, Postagens, Scripts, Sobre)
+   ============================================================ */
+
 .mw-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -13,52 +190,166 @@
   margin: 1.5rem 0;
 }
 
-/* Cada cartão: borda visível, canto arredondado — para nunca ficar
-   ambíguo onde um cartão termina e o outro começa. */
 .mw-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 0.5rem;
-  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--mw-border);
+  border-radius: var(--mw-radius);
+  padding: 1.2rem 1.3rem;
   background: var(--md-default-bg-color);
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .mw-card:hover {
   border-color: var(--md-primary-fg-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -18px var(--md-primary-fg-color);
 }
 
 .mw-card .mw-card-icon {
   font-size: 1.6rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   color: var(--md-primary-fg-color);
+}
+
+.mw-card .mw-card-kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-primary-fg-color);
+  margin-bottom: 0.3rem;
 }
 
 .mw-card .mw-card-title {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
+  line-height: 1.35;
   margin-bottom: 0.5rem;
   color: var(--md-default-fg-color);
 }
 
 .mw-card .mw-card-body {
   flex-grow: 1;
-  font-size: 0.88rem;
-  color: var(--md-default-fg-color--light);
-  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--mw-muted);
+  margin-bottom: 0.9rem;
 }
+
+.mw-card .mw-card-body p { margin: 0; }
 
 .mw-card .mw-card-link {
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
 }
 
-/* Grade compacta (usada em "Ferramentas do dia a dia") — sem corpo de texto */
+/* O cartão inteiro vira clicável a partir do link principal */
+.mw-card .mw-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.mw-card--soon { border-style: dashed; }
+.mw-card--soon:hover { transform: none; box-shadow: none; border-color: var(--mw-border); }
+
+/* ============================================================
+   SÉRIES (trilhas de leitura numeradas)
+   ============================================================ */
+
+.mw-series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.mw-series {
+  border: 1px solid var(--mw-border);
+  border-radius: var(--mw-radius);
+  padding: 1.3rem 1.4rem 0.6rem;
+  background: linear-gradient(180deg, var(--mw-tint), transparent 60%);
+}
+
+.md-typeset .mw-series h3 {
+  margin: 0.2rem 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.mw-series > p { color: var(--mw-muted); font-size: 0.85rem; margin: 0 0 1rem; }
+
+.md-typeset ol.mw-steps {
+  list-style: none;
+  counter-reset: mw-step;
+  margin: 0;
+  padding: 0;
+}
+
+.md-typeset ol.mw-steps > li {
+  position: relative;
+  counter-increment: mw-step;
+  margin: 0 0 1rem;
+  padding-left: 2.6rem;
+  min-height: 1.9rem;
+}
+
+.md-typeset ol.mw-steps > li::before {
+  content: counter(mw-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--md-primary-bg-color);
+  background: var(--md-primary-fg-color);
+}
+
+/* linha que conecta os passos */
+.md-typeset ol.mw-steps > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.88rem;
+  top: 2rem;
+  bottom: -0.9rem;
+  width: 2px;
+  background: var(--mw-tint-strong);
+}
+
+.md-typeset ol.mw-steps > li a { font-weight: 700; }
+.md-typeset ol.mw-steps > li span { display: block; font-size: 0.82rem; color: var(--mw-muted); }
+
+/* ============================================================
+   PÍLULAS, CHIPS E FAIXA DE CHAMADA
+   ============================================================ */
+
+.mw-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.65rem;
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--mw-tint-strong);
+  color: var(--md-primary-fg-color);
+}
+
+.mw-pill--muted {
+  background: transparent;
+  border: 1px solid var(--mw-border);
+  color: var(--mw-muted);
+}
+
 .mw-chip-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 0.75rem;
   margin: 1.5rem 0;
 }
@@ -67,11 +358,11 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid var(--mw-border);
   border-radius: 2rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .mw-chip .mw-card-icon {
@@ -79,29 +370,83 @@
   color: var(--md-primary-fg-color);
 }
 
-/* Cabeçalho leve da Home/Sobre — sem "quadradão" de cor sólida */
+.mw-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin: 3rem 0 1rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--mw-radius);
+  background: linear-gradient(120deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  color: #fff;
+}
+
+.md-typeset .mw-cta h2,
+.md-typeset .mw-cta h3 { margin: 0 0 0.25rem; color: #fff; font-size: 1.2rem; }
+.mw-cta p { margin: 0; opacity: 0.92; }
+
+.md-typeset .mw-cta .md-button {
+  margin: 0;
+  color: var(--md-primary-fg-color);
+  background: #fff;
+  border-color: #fff;
+}
+
+.md-typeset .mw-cta .md-button:hover { opacity: 0.9; }
+
+/* ============================================================
+   POSTS — cabeçalho (série + tempo de leitura) e rodapé
+   ============================================================ */
+
+.mw-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--mw-muted);
+}
+
+.mw-pill svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+.mw-post-meta .twemoji svg,
+.mw-cta .twemoji svg { width: 1em; height: 1em; }
+
+.mw-post-meta a.mw-pill:hover { background: var(--md-primary-fg-color); color: var(--md-primary-bg-color); }
+
+/* Cabeçalho leve (Sobre / 404) */
 .mw-header {
   text-align: center;
   padding: 1.5rem 0 2rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  border-bottom: 1px solid var(--mw-border);
   margin-bottom: 2rem;
 }
 
-.mw-header img {
-  max-width: 130px;
+.mw-header img { width: 120px; padding: 1rem; margin: 0 auto !important; }
+.md-typeset .mw-header h1 { margin: 0.8rem 0 0.2rem; }
+.mw-header p { color: var(--mw-muted); font-size: 1.05rem; margin-top: 0; }
+
+.mw-buttons { text-align: center; margin: 1.5rem 0; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
+@media screen and (max-width: 59.9375em) {
+  .mw-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.75rem 1.25rem;
+    gap: 1.5rem;
+  }
+  .md-typeset .mw-hero h1 { font-size: 2rem; }
 }
 
-.mw-header h1 {
-  margin: 0.8rem 0 0.2rem;
-}
-
-.mw-header p {
-  color: var(--md-default-fg-color--light);
-  font-size: 1.1rem;
-  margin-top: 0;
-}
-
-.mw-buttons {
-  text-align: center;
-  margin: 1.5rem 0;
+@media screen and (max-width: 30em) {
+  .md-typeset .mw-hero h1 { font-size: 1.65rem; }
+  .mw-hero .mw-terminal { display: none; }
+  .mw-hero .md-button { width: 100%; text-align: center; margin: 0.25rem 0; }
+  .mw-cta { padding: 1.25rem; }
+  .mw-series-grid { grid-template-columns: minmax(0, 1fr); }
 }

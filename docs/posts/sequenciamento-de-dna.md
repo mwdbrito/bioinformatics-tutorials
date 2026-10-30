@@ -1,4 +1,9 @@
 ---
+title: "Sequenciamento de DNA"
+description: "De Sanger ao Illumina, PacBio e Nanopore: como aprendemos a ler o DNA e por que isso ficou centenas de milhares de vezes mais barato."
+serie: "Fundamentos"
+parte: 2
+de: 2
 tags:
   - Postagem
   - Sequenciamento
@@ -46,7 +51,7 @@ Em 1977, dois grupos publicaram, quase ao mesmo tempo, os dois primeiros método
 
 **Frederick Sanger, Sandra Nicklen e Alan Coulson** desenvolveram o método de **terminação de cadeia**: uma DNA polimerase copia o molde na presença de didesoxinucleotídeos (ddNTPs) — versões modificadas das bases normais que, uma vez incorporadas, impedem a cadeia de continuar crescendo. O resultado é uma mistura de fragmentos de todos os tamanhos possíveis, cada um terminando exatamente na posição de uma base específica. Separando esses fragmentos por tamanho (por eletroforese em gel), dá para "ler" a sequência, fragmento por fragmento[^1].
 
-![Sequenciamento de Sanger: terminação de cadeia](assets/sequenciamento/sanger-metodo.svg)
+![Sequenciamento de Sanger: terminação de cadeia](../assets/sequenciamento/sanger-metodo.svg)
 
 Quase simultaneamente, **Allan Maxam e Walter Gilbert** publicaram um método diferente, de **degradação química**: em vez de sintetizar novas cadeias, ele quebra quimicamente uma cadeia já existente em pontos específicos de cada tipo de base[^2]. O método de Maxam-Gilbert foi importante e amplamente usado no início, mas exigia reagentes mais perigosos (incluindo hidrazina) e não se prestava bem à automação — por isso, ao longo da década de 1980, o método de Sanger se tornou dominante.
 
@@ -73,7 +78,7 @@ Essas duas mudanças tornaram viável o **Projeto Genoma Humano** (1990–2003):
 
 O Projeto Genoma Humano mostrou que sequenciar um genoma humano era possível — mas, a esse custo e nesse prazo, longe de ser prático para uso rotineiro em pesquisa ou clínica. A resposta da indústria, a partir de meados dos anos 2000, foi abandonar a ideia de ler um fragmento de cada vez e passar a ler **milhões de fragmentos simultaneamente**: o sequenciamento de nova geração (*next-generation sequencing*, NGS), também chamado de segunda geração.
 
-![Sanger x sequenciamento massivamente paralelo](assets/sequenciamento/paralelo-massivo.svg)
+![Sanger x sequenciamento massivamente paralelo](../assets/sequenciamento/paralelo-massivo.svg)
 
 A primeira plataforma comercial de sucesso foi o **454** (Roche, 2005), baseado em pirosequenciamento — detecção de luz emitida a cada base incorporada[^4]. Ele foi rapidamente superado, em volume de mercado, pela tecnologia da **Illumina** (2006, originalmente Solexa): sequenciamento por síntese com terminadores reversíveis, que hoje domina a maior parte do mercado de sequenciamento do mundo[^5].
 
@@ -86,7 +91,7 @@ A primeira plataforma comercial de sucesso foi o **454** (Roche, 2005), baseado 
 O ganho não veio de ler mais rápido por fragmento — veio de processar uma quantidade descomunal de fragmentos ao mesmo tempo, trocando "poucos fragmentos, muito longos" por "muitíssimos fragmentos, curtos".
 
 !!! tip "Quer entender a química da Illumina passo a passo?"
-    Isso será tema de um post futuro desta série — **Sequenciamento Illumina na Prática** — cobrindo bridge amplification, terminadores reversíveis e como interpretar o FASTQ resultante.
+    O texto **[RNA-Seq (Bulk): a Fotografia Média do Transcriptoma](rna-seq-bulk.md)**, desta mesma série, cobre bridge amplification, terminadores reversíveis e o que essa química captura (e não captura) quando o alvo é o transcriptoma.
 
 ---
 
@@ -94,7 +99,7 @@ O ganho não veio de ler mais rápido por fragmento — veio de processar uma qu
 
 O NGS tem uma limitação inerente: seus fragmentos são curtos (tipicamente 150–300 pares de bases). Isso é suficiente para muitas aplicações, mas cria ambiguidade em regiões repetitivas do genoma — se um fragmento curto poderia ter vindo de várias posições diferentes do genoma, a montagem da sequência completa fica incerta.
 
-![Leituras curtas x leituras longas](assets/sequenciamento/curtas-vs-longas.svg)
+![Leituras curtas x leituras longas](../assets/sequenciamento/curtas-vs-longas.svg)
 
 A **terceira geração** de sequenciamento resolve isso lendo moléculas de DNA muito mais longas — de milhares a milhões de bases — de uma vez, muitas vezes em tempo real e a partir de uma única molécula, sem etapas de amplificação por PCR:
 
@@ -102,7 +107,7 @@ A **terceira geração** de sequenciamento resolve isso lendo moléculas de DNA 
 - **Oxford Nanopore**: passa uma fita de DNA (ou RNA) através de um poro proteico nanométrico embutido numa membrana; a passagem de cada base altera minimamente a corrente elétrica através do poro, e essa variação é decodificada em sequência por um algoritmo[^7].
 
 !!! tip "Quer entender o SMRT e o nanoporo em detalhe?"
-    Isso será tema de um post futuro desta série — **PacBio e Nanopore: Sequenciamento de Terceira Geração em Detalhe**.
+    Este texto ficou como a visão geral introdutória — não vamos aprofundar mais o SMRT e o nanoporo nesta série, que a partir daqui foca em como cada tecnologia se aplica especificamente ao **transcriptoma**.
 
 ---
 
@@ -110,17 +115,17 @@ A **terceira geração** de sequenciamento resolve isso lendo moléculas de DNA 
 
 O sequenciamento deixou de ser um projeto de bilhões de dólares e passou a ser uma ferramenta rotineira, usada de formas que seriam impensáveis nos anos 2000:
 
-- **RNA-Seq**: em vez de sequenciar DNA genômico, sequenciamos RNA para medir quais genes estão ativos e em que quantidade. Publicamos um [tutorial completo de RNA-Seq](bioinfo/transcriptoma/rnaseq.md) usando essa mesma base tecnológica (Illumina/Salmon).
+- **RNA-Seq**: em vez de sequenciar DNA genômico, sequenciamos RNA para medir quais genes estão ativos e em que quantidade. Um tutorial completo de RNA-Seq usando essa mesma base tecnológica (Illumina/Salmon) está em preparação.
 - **Sequenciamento de célula única**: em vez de uma amostra com milhões de células misturadas, sequenciamos célula por célula — revelando heterogeneidade que ficava escondida em uma média. Será tema de um post futuro desta série.
 - **Metagenômica**: sequenciar todo o DNA de uma amostra ambiental ou clínica de uma vez, sem isolar organismos individuais primeiro — usado para estudar microbiomas inteiros.
-- **Genomas verdadeiramente completos**: em 2022, o consórcio Telomere-to-Telomere (T2T) publicou a primeira sequência completa e sem lacunas de um genoma humano (3,055 bilhões de pares de bases), combinando leituras longas de PacBio HiFi e Oxford Nanopore — algo impossível apenas com leituras curtas, exatamente pela questão das regiões repetitivas que vimos acima[^8]. Já falamos sobre isso [no post sobre o Dogma Central](post1_dogma_central.md#o-desafio-dos-dados-biologicos).
+- **Genomas verdadeiramente completos**: em 2022, o consórcio Telomere-to-Telomere (T2T) publicou a primeira sequência completa e sem lacunas de um genoma humano (3,055 bilhões de pares de bases), combinando leituras longas de PacBio HiFi e Oxford Nanopore — algo impossível apenas com leituras curtas, exatamente pela questão das regiões repetitivas que vimos acima[^8]. Já falamos sobre isso [no post sobre o Dogma Central](dogma-central.md#o-desafio-dos-dados-biologicos).
 - **Sequenciamento de campo, em tempo real**: dispositivos portáteis como o MinION (Oxford Nanopore) — do tamanho de um pendrive — já foram usados para rastrear surtos de Ebola na África Ocidental em tempo real e chegaram a ser testados a bordo da Estação Espacial Internacional.
 
 ---
 
 ## A linha do tempo completa
 
-![Linha do tempo das gerações de sequenciamento](assets/sequenciamento/timeline-geracoes.svg)
+![Linha do tempo das gerações de sequenciamento](../assets/sequenciamento/timeline-geracoes.svg)
 
 | Geração | Exemplos | Tamanho da leitura | Ponto forte | Ponto fraco |
 |---|---|---|---|---|
@@ -132,7 +137,7 @@ O sequenciamento deixou de ser um projeto de bilhões de dólares e passou a ser
 
 ## O custo despencou
 
-![O custo de sequenciar um genoma humano ao longo do tempo](assets/sequenciamento/custo-genoma.svg)
+![O custo de sequenciar um genoma humano ao longo do tempo](../assets/sequenciamento/custo-genoma.svg)
 
 Essa curva é um dos gráficos mais citados em genômica — e por um motivo específico: entre 2007 e 2011, o custo caiu **mais rápido do que a Lei de Moore prevê para a computação**, justamente no período em que o NGS substituiu o Sanger automatizado em escala industrial[^9].
 
@@ -140,11 +145,11 @@ Essa curva é um dos gráficos mais citados em genômica — e por um motivo esp
 
 ## Próximos posts desta série
 
-Este post ficou como uma visão geral — cada tecnologia mencionada aqui merece um mergulho próprio. Os próximos posts desta série vão cobrir:
+Este post ficou como uma visão geral das tecnologias de sequenciamento. A partir daqui, a série passa a focar especificamente em **como medimos o transcriptoma** — três abordagens complementares, cada uma resolvendo uma limitação da anterior:
 
-- **Sequenciamento Illumina na Prática** — a química de sequenciamento por síntese, passo a passo.
-- **PacBio e Nanopore: Sequenciamento de Terceira Geração em Detalhe** — como o SMRT e o nanoporo realmente funcionam.
-- **Sequenciamento de Célula Única (Single-Cell)** — por que sequenciar célula por célula muda o que conseguimos enxergar.
+- **[RNA-Seq (Bulk): a Fotografia Média do Transcriptoma](rna-seq-bulk.md)** — a química de sequenciamento por síntese e o que uma medida "em bloco" mostra, e esconde.
+- **[Transcriptômica de Célula Única (scRNA-seq)](rna-seq-celula-unica.md)** — por que sequenciar célula por célula revela heterogeneidade que o bulk esconde.
+- **[Transcriptômica Espacial](transcriptomica-espacial.md)** — a informação que se perde mesmo na célula única: onde, no tecido, cada célula estava.
 
 ---
 

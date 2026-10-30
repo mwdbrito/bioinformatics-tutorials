@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block content %}
+  <div class="mw-header">
+    <img src="{{ 'assets/logo.png' | url }}" alt="Logo MwInSilico">
+    <h1>404 — sequência não encontrada</h1>
+    <p>Esta página não alinhou em nenhuma posição do genoma de referência.</p>
+  </div>
+
+  <div class="mw-terminal" style="max-width: 34rem; margin: 0 auto 2rem;">
+    <div class="mw-terminal-bar"><span></span><span></span><span></span></div>
+    <pre><span class="p">$</span> samtools view site.bam pagina_procurada
+<span class="c">[E::mwinsilico] 0 reads mapeadas · unmapped (flag 4)</span>
+<span class="p">$</span> <span class="k">cd</span> ~/inicio</pre>
+  </div>
+
+  <div class="mw-buttons">
+    <a class="md-button md-button--primary" href="{{ config.site_url | default(base_url ~ '/', true) }}">Voltar ao início</a>
+    <a class="md-button" href="{{ (config.site_url or '') ~ 'posts/' }}">Ver as postagens</a>
+  </div>
+{% endblock %}

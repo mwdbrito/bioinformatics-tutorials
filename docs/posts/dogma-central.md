@@ -1,4 +1,9 @@
 ---
+title: "O Dogma Central evoluiu"
+description: "Do DNA ao fenótipo: o que mudou no Dogma Central da Biologia desde 1958 e como a bioinformática transforma dados moleculares em conhecimento biológico."
+serie: "Fundamentos"
+parte: 1
+de: 2
 tags:
   - Postagem
   - Biologia Molecular
@@ -43,7 +48,7 @@ DNA ──transcrição──> RNA ──tradução──> proteína
 - As **proteínas** realizam grande parte das funções estruturais, catalíticas e regulatórias da célula.
 
 <center markdown="1">
-![Fluxo clássico da informação genética: DNA → RNA → proteínas](assets/post2_1.jpg)
+![Fluxo clássico da informação genética: DNA → RNA → proteínas](../assets/dogma_central/fluxo-classico.jpg)
 </center>
 
 Crick posteriormente esclareceu que o dogma se refere à transferência de **informação sequencial**, resíduo por resíduo. Ele não determina que todo processo celular siga exclusivamente uma linha reta entre DNA, RNA e proteína; seu princípio fundamental é que a informação não é transferida de proteínas para ácidos nucleicos ou para outras proteínas[^2].
@@ -65,7 +70,7 @@ Essa enzima foi descrita de forma independente e quase simultânea por dois grup
 
 Esse processo ocorre em retrovírus (incluindo o HIV) e também está relacionado a mecanismos celulares, como a manutenção dos telômeros pela telomerase. A transcrição reversa não "quebra" o Dogma Central: ela corresponde a uma transferência de informação que o próprio Crick já classificava como "especial" — possível, porém restrita a contextos específicos, e não observada como regra geral entre todas as células[^2].
 
-![O Dogma Central expandido: transferências gerais e especiais de informação](assets/dogma_central/central-dogma-expandido.svg)
+![O Dogma Central expandido: transferências gerais e especiais de informação](../assets/dogma_central/central-dogma-expandido.svg)
 
 ??? question "O Dogma Central foi 'derrubado' pela transcrição reversa?"
     Não. Essa é uma confusão comum, e o próprio Crick já respondia a ela em 1970. O Dogma Central nunca afirmou que só existe a via DNA→RNA→proteína — ele afirma algo mais restrito e mais forte: que a informação **nunca** flui de volta de uma proteína para um ácido nucleico. A transcrição reversa (RNA→DNA) é uma transferência entre ácidos nucleicos, algo que o modelo sempre considerou possível como "transferência especial" — restrita a alguns contextos biológicos (retrovírus, retroelementos, telômeros), em vez de ser uma regra universal presente em todas as células.
@@ -96,7 +101,7 @@ A expansão das tecnologias de sequenciamento trouxe uma nova dimensão ao estud
 
 O genoma humano completo — incluindo as regiões repetitivas e heterocromáticas que só foram totalmente resolvidas em 2022 pelo consórcio Telomere-to-Telomere (T2T) — tem cerca de **3,1 mil milhões de pares de bases**[^8]. Ao analisarmos múltiplos indivíduos, tecidos, condições experimentais ou células individuais, esse volume cresce rapidamente — e a sequência por si só ainda não responde às perguntas biológicas.
 
-![Escala e complexidade dos dados genômicos: do genoma completo a um único gene](assets/dogma_central/escala-dados-genomicos.svg)
+![Escala e complexidade dos dados genômicos: do genoma completo a um único gene](../assets/dogma_central/escala-dados-genomicos.svg)
 
 A grande questão deixa de ser apenas "qual é a sequência?" e passa a incluir perguntas como:
 
@@ -115,14 +120,14 @@ A grande questão deixa de ser apenas "qual é a sequência?" e passa a incluir 
 
 Uma análise típica de dados de RNA-seq, por exemplo, pode seguir o fluxo abaixo:
 
-![Bioinformática: da sequência ao conhecimento biológico — fluxo típico de análise de RNA-seq](assets/dogma_central/pipeline-bioinformatica.svg)
+![Bioinformática: da sequência ao conhecimento biológico — fluxo típico de análise de RNA-seq](../assets/dogma_central/pipeline-bioinformatica.svg)
 
 Com ferramentas computacionais, é possível realizar controle de qualidade, alinhamento, quantificação, normalização, análise de expressão diferencial, análise de isoformas, redução de dimensionalidade, agrupamento, enriquecimento funcional, análise de vias e integração multiômica[^9].
 
 Linguagens como **R**, **Python** e **Bash**, associadas a boas práticas de reprodutibilidade — controle de versão, ambientes computacionais isolados (como containers Apptainer/Docker) e documentação clara de cada etapa —, permitem executar análises que seriam impossíveis de conduzir manualmente em planilhas ou com caderno e caneta.
 
 !!! tip "Quer colocar a mão na massa?"
-    Publicamos um [tutorial completo de RNA-seq](bioinfo/transcriptoma/rnaseq.md) cobrindo do download no GEO até a lista final de genes diferencialmente expressos e o enriquecimento funcional — com scripts comentados linha a linha em Bash e Python.
+    Um tutorial completo de RNA-seq está em preparação — do download no GEO até a lista final de genes diferencialmente expressos e o enriquecimento funcional, com scripts comentados linha a linha em Bash e Python. Enquanto isso, os scripts ficam disponíveis na página de [Scripts](../scripts/index.md).
 
 ---
 
@@ -138,7 +143,7 @@ O Dogma Central fornece uma estrutura conceitual útil para entender as diferent
 | **Proteômica** | Proteínas e modificações pós-traducionais | Quais máquinas moleculares estão presentes e funcionando? |
 | **Metabolômica** | Metabólitos | Quais produtos e reações refletem o estado funcional da célula? |
 
-![As camadas ômicas: do genótipo ao fenótipo](assets/dogma_central/camadas-omicas.svg)
+![As camadas ômicas: do genótipo ao fenótipo](../assets/dogma_central/camadas-omicas.svg)
 
 Na **genômica**, investigamos o manual de instruções: a sequência de DNA, as variantes, mutações e a arquitetura do genoma.
 
@@ -146,7 +151,7 @@ Na **transcriptômica**, investigamos quais partes desse manual estão sendo uti
 
 Na **proteômica**, avaliamos uma camada ainda mais próxima do fenótipo. A abundância de RNA não determina, isoladamente, a quantidade, a localização, as modificações pós-traducionais ou a atividade de uma proteína — por isso a correlação entre RNA e proteína está longe de ser perfeita. Tecnologias de espectrometria de massas hoje permitem identificar e quantificar milhares de proteínas de uma amostra em um único experimento, revelando complexos, interações e modificações que a transcriptômica sozinha não captura[^12].
 
-![Proteômica: estrutura, função e interação das proteínas](assets/dogma_central/proteomica-rede.svg)
+![Proteômica: estrutura, função e interação das proteínas](../assets/dogma_central/proteomica-rede.svg)
 
 Por isso, a integração de múltiplas camadas ômicas é tão valiosa: cada camada sozinha responde a uma pergunta parcial, e é na integração entre elas que emergem os mecanismos completos por trás de um fenótipo ou de uma doença[^10].
 
@@ -168,7 +173,7 @@ O Dogma Central não ficou obsoleto: ele se tornou mais completo.
 
 A ideia **DNA → RNA → proteína** ainda é a base para compreender a expressão gênica. Mas essa expressão é regulada por uma rede que envolve RNA não codificante, fatores de transcrição, cromatina, epigenética, proteínas, ambiente celular e interações entre diferentes camadas moleculares.
 
-![Bioinformática: a ponte entre dados moleculares e conhecimento biológico](assets/dogma_central/bioinformatica-ponte.svg)
+![Bioinformática: a ponte entre dados moleculares e conhecimento biológico](../assets/dogma_central/bioinformatica-ponte.svg)
 
 > **O Dogma Central fornece o mapa conceitual. A Bioinformática ajuda a explorar o território.**
 

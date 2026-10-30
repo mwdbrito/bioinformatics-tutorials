@@ -1254,7 +1254,7 @@ e trabalhe normalmente dentro de:
 
 ## Relação com o tutorial original
 
-Este container foi planejado a partir das etapas e comandos do [tutorial completo de RNA-Seq](rnaseq.md): o fluxo começa em GEO/SRA, passa por download, FastQC, trimming e segue por STAR ou Salmon até matriz de contagens, DESeq2 e enriquecimento funcional. 
+Este container foi planejado a partir das etapas e comandos do [tutorial completo de RNA-Seq](pipeline-rnaseq.md): o fluxo começa em GEO/SRA, passa por download, FastQC, trimming e segue por STAR ou Salmon até matriz de contagens, DESeq2 e enriquecimento funcional. 
 
 Os scripts finais do tutorial também usam explicitamente `STAR`, `Salmon`, `DESeq2`, `tximport`, `clusterProfiler` e `enrichplot`, além de `OrgDb` específico do organismo. 
 
