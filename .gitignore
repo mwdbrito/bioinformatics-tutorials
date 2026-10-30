@@ -13,3 +13,8 @@ __pycache__/
 # Ambiente virtual Python (se você criar uma venv para o projeto)
 .venv/
 venv/
+
+# Espaço de revisão privado: rascunhos de posts e o HTML gerado para revisar
+# no navegador (scripts/revisar.sh). Nada disso vai para o GitHub.
+docs/rascunhos/
+revisao/

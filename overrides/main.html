@@ -8,10 +8,11 @@
 
 {% block content %}
   {% if page.meta and page.meta.serie %}
-    {# conta só o texto: o código dos widgets (<script>) fica de fora #}
+    {# conta só o texto: o código dos widgets (<script> e <style>) fica de fora #}
     {% set ns = namespace(palavras=0) %}
     {% for trecho in page.content.split("</script>") %}
-      {% set ns.palavras = ns.palavras + (trecho.split("<script")[0] | striptags | wordcount) %}
+      {% set texto = trecho.split("<script")[0] %}
+      {% set ns.palavras = ns.palavras + (texto.split("<style")[0] ~ (texto.split("</style>")[-1] if "</style>" in texto else "")) | striptags | wordcount %}
     {% endfor %}
     {% set minutos = (ns.palavras / 200) | round(0, "ceil") | int %}
     <div class="mw-post-meta">

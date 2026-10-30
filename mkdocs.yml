@@ -16,6 +16,7 @@ edit_uri: edit/main/docs/
 # Para publicar um tutorial, tire-o daqui e adicione-o ao "nav".
 draft_docs: |
   tutoriais/
+  rascunhos/
 
 # Arquivos de apoio que não são páginas do site
 exclude_docs: |
@@ -160,6 +161,8 @@ nav:
       - posts/rna-seq-bulk.md
       - posts/rna-seq-celula-unica.md
       - posts/transcriptomica-espacial.md
+    - O que sai do sequenciador:
+      - posts/arquivos-rna-seq.md
   - Scripts: scripts/index.md
   - Glossário: glossario.md
   - Tags: tags.md

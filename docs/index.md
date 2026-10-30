@@ -32,7 +32,7 @@ hide:
 <span class="p">tutoriais/</span>  <span class="c"># em preparação</span>
 
 <span class="p">$</span> <span class="k">grep</span> -c "Postagem" posts/*.md
-<span class="c">5 textos · 2 séries · com referências</span>
+<span class="c">6 textos · 3 séries · com referências</span>
 
 <span class="mw-dna"><span>ATGGCGTACGTTAGCCTAGGATCCGAATTCGCTAGCAAGCTTGCGGCCGCTCTAGAACTAGTGGATCCATGGCGTACGTTAGCCTAGGATCCGAATTCGCTAGCAAGCTTGCGGCCGCTCTAGAACTAGTGGATCC</span></span></pre>
 </div>
@@ -68,6 +68,18 @@ Três tecnologias, cada uma resolvendo um limite da anterior.
 <li markdown>[RNA-Seq bulk](posts/rna-seq-bulk.md)<span>A fotografia média da expressão gênica.</span></li>
 <li markdown>[RNA-Seq de célula única](posts/rna-seq-celula-unica.md)<span>A heterogeneidade que a média esconde.</span></li>
 <li markdown>[Transcriptômica espacial](posts/transcriptomica-espacial.md)<span>Onde, no tecido, cada célula estava.</span></li>
+</ol>
+</div>
+
+<div class="mw-series" markdown>
+<span class="mw-eyebrow">Série 3</span>
+
+### :material-file-document-multiple-outline: O que sai do sequenciador
+
+Os formatos de arquivo que aparecem em toda análise.
+
+<ol class="mw-steps" markdown>
+<li markdown>[Os arquivos do RNA-Seq](posts/arquivos-rna-seq.md)<span>FASTQ, FASTA, GTF, BAM e a matriz de contagens.</span></li>
 </ol>
 </div>
 

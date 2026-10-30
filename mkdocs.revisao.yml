@@ -1,0 +1,7 @@
+# Build de REVISÃO (privado): inclui rascunhos e tutoriais, e gera páginas
+# .html que abrem direto do disco (duplo clique), sem servidor.
+# Use:  bash scripts/revisar.sh
+INHERIT: mkdocs.yml
+site_dir: revisao/site
+use_directory_urls: false
+draft_docs: ""

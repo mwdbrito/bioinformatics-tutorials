@@ -61,6 +61,21 @@ Três tecnologias para medir a expressão gênica. Cada uma resolve uma limitaç
 
 </div>
 
+## :material-file-document-multiple-outline: Série 3 — O que sai do sequenciador
+
+Os arquivos que aparecem em toda análise: o que cada formato guarda, como ler cada um e em que etapa do pipeline ele entra.
+
+<div class="mw-card-grid" markdown>
+
+<div class="mw-card" markdown>
+<div class="mw-card-kicker">Parte 1 de 4</div>
+<div class="mw-card-title">Os arquivos do RNA-Seq: FASTQ, FASTA, GTF, BAM e a matriz de contagens</div>
+<div class="mw-card-body">O caminho do dado bruto até a tabela genes × amostras, um formato de cada vez.</div>
+[Ler :octicons-arrow-right-24:](arquivos-rna-seq.md){ .mw-card-link }
+</div>
+
+</div>
+
 ---
 
 Procurando um tema específico? Veja todas as postagens [organizadas por tags](../tags.md).
