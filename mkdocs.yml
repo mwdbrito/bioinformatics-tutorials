@@ -163,6 +163,7 @@ nav:
       - posts/transcriptomica-espacial.md
     - O que sai do sequenciador:
       - posts/arquivos-rna-seq.md
+      - posts/terminal-linux.md
   - Scripts: scripts/index.md
   - Glossário: glossario.md
   - Tags: tags.md

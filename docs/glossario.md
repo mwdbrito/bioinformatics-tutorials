@@ -113,3 +113,6 @@ Transcriptômica espacial
 
 UMI
 :   *Unique Molecular Identifier*. Código de barras aleatório adicionado a cada molécula antes da amplificação. Permite contar as moléculas originais e descartar as cópias geradas por PCR.
+
+WSL
+:   *Windows Subsystem for Linux*. Recurso do Windows que roda um Linux, como o Ubuntu, sem precisar de outro computador. É o caminho mais simples para usar o terminal Linux no Windows.

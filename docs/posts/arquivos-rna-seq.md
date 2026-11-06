@@ -417,7 +417,7 @@ Há três caminhos comuns para chegar a ela:
 | SAM/BAM | `.sam`, `.bam` (+ `.bai`) | leituras alinhadas | sai do alinhador | `samtools view arquivo.bam \| head` |
 | Matriz | `.tsv`, `.csv`, `.txt` | contagens gene × amostra | entrada do DESeq2 | `head contagens.tsv` |
 
-Os comandos dessa última coluna são o assunto do próximo post, no **MW Toolbox**.
+Os comandos dessa última coluna são o assunto do próximo post, no **MW Toolbox**: [Terminal Linux para biólogos](terminal-linux.md).
 
 ---
 

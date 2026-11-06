@@ -23,3 +23,4 @@
 *[GENCODE]: Projeto que mantém a anotação de referência dos genes humanos e de camundongo
 *[DESeq2]: Pacote R/Bioconductor de expressão diferencial a partir de contagens
 *[STAR]: Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing
+*[WSL]: Windows Subsystem for Linux — roda um Linux, como o Ubuntu, dentro do Windows

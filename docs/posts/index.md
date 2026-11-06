@@ -74,6 +74,13 @@ Os arquivos que aparecem em toda análise: o que cada formato guarda, como ler c
 [Ler :octicons-arrow-right-24:](arquivos-rna-seq.md){ .mw-card-link }
 </div>
 
+<div class="mw-card" markdown>
+<div class="mw-card-kicker">Parte 2 de 4</div>
+<div class="mw-card-title">Terminal Linux para biólogos: abrir, contar e buscar nos seus dados</div>
+<div class="mw-card-body">ls, head, zcat, wc e grep aplicados a arquivos de sequenciamento, com um terminal interativo para treinar.</div>
+[Ler :octicons-arrow-right-24:](terminal-linux.md){ .mw-card-link }
+</div>
+
 </div>
 
 ---

@@ -32,7 +32,7 @@ hide:
 <span class="p">tutoriais/</span>  <span class="c"># em preparação</span>
 
 <span class="p">$</span> <span class="k">grep</span> -c "Postagem" posts/*.md
-<span class="c">6 textos · 3 séries · com referências</span>
+<span class="c">7 textos · 3 séries · com referências</span>
 
 <span class="mw-dna"><span>ATGGCGTACGTTAGCCTAGGATCCGAATTCGCTAGCAAGCTTGCGGCCGCTCTAGAACTAGTGGATCCATGGCGTACGTTAGCCTAGGATCCGAATTCGCTAGCAAGCTTGCGGCCGCTCTAGAACTAGTGGATCC</span></span></pre>
 </div>
@@ -80,6 +80,7 @@ Os formatos de arquivo que aparecem em toda análise.
 
 <ol class="mw-steps" markdown>
 <li markdown>[Os arquivos do RNA-Seq](posts/arquivos-rna-seq.md)<span>FASTQ, FASTA, GTF, BAM e a matriz de contagens.</span></li>
+<li markdown>[Terminal Linux para biólogos](posts/terminal-linux.md)<span>Abrir, contar e buscar nos seus dados, sem travar o computador.</span></li>
 </ol>
 </div>
 
