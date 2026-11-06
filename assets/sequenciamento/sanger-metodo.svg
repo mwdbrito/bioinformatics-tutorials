@@ -1,0 +1,36 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#00695c"/></marker></defs>
+<rect x="1" y="1" width="898" height="558" rx="16" fill="#ffffff" stroke="#cfd8dc" stroke-width="2"/>
+<text x="40" y="50" font-family='Helvetica, Arial, sans-serif' font-size="20" font-weight="700" fill="#004d40" text-anchor="start">Sequenciamento de Sanger: terminação de cadeia</text>
+<text x="40" y="74" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">os ddNTPs interrompem a síntese em cada posição da base correspondente</text>
+<text x="40" y="100" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="600" font-style="normal" fill="#455a64" text-anchor="start">molde:</text>
+<text x="40" y="120" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="start">5'-...GACCTAGGTCA...-3'</text>
+<rect x="110" y="120" width="170" height="280" rx="8" fill="#eceff1" stroke="#cfd8dc" stroke-width="1.5"/>
+<text x="195.0" y="106" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#004d40" text-anchor="middle">+ ddATP</text>
+<line x1="130" y1="360" x2="260" y2="360" stroke="#004d40" stroke-width="5" stroke-linecap="round"/>
+<line x1="130" y1="270" x2="260" y2="270" stroke="#004d40" stroke-width="5" stroke-linecap="round"/>
+<line x1="130" y1="190" x2="260" y2="190" stroke="#004d40" stroke-width="5" stroke-linecap="round"/>
+<rect x="300" y="120" width="170" height="280" rx="8" fill="#eceff1" stroke="#cfd8dc" stroke-width="1.5"/>
+<text x="385.0" y="106" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#00897b" text-anchor="middle">+ ddTTP</text>
+<line x1="320" y1="330" x2="450" y2="330" stroke="#00897b" stroke-width="5" stroke-linecap="round"/>
+<line x1="320" y1="240" x2="450" y2="240" stroke="#00897b" stroke-width="5" stroke-linecap="round"/>
+<line x1="320" y1="140" x2="450" y2="140" stroke="#00897b" stroke-width="5" stroke-linecap="round"/>
+<rect x="490" y="120" width="170" height="280" rx="8" fill="#eceff1" stroke="#cfd8dc" stroke-width="1.5"/>
+<text x="575.0" y="106" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#0097a7" text-anchor="middle">+ ddGTP</text>
+<line x1="510" y1="380" x2="640" y2="380" stroke="#0097a7" stroke-width="5" stroke-linecap="round"/>
+<line x1="510" y1="300" x2="640" y2="300" stroke="#0097a7" stroke-width="5" stroke-linecap="round"/>
+<line x1="510" y1="210" x2="640" y2="210" stroke="#0097a7" stroke-width="5" stroke-linecap="round"/>
+<line x1="510" y1="120" x2="640" y2="120" stroke="#0097a7" stroke-width="5" stroke-linecap="round"/>
+<rect x="680" y="120" width="170" height="280" rx="8" fill="#eceff1" stroke="#cfd8dc" stroke-width="1.5"/>
+<text x="765.0" y="106" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#f9a825" text-anchor="middle">+ ddCTP</text>
+<line x1="700" y1="345" x2="830" y2="345" stroke="#f9a825" stroke-width="5" stroke-linecap="round"/>
+<line x1="700" y1="255" x2="830" y2="255" stroke="#f9a825" stroke-width="5" stroke-linecap="round"/>
+<line x1="700" y1="170" x2="830" y2="170" stroke="#f9a825" stroke-width="5" stroke-linecap="round"/>
+<text x="480.0" y="428" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">tamanho crescente do fragmento → topo do gel</text>
+<line x1="60" y1="395" x2="60" y2="125" stroke="#00695c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="35" y="260.0" font-family='Helvetica, Arial, sans-serif' font-size="11" font-weight="600" font-style="normal" fill="#00695c" text-anchor="middle">leitura</text>
+<rect x="100" y="460" width="760" height="70" rx="10" fill="#e0f2f1" stroke="#00695c" stroke-width="2"/>
+<text x="115" y="486" font-family='Helvetica, Arial, sans-serif' font-size="12" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">Sequência lida (do menor para o maior fragmento):</text>
+<text x="115" y="510" font-family='Helvetica, Arial, sans-serif' font-size="15" font-weight="700" font-style="normal" fill="#004d40" text-anchor="start">5'-G-A-C-C-T-A-G-G-T-C-A-3'</text>
+<text x="450.0" y="544" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">Baseado em Sanger, Nicklen &amp; Coulson (1977)</text>
+</svg>

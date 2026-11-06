@@ -1,0 +1,2048 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Os cinco comandos para abrir, contar e buscar em arquivos de sequenciamento sem travar o computador: ls, head, zcat, wc e grep, com um terminal interativo para treinar.">
+      
+      
+        <meta name="author" content="Márcio Wilson">
+      
+      
+        <link rel="canonical" href="https://mwdbrito.github.io/bioinformatics-tutorials/posts/terminal-linux/">
+      
+      
+        <link rel="prev" href="../arquivos-rna-seq/">
+      
+      
+        <link rel="next" href="../../scripts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Terminal Linux para biólogos - MwInSilico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terminal-linux-para-biologos-abrir-contar-e-buscar-nos-seus-dados" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="MwInSilico" class="md-header__button md-logo" aria-label="MwInSilico" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MwInSilico
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Terminal Linux para biólogos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Seguir o sistema"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Seguir o sistema" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mwdbrito/bioinformatics-tutorials" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mwdbrito/bioinformatics-tutorials
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Postagens
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../scripts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Scripts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossário
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../sobre/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Sobre
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MwInSilico" class="md-nav__button md-logo" aria-label="MwInSilico" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    MwInSilico
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mwdbrito/bioinformatics-tutorials" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mwdbrito/bioinformatics-tutorials
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Postagens
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Postagens
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dogma-central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Dogma Central evoluiu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequenciamento-de-dna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequenciamento de DNA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Como medimos o transcriptoma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Como medimos o transcriptoma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rna-seq-bulk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RNA-Seq bulk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rna-seq-celula-unica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RNA-Seq de célula única
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomica-espacial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptômica espacial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O que sai do sequenciador
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O que sai do sequenciador
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquivos-rna-seq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Os arquivos do RNA-Seq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal Linux para biólogos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal Linux para biólogos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-nao-abrir-no-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que não abrir no Excel?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-abrir-um-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como abrir um terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomia-de-um-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomia de um comando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-1-ls-o-que-tem-nesta-pasta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1 · ls: o que tem nesta pasta?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-2-head-veja-so-o-comeco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2 · head: veja só o começo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-3-zcat-abra-o-gz-sem-descompactar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3 · zcat: abra o .gz sem descompactar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-4-wc-l-quantas-leituras-eu-tenho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4 · wc -l: quantas leituras eu tenho?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-5-grep-procure-um-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5 · grep: procure um padrão
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#treine-aqui-um-terminal-no-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treine aqui: um terminal no navegador
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cola-para-salvar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cola para salvar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sobre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-nao-abrir-no-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que não abrir no Excel?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-abrir-um-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como abrir um terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomia-de-um-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomia de um comando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-1-ls-o-que-tem-nesta-pasta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1 · ls: o que tem nesta pasta?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-2-head-veja-so-o-comeco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2 · head: veja só o começo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-3-zcat-abra-o-gz-sem-descompactar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3 · zcat: abra o .gz sem descompactar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-4-wc-l-quantas-leituras-eu-tenho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4 · wc -l: quantas leituras eu tenho?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-5-grep-procure-um-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5 · grep: procure um padrão
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#treine-aqui-um-terminal-no-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Treine aqui: um terminal no navegador
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cola-para-salvar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cola para salvar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    
+    
+    
+      
+      
+    
+      
+      
+    
+    
+    <div class="mw-post-meta">
+      <a class="mw-pill" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-5 5v11l5-4.5zm2 4v13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6c-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1M10 18.41C8.75 18.09 7.5 18 6.5 18c-1.06 0-2.32.19-3.5.5V7.13c.91-.4 2.14-.63 3.5-.63s2.59.23 3.5.63z"/></svg>
+        O que sai do sequenciador · parte 2 de 4
+      </a>
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span>
+      <span>11 min de leitura</span>
+    </div>
+  
+
+  
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:fastq" class="md-tag">FASTQ</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">Linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:mw-toolbox" class="md-tag">MW Toolbox</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:postagem" class="md-tag">Postagem</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:terminal" class="md-tag">Terminal</a>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/mwdbrito/bioinformatics-tutorials/edit/main/docs/posts/terminal-linux.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.06 9 .94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="terminal-linux-para-biologos-abrir-contar-e-buscar-nos-seus-dados">💻 Terminal Linux para biólogos: abrir, contar e buscar nos seus dados<a class="headerlink" href="#terminal-linux-para-biologos-abrir-contar-e-buscar-nos-seus-dados" title="Link para esta seção">&para;</a></h1>
+<blockquote>
+<p><strong>Cinco comandos resolvem a maior parte do que você precisa fazer com um arquivo de sequenciamento antes de qualquer análise: ver o que tem, espiar o começo, abrir o comprimido, contar e buscar.</strong></p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Para quem tem pressa</p>
+<p>Arquivos de sequenciamento são grandes demais para programas com janela, como o Excel ou o Bloco de notas, que tentam carregar tudo na memória. O terminal lê o arquivo <strong>linha a linha</strong>, em fluxo, e mostra só o que você pediu. Com <code>ls -lh</code> você vê os arquivos e seus tamanhos; com <code>head</code>, as primeiras linhas; com <code>zcat</code>, abre um <code>.gz</code> sem descompactar no disco; com <code>wc -l</code>, conta linhas (num <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>, linhas ÷ 4 = leituras); e com <code>grep</code>, busca um padrão. O símbolo <code>|</code> (<em>pipe</em>) liga um comando ao outro. No fim da página há um terminal de treino para você testar tudo.</p>
+</div>
+<p>Este é o primeiro <strong>MW Toolbox</strong>, a série sobre as ferramentas do dia a dia da bioinformática. Ele continua o post anterior, <a href="../arquivos-rna-seq/">Os arquivos do RNA-Seq</a>: lá vimos o que cada formato guarda; aqui vamos abrir esses arquivos de verdade.</p>
+<hr />
+<h2 id="por-que-nao-abrir-no-excel">Por que não abrir no Excel?<a class="headerlink" href="#por-que-nao-abrir-no-excel" title="Link para esta seção">&para;</a></h2>
+<p>Uma corrida típica de RNA-Seq gera dezenas de milhões de leituras por amostra. Como cada leitura ocupa quatro linhas no <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>, uma amostra com <strong>20 milhões de leituras</strong> vira um arquivo com <strong>80 milhões de linhas</strong>. O Excel aceita no máximo 1.048.576 linhas por planilha, ou seja, cerca de 76 vezes menos. Editores de texto comuns nem chegam a esse limite: tentam carregar o arquivo inteiro na memória e travam.</p>
+<p>O terminal funciona de outro jeito. Os comandos do Unix foram pensados para ler um <strong>fluxo de texto</strong>, uma linha de cada vez, e passar o resultado adiante<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Por isso <code>head</code> mostra o começo de um arquivo de 10 GB tão rápido quanto o de um arquivo de 10 linhas: ele lê só o que precisa e para.</p>
+<figure>
+<p><img alt="Terminal de vídeo DEC VT100, com teclado e tela de fósforo" src="../../assets/toolbox_terminal/vt100.jpg" width="520" /></p>
+<figcaption>O VT100, terminal da DEC lançado em 1978. O "terminal" do seu computador é a versão em software desse equipamento: uma tela que manda texto para o sistema e mostra o texto que volta. Foto: Jason Scott, <a href="https://commons.wikimedia.org/wiki/File:DEC_VT100_terminal.jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>.</figcaption>
+</figure>
+<p>Há ainda um motivo prático: os servidores e clusters onde as análises de verdade rodam <strong>não têm tela</strong>. Você se conecta a eles por um terminal. Aprender esses comandos no seu computador é o primeiro passo para trabalhar num cluster<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<details class="info">
+<summary>Um pouco de história: de onde vêm esses comandos</summary>
+<p>O Unix foi criado no fim dos anos 1960 por Ken Thompson e Dennis Ritchie, nos Bell Labs, e descrito em artigo em 1974<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. A ideia do <em>pipe</em>, ligar a saída de um programa à entrada do outro, foi proposta por Doug McIlroy e entrou no sistema em 1973<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Daí veio a filosofia que você vai usar aqui: programas pequenos, que fazem uma coisa bem feita e se combinam. O Linux, criado por Linus Torvalds em 1991, segue essa mesma tradição, e os comandos deste post funcionam praticamente iguais em Linux, macOS e no <abbr title="Windows Subsystem for Linux — roda um Linux, como o Ubuntu, dentro do Windows">WSL</abbr> do Windows.</p>
+<p><figure markdown>
+<img alt="Ken Thompson e Dennis Ritchie em 1973" src="../../assets/toolbox_terminal/thompson-ritchie.jpg" width="310" />
+<figcaption>Ken Thompson (à esquerda) e Dennis Ritchie, criadores do Unix, em 1973. Foto: autor desconhecido, <a href="https://commons.wikimedia.org/wiki/File:Ken_Thompson_and_Dennis_Ritchie--1973.jpg">Wikimedia Commons</a>, domínio público.</figcaption>
+</figure></p>
+</details>
+<hr />
+<h2 id="como-abrir-um-terminal">Como abrir um terminal<a class="headerlink" href="#como-abrir-um-terminal" title="Link para esta seção">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux</label><label for="__tabbed_1_2">macOS</label><label for="__tabbed_1_3">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Procure por <strong>Terminal</strong> no menu de aplicativos (no Ubuntu, o atalho é <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-t">T</kbd></span>). Os comandos deste post já vêm instalados.</p>
+</div>
+<div class="tabbed-block">
+<p>Abra <strong>Aplicativos → Utilitários → Terminal</strong>. Quase tudo funciona igual, com uma exceção: o <code>zcat</code> do macOS pode não ler <code>.gz</code>. Use <code>gzcat</code> no lugar dele, que funciona em qualquer versão.</p>
+</div>
+<div class="tabbed-block">
+<p>Instale o <strong><abbr title="Windows Subsystem for Linux — roda um Linux, como o Ubuntu, dentro do Windows">WSL</abbr></strong> (Subsistema do Windows para Linux), que roda um Ubuntu de verdade dentro do Windows<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>. Abra o PowerShell como administrador e digite:</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</span></code></pre></div>
+<p>Reinicie o computador, abra o aplicativo <strong>Ubuntu</strong> e crie seu usuário. Seus arquivos do Windows ficam acessíveis em <code>/mnt/c/</code>.</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="anatomia-de-um-comando">Anatomia de um comando<a class="headerlink" href="#anatomia-de-um-comando" title="Link para esta seção">&para;</a></h2>
+<p>Todo comando segue a mesma estrutura: o <strong>nome</strong> do programa, as <strong>opções</strong> (que começam com <code>-</code> e mudam o comportamento) e os <strong>argumentos</strong> (em geral, o arquivo onde ele vai trabalhar).</p>
+<div class="mw-anatomia">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$  head   -n 3   contagens.tsv
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>   ────   ────   ─────────────
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>   nome   opção   argumento
+</span></code></pre></div>
+</div>
+<p>O <code>$</code> é o <em>prompt</em>: o terminal avisando que está pronto. Você não digita o <code>$</code>. Opções de uma letra podem ser juntadas: <code>ls -l -h</code> e <code>ls -lh</code> são a mesma coisa. Para ver todas as opções de um comando, use <code>man comando</code> (sai com <span class="keys"><kbd class="key-q">Q</kbd></span>) ou <code>comando --help</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">O terminal diferencia maiúsculas de minúsculas</p>
+<p><code>Amostra.fastq.gz</code> e <code>amostra.fastq.gz</code> são arquivos diferentes. E evite espaços nos nomes de arquivo: <code>minha amostra.fastq</code> vira dois argumentos. Prefira <code>minha_amostra.fastq</code>: nomes sem espaços e sem acentos poupam dor de cabeça em qualquer programa<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.</p>
+</div>
+<hr />
+<h2 id="passo-1-ls-o-que-tem-nesta-pasta">Passo 1 · <code>ls</code>: o que tem nesta pasta?<a class="headerlink" href="#passo-1-ls-o-que-tem-nesta-pasta" title="Link para esta seção">&para;</a></h2>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>ls<span class="w"> </span>-lh
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">-rw-r--r-- 1 mw lab 1.2G Oct 30 10:12 amostra_R1.fastq.gz</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">-rw-r--r-- 1 mw lab 1.2G Oct 30 10:12 amostra_R2.fastq.gz</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">-rw-r--r-- 1 mw lab 1.9M Oct 30 11:40 contagens.tsv</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">-rw-r--r-- 1 mw lab  52M Oct 30 09:05 genes.gtf.gz</span>
+</span></code></pre></div>
+<p><code>ls</code> <strong>lista</strong> os arquivos. A opção <code>-l</code> pede o formato longo (permissões, dono, tamanho, data e nome) e <code>-h</code> mostra o tamanho em unidades legíveis (K, M, G) em vez de bytes. Os arquivos <code>_R1</code> e <code>_R2</code> são as duas leituras de cada fragmento num sequenciamento <em>paired-end</em>.</p>
+<p>Para se mover entre pastas, dois comandos bastam no começo:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pwd</code></td>
+<td>mostra a pasta onde você está (<em>print working directory</em>)</td>
+</tr>
+<tr>
+<td><code>cd rnaseq</code></td>
+<td>entra na pasta <code>rnaseq</code></td>
+</tr>
+<tr>
+<td><code>cd ..</code></td>
+<td>volta uma pasta</td>
+</tr>
+<tr>
+<td><code>cd ~</code></td>
+<td>volta para a sua pasta pessoal</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Use a tecla Tab</p>
+<p>Digite <code>cd rna</code> e aperte <span class="keys"><kbd class="key-tab">Tab</kbd></span>: o terminal completa o nome. Além de poupar digitação, evita erro de grafia. A seta <span class="keys"><kbd class="key-arrow-up">Up</kbd></span> traz de volta os comandos anteriores.</p>
+</div>
+<hr />
+<h2 id="passo-2-head-veja-so-o-comeco">Passo 2 · <code>head</code>: veja só o começo<a class="headerlink" href="#passo-2-head-veja-so-o-comeco" title="Link para esta seção">&para;</a></h2>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>contagens.tsv
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">gene_id   ctrl_1   ctrl_2   trat_1   trat_2</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">TP53         812      790     1640     1702</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">GAPDH      15230    14987    15102    15511</span>
+</span></code></pre></div>
+<p><code>head</code> mostra as <strong>primeiras</strong> linhas de um arquivo: 10, se você não disser quantas, ou o número que vier depois de <code>-n</code>. É o jeito mais rápido de conferir se um arquivo é o que você acha que é: se tem cabeçalho, se as colunas estão separadas por tabulação, se os nomes dos genes são símbolos (TP53) ou identificadores do Ensembl (ENSG...).</p>
+<p>Dois parentes úteis:</p>
+<ul>
+<li><code>tail -n 3 arquivo</code> mostra as <strong>últimas</strong> linhas. Bom para ver se um arquivo terminou de ser gravado.</li>
+<li><code>less arquivo</code> abre o arquivo para rolar com as setas, sem carregar tudo na memória. Digite <code>/TP53</code> para buscar e <span class="keys"><kbd class="key-q">Q</kbd></span> para sair.</li>
+</ul>
+<hr />
+<h2 id="passo-3-zcat-abra-o-gz-sem-descompactar">Passo 3 · <code>zcat</code>: abra o <code>.gz</code> sem descompactar<a class="headerlink" href="#passo-3-zcat-abra-o-gz-sem-descompactar" title="Link para esta seção">&para;</a></h2>
+<p>Arquivos <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> quase sempre vêm comprimidos com gzip (extensão <code>.gz</code>), o que reduz o tamanho a cerca de um quarto. Se você usar <code>head</code> direto num <code>.gz</code>, vai ver só símbolos estranhos: são os bytes comprimidos. O <code>zcat</code> descompacta <strong>no fluxo</strong>, sem gravar nada no disco:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>zcat<span class="w"> </span>amostra_R1.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">@A00123:8:H5KJ2DSXY:1:1101:10004:1000 1:N:0:ATCACG</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">CATTGCTGATCCACAGTTTAGCGA</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">+</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="gp">IIIIIHHHGGGFF@@@&gt;&gt;;;88##</span>
+</span></code></pre></div>
+<p>Essas quatro linhas são uma leitura completa (veja <a href="../arquivos-rna-seq/#fastq-leituras-e-qualidade">como ler um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></a>). O símbolo <code>|</code> é o <strong>pipe</strong>: ele pega tudo o que o <code>zcat</code> escreveria na tela e entrega ao <code>head</code>, que mostra as 4 primeiras linhas e encerra a leitura.</p>
+<pre class="mermaid"><code>flowchart LR
+    A[amostra_R1.fastq.gz&lt;br/&gt;comprimido] --&gt; Z[zcat&lt;br/&gt;descompacta no fluxo]
+    Z -- "|" --&gt; H[head -n 4&lt;br/&gt;pega 4 linhas]
+    H --&gt; T[tela]</code></pre>
+<div class="admonition danger">
+<p class="admonition-title">Nunca rode <code>zcat arquivo.fastq.gz</code> sozinho</p>
+<p>Sem o <code>| head</code>, o terminal vai despejar os 80 milhões de linhas na tela. Se isso acontecer, aperte <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> para interromper. Vale para qualquer comando que demore mais do que você esperava.</p>
+</div>
+<hr />
+<h2 id="passo-4-wc-l-quantas-leituras-eu-tenho">Passo 4 · <code>wc -l</code>: quantas leituras eu tenho?<a class="headerlink" href="#passo-4-wc-l-quantas-leituras-eu-tenho" title="Link para esta seção">&para;</a></h2>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>zcat<span class="w"> </span>amostra_R1.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">80000000</span>
+</span></code></pre></div>
+<p><code>wc</code> (<em>word count</em>) conta linhas, palavras e caracteres; com <code>-l</code>, só as linhas. Como cada leitura do <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> ocupa exatamente 4 linhas, basta dividir por 4: <strong>80.000.000 ÷ 4 = 20 milhões de leituras</strong>.</p>
+<p>O próprio terminal faz a conta:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="k">$(</span>zcat<span class="w"> </span>amostra_R1.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="k">))</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">20000000</span>
+</span></code></pre></div>
+<p>E, com um laço <code>for</code>, faz para todas as amostras da pasta de uma vez:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>*_R1.fastq.gz<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$f</span><span class="s2">  </span><span class="k">$((</span><span class="w"> </span><span class="k">$(</span>zcat<span class="w"> </span><span class="s2">"</span><span class="nv">$f</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">done</span>
+</span></code></pre></div>
+<p>O <code>*</code> é um curinga: <code>*_R1.fastq.gz</code> significa "todo arquivo que termina em <code>_R1.fastq.gz</code>". Contar as leituras é a primeira checagem de qualidade de qualquer projeto: se uma amostra tem muito menos leituras que as outras, você quer saber disso antes de gastar horas alinhando.</p>
+<hr />
+<h2 id="passo-5-grep-procure-um-padrao">Passo 5 · <code>grep</code>: procure um padrão<a class="headerlink" href="#passo-5-grep-procure-um-padrao" title="Link para esta seção">&para;</a></h2>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>zcat<span class="w"> </span>amostra_R1.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-c<span class="w"> </span>AGATCGGAAGAGC
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">1843270</span>
+</span></code></pre></div>
+<p><code>grep</code> mostra as linhas que <strong>contêm</strong> um padrão de texto. Com <code>-c</code>, em vez de mostrar as linhas, ele conta quantas são. Neste exemplo, o padrão <code>AGATCGGAAGAGC</code> é o início do <strong>adaptador Illumina</strong> (TruSeq), o pedaço de DNA sintético ligado aos fragmentos no preparo da biblioteca. Quando o fragmento é mais curto que a leitura, o sequenciador lê o fragmento inteiro e continua pelo adaptador. Essas sobras precisam ser removidas antes do alinhamento, no passo de <em>trimming</em><sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.</p>
+<table>
+<thead>
+<tr>
+<th>Opção</th>
+<th>O que faz</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-c</code></td>
+<td>conta as linhas que batem</td>
+<td><code>grep -c TP53 contagens.tsv</code></td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>inverte: linhas que <strong>não</strong> têm o padrão</td>
+<td><code>grep -v "^#" anotacao.gtf</code> (tira comentários)</td>
+</tr>
+<tr>
+<td><code>-i</code></td>
+<td>ignora maiúsculas e minúsculas</td>
+<td><code>grep -i tp53 contagens.tsv</code></td>
+</tr>
+<tr>
+<td><code>-w</code></td>
+<td>só a palavra inteira</td>
+<td><code>grep -w TP53</code> não pega <code>TP53BP1</code></td>
+</tr>
+</tbody>
+</table>
+<details class="note">
+<summary>Por que essa contagem é só uma estimativa</summary>
+<p>O <code>grep -c</code> conta só as leituras que têm os <strong>13 nucleotídeos completos</strong> do adaptador. Uma leitura que termina com um pedaço dele (por exemplo, só <code>AGATCGG</code>) não entra na conta, e é justamente nesses pedaços que o adaptador mais aparece. Por isso, para remover adaptadores de verdade, usamos ferramentas como o Cutadapt<sup id="fnref2:5"><a class="footnote-ref" href="#fn:5">5</a></sup>, que aceitam correspondências parciais e erros de sequenciamento. Ele está no próximo ciclo da série.</p>
+</details>
+<hr />
+<h2 id="treine-aqui-um-terminal-no-navegador">Treine aqui: um terminal no navegador<a class="headerlink" href="#treine-aqui-um-terminal-no-navegador" title="Link para esta seção">&para;</a></h2>
+<p>Abaixo há um terminal de treino com uma pasta parecida com a dos exemplos, mas com arquivos pequenos: o <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> tem só <strong>10 leituras</strong>. Clique nos comandos sugeridos ou digite os seus. Ele entende <code>ls</code>, <code>pwd</code>, <code>head</code>, <code>tail</code>, <code>cat</code>, <code>zcat</code>, <code>wc</code>, <code>grep</code> e o pipe <code>|</code>.</p>
+<div class="mw-widget" id="term-widget">
+<style>
+#term-widget { border: 1px solid var(--md-default-fg-color--lightest); border-radius: 10px; margin: 1.5rem 0; overflow: hidden; background: #021517; }
+#term-widget .tw-bar { display: flex; align-items: center; gap: 7px; padding: 9px 14px; background: #062226; border-bottom: 1px solid rgba(47,230,208,.25); }
+#term-widget .tw-bar i { width: 11px; height: 11px; border-radius: 50%; background: #1E4C4A; }
+#term-widget .tw-bar i:first-child { background: #2FE6D0; }
+#term-widget .tw-bar span { margin-left: 8px; font-family: var(--md-code-font-family); font-size: .75rem; color: #8DB3B0; }
+#term-widget .tw-out { height: 300px; overflow-y: auto; padding: 12px 16px 4px; font-family: var(--md-code-font-family); font-size: .78rem; line-height: 1.55; color: #CFE6E3; white-space: pre; font-variant-ligatures: none; }
+#term-widget .tw-out .p { color: #14B8A6; font-weight: 700; }
+#term-widget .tw-out .c { color: #F2FBFA; font-weight: 700; }
+#term-widget .tw-out .e { color: #FF8A80; }
+#term-widget .tw-out .n { color: #8DB3B0; font-style: italic; white-space: pre-wrap; }
+#term-widget .tw-in { display: flex; align-items: center; gap: 8px; padding: 6px 16px 12px; font-family: var(--md-code-font-family); font-size: .78rem; }
+#term-widget .tw-in b { color: #14B8A6; }
+#term-widget .tw-in input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #F2FBFA; font: inherit; caret-color: #2FE6D0; }
+#term-widget .tw-sug { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px 14px; border-top: 1px solid rgba(47,230,208,.18); background: #031B1D; }
+#term-widget .tw-sug button { font-family: var(--md-code-font-family); font-size: .7rem; padding: 4px 9px; border-radius: 6px; border: 1px solid rgba(47,230,208,.45); background: #0A2E30; color: #2FE6D0; cursor: pointer; }
+#term-widget .tw-sug button:hover { background: #2FE6D0; color: #021517; }
+</style>
+<div class="tw-bar"><i></i><i></i><i></i><span>mw@lab: ~/rnaseq · terminal de treino</span></div>
+<div class="tw-out" id="tw-out" aria-live="polite"></div>
+<div class="tw-in"><b>$</b><input id="tw-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Digite um comando" placeholder="digite um comando e aperte Enter (help mostra a lista)"></div>
+<div class="tw-sug" id="tw-sug"></div>
+<script>
+(function(){
+  var out = document.getElementById("tw-out"), inp = document.getElementById("tw-input"), sug = document.getElementById("tw-sug");
+  // ---- arquivos da pasta de treino ----
+  var seqs = ["CATTGCTGATCCACAGTTTAGCGA", "GGCTAGATCGGAAGAGCACACGTC", "TTGACCGTAGGCATCGATTACGGA", "AACGTGGATCCTTAGCAGATCGGA", "CCTAGGAGATCGGAAGAGCACACG",
+              "GATTACAGGCATGAGCCACCGCGC", "TTTCAGCATGCTAGCTAGGACTAC", "ACGTAGATCGGAAGAGCACACGTC", "GGGCTTAACCGTAGGCATTTACCA", "NCTGATCCACAGTTTAGCGATTGA"];
+  var quals = ["IIIIIHHHGGGFF@@@>>;;88##", "IIIIIIIIIIIIIHHHHGGGFFF@", "IIIIIIIHHHHGGGGFFFFEEE@@", "IIIIHHHGGGFFF@@@>>>;;;88", "IIIIIIIIIIIIIIIIIHHHHGGG",
+               "IIIIIIIHHHGGGFFF@@@>>;;;", "IIIIIIIIIIIIHHHHHGGGGFFF", "IIIIIIIIIIIHHHGGGFF@@@>>", "IIIIIIHHHHGGGGFFF@@@@>>>", "#IIIIIHHHGGGFF@@@>>;;888"];
+  var fq = [];
+  for (var i = 0; i < seqs.length; i++) fq.push("@A00123:8:H5KJ2DSXY:1:1101:" + (10004 + i * 1517) + ":" + (1000 + i * 37) + " 1:N:0:ATCACG", seqs[i], "+", quals[i]);
+  var files = {
+    "amostra_R1.fastq.gz": { gz: true, size: 498, date: "Oct 30 10:12", lines: fq },
+    "contagens.tsv": { date: "Oct 30 11:40", lines: [
+      "gene_id\tctrl_1\tctrl_2\ttrat_1\ttrat_2", "TP53\t812\t790\t1640\t1702", "GAPDH\t15230\t14987\t15102\t15511",
+      "MYC\t402\t388\t96\t110", "BRCA1\t230\t251\t244\t236", "ACTB\t20110\t19876\t20540\t20302"] },
+    "LEIAME.txt": { date: "Oct 30 09:01", lines: [
+      "Pasta de treino do MW Toolbox #001.", "amostra_R1.fastq.gz: 10 leituras de 24 bases (comprimido).",
+      "contagens.tsv: matriz de contagens ilustrativa, separada por tabulação.", "Dica: comece com  ls -lh  e depois  head LEIAME.txt"] }
+  };
+  function bytes(ls){ return ls.reduce(function(s, x){ return s + new TextEncoder().encode(x).length + 1; }, 0); }
+  for (var k in files) if (!files[k].size) files[k].size = bytes(files[k].lines);
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function print(html){ out.insertAdjacentHTML("beforeend", html + "\n"); out.scrollTop = out.scrollHeight; }
+  function note(t){ print('<span class="n">' + esc(t) + '</span>'); }
+  function human(b){ return b < 1024 ? String(b) : (b / 1024).toFixed(1) + "K"; }
+  function tab(l){ return l.split("\t").map(function(c, k){ return k === 0 ? (c + "        ").slice(0, 9) : ("        " + c).slice(-8); }).join(" "); }
+  function err(cmd, msg){ return { err: cmd + ": " + msg }; }
+  function getFile(cmd, name){
+    if (!Object.prototype.hasOwnProperty.call(files, name)) return err(cmd, "não foi possível abrir '" + name + "': Arquivo ou diretório inexistente");
+    return { file: files[name] };
+  }
+  function nOpt(args){
+    var n = 10, rest = [];
+    for (var i = 0; i < args.length; i++) {
+      var a = args[i];
+      if (a === "-n") { n = parseInt(args[++i], 10); }
+      else if (/^-n\d+$/.test(a)) n = parseInt(a.slice(2), 10);
+      else if (/^-\d+$/.test(a)) n = parseInt(a.slice(1), 10);
+      else rest.push(a);
+    }
+    return { n: isNaN(n) ? 10 : n, rest: rest };
+  }
+  // conteúdo de um arquivo para comandos que não descompactam
+  function raw(f){ return f.gz ? ["‹¨áˆgamostra_R1.fastq­”ÛnÛ0Ž¼ÿ°ý…¢ÇØ¿Ê¦þ", "ò¶Ã9µ®ÿÕ‡ÚlÁ¤Ÿª"] : f.lines; }
+  var cmds = {
+    help: function(){ return { lines: ["Comandos do terminal de treino:", "  ls [-l] [-h]       lista os arquivos", "  pwd                mostra a pasta atual",
+      "  head [-n N] arq    primeiras linhas", "  tail [-n N] arq    últimas linhas", "  cat arq            mostra o arquivo inteiro", "  zcat arq.gz        descompacta no fluxo",
+      "  wc [-l] [arq]      conta linhas", "  grep [-c -v -i -w] PADRÃO [arq]", "  clear              limpa a tela", "Use | para ligar um comando ao outro."] }; },
+    pwd: function(){ return { lines: ["/home/mw/rnaseq"] }; },
+    clear: function(){ out.innerHTML = ""; return { lines: [] }; },
+    cd: function(){ return { note: "Nesta pasta de treino não há subpastas. No seu terminal, cd entra numa pasta e cd .. volta uma." }; },
+    less: function(){ return { note: "O less abre um visualizador interativo, que este treino não simula. No seu terminal, use as setas para rolar e q para sair." }; },
+    ls: function(args, input, piped){
+      var flags = args.filter(function(a){ return a[0] === "-"; }).join("");
+      var names = Object.keys(files).sort(function(a, b){ return a.toLowerCase() < b.toLowerCase() ? -1 : 1; });
+      if (flags.indexOf("l") < 0) return { lines: piped ? names : [names.join("  ")] };
+      return { lines: names.map(function(k){ var f = files[k], s = flags.indexOf("h") >= 0 ? human(f.size) : String(f.size);
+        return "-rw-r--r-- 1 mw lab " + ("     " + s).slice(-5) + " " + f.date + " " + k; }) };
+    },
+    cat: function(args, input){
+      if (!args.length) return { lines: input || [] };
+      var g = getFile("cat", args[0]); if (g.err) return g;
+      return { lines: raw(g.file), warn: g.file.gz ? "Esses símbolos são os bytes comprimidos. Use zcat para ler um .gz." : null };
+    },
+    zcat: function(args, input){
+      if (!args.length) return err("zcat", "informe um arquivo .gz");
+      var g = getFile("zcat", args[0]); if (g.err) return g;
+      if (!g.file.gz) return err("zcat", args[0] + ": not in gzip format");
+      return { lines: g.file.lines };
+    },
+    head: function(args, input){
+      var o = nOpt(args), src;
+      if (o.rest.length) { var g = getFile("head", o.rest[0]); if (g.err) return g; src = raw(g.file); if (g.file.gz) return { lines: src, warn: "Esses símbolos são os bytes comprimidos. Tente: zcat " + o.rest[0] + " | head" }; }
+      else src = input || [];
+      return { lines: src.slice(0, o.n) };
+    },
+    tail: function(args, input){
+      var o = nOpt(args), src;
+      if (o.rest.length) { var g = getFile("tail", o.rest[0]); if (g.err) return g; src = raw(g.file); if (g.file.gz) return { lines: src, warn: "Esses símbolos são os bytes comprimidos. Tente: zcat " + o.rest[0] + " | tail" }; }
+      else src = input || [];
+      return { lines: o.n > 0 ? src.slice(-o.n) : [] };
+    },
+    wc: function(args, input){
+      var flags = args.filter(function(a){ return a[0] === "-"; }).join(""), names = args.filter(function(a){ return a[0] !== "-"; }), src, label = "";
+      if (names.length) { var g = getFile("wc", names[0]); if (g.err) return g; src = g.file.gz ? raw(g.file) : g.file.lines; label = " " + names[0]; }
+      else src = input || [];
+      var l = src.length, w = src.join(" ").split(/\s+/).filter(Boolean).length, c = bytes(src);
+      var res = flags.indexOf("l") >= 0 ? String(l) : l + " " + w + " " + c;
+      return { lines: [res + label], warn: (flags.indexOf("l") >= 0 && input && src[0] && src[0][0] === "@") ? "No FASTQ, cada leitura ocupa 4 linhas: " + l + " ÷ 4 = " + (l / 4) + " leituras." : null };
+    },
+    grep: function(args, input){
+      var flags = "", rest = [];
+      args.forEach(function(a){ if (a[0] === "-" && a.length > 1) flags += a.slice(1); else rest.push(a); });
+      if (!rest.length) return err("grep", "informe o padrão a buscar");
+      var pat = rest[0].replace(/^["']|["']$/g, ""), src;
+      if (rest[1]) { var g = getFile("grep", rest[1]); if (g.err) return g; src = g.file.gz ? raw(g.file) : g.file.lines; }
+      else src = input || [];
+      var ci = flags.indexOf("i") >= 0, inv = flags.indexOf("v") >= 0, word = flags.indexOf("w") >= 0;
+      var ini = pat[0] === "^", fim = pat.length > 1 && pat[pat.length - 1] === "$";
+      var miolo = pat.slice(ini ? 1 : 0, fim ? -1 : undefined).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      var re = new RegExp((ini ? "^" : word ? "(^|[^A-Za-z0-9_])" : "") + miolo + (fim ? "$" : word ? "($|[^A-Za-z0-9_])" : ""), ci ? "i" : "");
+      var hit = src.filter(function(l){ return re.test(l) !== inv; });
+      if (flags.indexOf("c") >= 0) return { lines: [String(hit.length)] };
+      return { lines: hit, hl: inv ? null : re };
+    }
+  };
+  function run(line){
+    print('<span class="p">$</span> <span class="c">' + esc(line) + '</span>');
+    if (!line.trim()) return;
+    var stages = line.split("|"), data = null, last = null;
+    for (var s = 0; s < stages.length; s++) {
+      var tok = stages[s].trim().split(/\s+/).filter(Boolean), name = tok[0];
+      if (!name) { print('<span class="e">erro de sintaxe perto de "|"</span>'); return; }
+      if (!Object.prototype.hasOwnProperty.call(cmds, name)) { print('<span class="e">' + esc(name) + ': comando não encontrado</span>'); note("Este treino entende: ls, pwd, cd, head, tail, cat, less, zcat, wc, grep, clear e help."); return; }
+      last = cmds[name](tok.slice(1), s > 0 ? data : null, s < stages.length - 1);
+      if (last.err) { print('<span class="e">' + esc(last.err) + '</span>'); return; }
+      if (last.note) { note(last.note); return; }
+      data = last.lines;
+    }
+    var isTsv = /contagens\.tsv/.test(line) && !/grep -c|wc/.test(line);
+    data.forEach(function(l){
+      var t = esc(isTsv ? tab(l) : l);
+      if (last.hl && last.hl.source.length > 0) {
+        var m = (isTsv ? tab(l) : l).match(last.hl);
+        if (m) { var w = m[0].replace(/^[^A-Za-z0-9_]|[^A-Za-z0-9_]$/g, ""); if (w) t = t.split(esc(w)).join('<span style="background:#2FE6D0;color:#021517;border-radius:3px">' + esc(w) + '</span>'); }
+      }
+      print(t);
+    });
+    if (last.warn) note(last.warn);
+  }
+  var hist = [], hi = 0;
+  inp.addEventListener("keydown", function(e){
+    if (e.key === "Enter") { var v = inp.value; if (v.trim()) { hist.push(v); } hi = hist.length; inp.value = ""; run(v); }
+    else if (e.key === "ArrowUp") { if (hi > 0) { hi--; inp.value = hist[hi]; } e.preventDefault(); }
+    else if (e.key === "ArrowDown") { if (hi < hist.length - 1) { hi++; inp.value = hist[hi]; } else { hi = hist.length; inp.value = ""; } e.preventDefault(); }
+    else if (e.key === "c" && e.ctrlKey && inp.selectionStart === inp.selectionEnd && inp.value) { print('<span class="p">$</span> <span class="c">' + esc(inp.value) + '</span>^C'); inp.value = ""; e.preventDefault(); }
+  });
+  ["ls -lh", "head LEIAME.txt", "head -n 3 contagens.tsv", "head amostra_R1.fastq.gz", "zcat amostra_R1.fastq.gz | head -n 4",
+   "zcat amostra_R1.fastq.gz | wc -l", "zcat amostra_R1.fastq.gz | grep -c AGATCGGAAGAGC", "zcat amostra_R1.fastq.gz | grep AGATCGGAAGAGC", "grep -w TP53 contagens.tsv"].forEach(function(c){
+    var b = document.createElement("button"); b.type = "button"; b.textContent = c;
+    b.addEventListener("click", function(){ hist.push(c); hi = hist.length; run(c); inp.focus({ preventScroll: true }); });
+    sug.appendChild(b);
+  });
+  note("Terminal de treino: os arquivos são pequenos e nada sai do seu navegador. Digite help para ver os comandos.");
+})();
+</script>
+</div>
+
+<p>Algumas coisas para observar enquanto treina:</p>
+<ul>
+<li>Compare <code>head amostra_R1.fastq.gz</code> com <code>zcat amostra_R1.fastq.gz | head -n 4</code>. O primeiro mostra os bytes comprimidos; o segundo, a leitura.</li>
+<li><code>zcat amostra_R1.fastq.gz | grep -c AGATCGGAAGAGC</code> encontra <strong>3</strong> leituras com o adaptador completo. Agora rode sem o <code>-c</code> e olhe a quarta leitura do arquivo (<code>zcat amostra_R1.fastq.gz | head -n 16 | tail -n 4</code>): ela termina com <code>AGATCGGA</code>, um pedaço do adaptador que o <code>grep</code> não conta.</li>
+<li>Combine mais de dois comandos: <code>zcat amostra_R1.fastq.gz | head -n 8 | wc -l</code>.</li>
+</ul>
+<hr />
+<h2 id="cola-para-salvar">Cola para salvar<a class="headerlink" href="#cola-para-salvar" title="Link para esta seção">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Para...</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ver onde estou</td>
+<td><code>pwd</code></td>
+</tr>
+<tr>
+<td>listar arquivos e tamanhos</td>
+<td><code>ls -lh</code></td>
+</tr>
+<tr>
+<td>entrar numa pasta / voltar</td>
+<td><code>cd pasta</code> / <code>cd ..</code></td>
+</tr>
+<tr>
+<td>ver o começo / o fim</td>
+<td><code>head -n 10 arq</code> / <code>tail -n 10 arq</code></td>
+</tr>
+<tr>
+<td>rolar um arquivo grande</td>
+<td><code>less arq</code> (sai com <span class="keys"><kbd class="key-q">Q</kbd></span>)</td>
+</tr>
+<tr>
+<td>abrir um <code>.gz</code></td>
+<td><code>zcat arq.gz &#124; head</code> (no macOS, <code>gzcat</code>)</td>
+</tr>
+<tr>
+<td>contar leituras de um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></td>
+<td><code>echo $(( $(zcat arq.fastq.gz &#124; wc -l) / 4 ))</code></td>
+</tr>
+<tr>
+<td>contar linhas com um padrão</td>
+<td><code>grep -c PADRÃO arq</code></td>
+</tr>
+<tr>
+<td>interromper um comando</td>
+<td><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span></td>
+</tr>
+<tr>
+<td>ajuda de um comando</td>
+<td><code>man comando</code> ou <code>comando --help</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition abstract">
+<p class="admonition-title">Para continuar aprendendo</p>
+<ul>
+<li><strong>The Unix Shell</strong>, da Software Carpentry: aula gratuita, em inglês, para iniciantes. <a href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a></li>
+<li><strong>Introduction to the Command Line for Genomics</strong>, da Data Carpentry: os mesmos comandos aplicados a dados de sequenciamento. <a href="https://datacarpentry.org/shell-genomics/">https://datacarpentry.org/shell-genomics/</a></li>
+<li><strong>Dez regras simples para começar na bioinformática de linha de comando</strong><sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>: um artigo curto com conselhos práticos de quem já passou por isso.</li>
+</ul>
+</div>
+<p>No próximo post da série, o <strong>MW na Prática</strong>, vamos aplicar esses comandos a um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> real, baixado de um banco público: contar as leituras, medir o tamanho delas e ler a qualidade base a base.</p>
+<hr />
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Link para esta seção">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Ritchie DM, Thompson K. The UNIX time-sharing system. <em>Communications of the ACM</em>. 1974;17(7):365–375. doi: <a href="https://doi.org/10.1145/361011.361061">10.1145/361011.361061</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Brandies PA, Hogg CJ. Ten simple rules for getting started with command-line bioinformatics. <em>PLOS Computational Biology</em>. 2021;17(2):e1008645. doi: <a href="https://doi.org/10.1371/journal.pcbi.1008645">10.1371/journal.pcbi.1008645</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Ritchie DM. The evolution of the UNIX time-sharing system. <em>AT&amp;T Bell Laboratories Technical Journal</em>. 1984;63(8):1577–1593. doi: <a href="https://doi.org/10.1002/j.1538-7305.1984.tb00054.x">10.1002/j.1538-7305.1984.tb00054.x</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Microsoft. Como instalar o Linux no Windows com o <abbr title="Windows Subsystem for Linux — roda um Linux, como o Ubuntu, dentro do Windows">WSL</abbr>. Documentação oficial: <a href="https://learn.microsoft.com/pt-br/windows/wsl/install">https://learn.microsoft.com/pt-br/windows/wsl/install</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. <em>EMBnet.journal</em>. 2011;17(1):10–12. doi: <a href="https://doi.org/10.14806/ej.17.1.200">10.14806/ej.17.1.200</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Wilson G, Bryan J, Cranston K, Kitzes J, Nederbragt L, Teal TK. Good enough practices in scientific computing. <em>PLOS Computational Biology</em>. 2017;13(6):e1005510. doi: <a href="https://doi.org/10.1371/journal.pcbi.1005510">10.1371/journal.pcbi.1005510</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+
+  
+    <aside class="mw-cta">
+      <div>
+        <h3>Este texto nasceu no Instagram</h3>
+        <p>Resumos visuais, dicas e bastidores da bioinformática em @MWInSilico.</p>
+      </div>
+      <a class="md-button" href="https://www.instagram.com/mwinsilico/" target="_blank" rel="noopener">
+        <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg></span>
+        Seguir @MWInSilico
+      </a>
+    </aside>
+  
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../arquivos-rna-seq/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Os arquivos do RNA-Seq">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Os arquivos do RNA-Seq
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../scripts/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Scripts">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Scripts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Márcio Wilson · MwInSilico — conteúdo livre: textos sob <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br">CC BY 4.0</a>, código sob <a href="https://github.com/mwdbrito/bioinformatics-tutorials/blob/main/LICENSE">MIT</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.instagram.com/mwinsilico/" target="_blank" rel="noopener" title="Instagram @MWInSilico" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/mwdbrito" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/marcio-wilson/" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="http://lattes.cnpq.br/8280972369170529" target="_blank" rel="noopener" title="Currículo Lattes" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m48 195.8 209.2 86.1c9.8 4 20.2 6.1 30.8 6.1s21-2.1 30.8-6.1l242.4-99.8c9-3.7 14.8-12.4 14.8-22.1s-5.8-18.4-14.8-22.1L318.8 38.1c-9.8-4-20.2-6.1-30.8-6.1s-21 2.1-30.8 6.1L14.8 137.9C5.8 141.6 0 150.3 0 160v296c0 13.3 10.7 24 24 24s24-10.7 24-24zm48 71.7V384c0 53 86 96 192 96s192-43 192-96V267.4l-142.9 58.9c-15.6 6.4-32.2 9.7-49.1 9.7s-33.5-3.3-49.1-9.7L96 267.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "toc.follow", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

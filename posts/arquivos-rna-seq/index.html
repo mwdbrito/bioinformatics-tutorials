@@ -1,0 +1,2336 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="FASTQ, FASTA, GTF, SAM/BAM e matriz de contagens: o que cada arquivo guarda, como ler cada um e em que etapa de uma análise de RNA-Seq ele aparece.">
+      
+      
+        <meta name="author" content="Márcio Wilson">
+      
+      
+        <link rel="canonical" href="https://mwdbrito.github.io/bioinformatics-tutorials/posts/arquivos-rna-seq/">
+      
+      
+        <link rel="prev" href="../transcriptomica-espacial/">
+      
+      
+        <link rel="next" href="../terminal-linux/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Os arquivos do RNA-Seq - MwInSilico</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#os-arquivos-do-rna-seq-fastq-fasta-gtf-bam-e-a-matriz-de-contagens" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="MwInSilico" class="md-header__button md-logo" aria-label="MwInSilico" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MwInSilico
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Os arquivos do RNA-Seq
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Seguir o sistema"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Seguir o sistema" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mwdbrito/bioinformatics-tutorials" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mwdbrito/bioinformatics-tutorials
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Postagens
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../scripts/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Scripts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossario/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossário
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../sobre/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Sobre
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MwInSilico" class="md-nav__button md-logo" aria-label="MwInSilico" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    MwInSilico
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mwdbrito/bioinformatics-tutorials" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mwdbrito/bioinformatics-tutorials
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Postagens
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Postagens
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dogma-central/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Dogma Central evoluiu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequenciamento-de-dna/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequenciamento de DNA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Como medimos o transcriptoma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Como medimos o transcriptoma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rna-seq-bulk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RNA-Seq bulk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rna-seq-celula-unica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RNA-Seq de célula única
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomica-espacial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptômica espacial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O que sai do sequenciador
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O que sai do sequenciador
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Os arquivos do RNA-Seq
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Os arquivos do RNA-Seq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-caminho-dos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O caminho dos dados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastq-leituras-e-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FASTQ: leituras e qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FASTQ: leituras e qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-ler-a-linha-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler a linha de qualidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r1-r2-e-gz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R1, R2 e .gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fasta-a-sequencia-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FASTA: a sequência de referência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtf-o-mapa-dos-genes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTF: o mapa dos genes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-e-bam-cada-leitura-no-seu-lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAM e BAM: cada leitura no seu lugar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAM e BAM: cada leitura no seu lugar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-flag-muita-informacao-num-numero-so" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A FLAG: muita informação num número só
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-cigar-como-a-leitura-se-encaixou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O CIGAR: como a leitura se encaixou
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-matriz-de-contagens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A matriz de contagens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela-resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teste-seus-conhecimentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teste seus conhecimentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal Linux para biólogos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sobre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sumario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sumário
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-caminho-dos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O caminho dos dados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastq-leituras-e-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FASTQ: leituras e qualidade
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FASTQ: leituras e qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-ler-a-linha-de-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler a linha de qualidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r1-r2-e-gz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R1, R2 e .gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fasta-a-sequencia-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FASTA: a sequência de referência
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtf-o-mapa-dos-genes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTF: o mapa dos genes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-e-bam-cada-leitura-no-seu-lugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAM e BAM: cada leitura no seu lugar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAM e BAM: cada leitura no seu lugar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-flag-muita-informacao-num-numero-so" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A FLAG: muita informação num número só
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-cigar-como-a-leitura-se-encaixou" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O CIGAR: como a leitura se encaixou
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-matriz-de-contagens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A matriz de contagens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela-resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teste-seus-conhecimentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teste seus conhecimentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+    
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+    <div class="mw-post-meta">
+      <a class="mw-pill" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 1-5 5v11l5-4.5zm2 4v13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6c-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1M10 18.41C8.75 18.09 7.5 18 6.5 18c-1.06 0-2.32.19-3.5.5V7.13c.91-.4 2.14-.63 3.5-.63s2.59.23 3.5.63z"/></svg>
+        O que sai do sequenciador · parte 1 de 4
+      </a>
+      <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg></span>
+      <span>14 min de leitura</span>
+    </div>
+  
+
+  
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:fastq" class="md-tag">FASTQ</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:formatos-de-arquivo" class="md-tag">Formatos de arquivo</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:mw-explica" class="md-tag">MW Explica</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:postagem" class="md-tag">Postagem</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:rna-seq" class="md-tag">RNA-Seq</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:sambam" class="md-tag">SAM/BAM</a>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/mwdbrito/bioinformatics-tutorials/edit/main/docs/posts/arquivos-rna-seq.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.06 9 .94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="os-arquivos-do-rna-seq-fastq-fasta-gtf-bam-e-a-matriz-de-contagens">🗂️ Os arquivos do RNA-Seq: <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>, FASTA, GTF, BAM e a matriz de contagens<a class="headerlink" href="#os-arquivos-do-rna-seq-fastq-fasta-gtf-bam-e-a-matriz-de-contagens" title="Link para esta seção">&para;</a></h1>
+<blockquote>
+<p><strong>Toda análise de RNA-Seq é uma sequência de conversões de arquivo. Saber o que cada um guarda é o que permite entender, e depurar, qualquer pipeline.</strong></p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Para quem tem pressa</p>
+<p>O sequenciador entrega <strong><abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></strong>: milhões de leituras curtas, cada uma com a qualidade de cada base. Para dar sentido a elas, usamos duas referências públicas: o genoma em <strong>FASTA</strong> (a sequência) e a anotação em <strong>GTF</strong> (onde estão os genes). O alinhador posiciona cada leitura no genoma e grava o resultado em <strong>SAM/BAM</strong>. Por fim, contamos quantas leituras caíram em cada gene e chegamos à <strong>matriz de contagens</strong> (genes × amostras), que é a entrada da análise estatística com ferramentas como o <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr>.</p>
+</div>
+<p>Este é o primeiro post do ciclo <strong>"O que sai do sequenciador"</strong>. Os próximos mostram como abrir esses arquivos no terminal Linux, como inspecionar um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> real e por que a qualidade é escrita com símbolos.</p>
+<h2 id="sumario">Sumário<a class="headerlink" href="#sumario" title="Link para esta seção">&para;</a></h2>
+<ol>
+<li><a href="#o-caminho-dos-dados">O caminho dos dados</a></li>
+<li><a href="#fastq-leituras-e-qualidade"><abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>: leituras e qualidade</a></li>
+<li><a href="#fasta-a-sequencia-de-referencia">FASTA: a sequência de referência</a></li>
+<li><a href="#gtf-o-mapa-dos-genes">GTF: o mapa dos genes</a></li>
+<li><a href="#sam-e-bam-cada-leitura-no-seu-lugar">SAM e BAM: cada leitura no seu lugar</a></li>
+<li><a href="#a-matriz-de-contagens">A matriz de contagens</a></li>
+<li><a href="#tabela-resumo">Tabela-resumo</a></li>
+<li><a href="#teste-seus-conhecimentos">Teste seus conhecimentos</a></li>
+<li><a href="#referencias">Referências</a></li>
+</ol>
+<hr />
+<h2 id="o-caminho-dos-dados">O caminho dos dados<a class="headerlink" href="#o-caminho-dos-dados" title="Link para esta seção">&para;</a></h2>
+<figure>
+<p><img alt="Sala de sequenciamento com vários sequenciadores Illumina HiSeq 2000 lado a lado" src="../../assets/arquivos_rnaseq/hiseq.jpg" /></p>
+<figcaption>Sequenciadores Illumina HiSeq 2000 no BGI, em Hong Kong. Cada equipamento desses produz arquivos FASTQ com centenas de milhões de leituras. Foto: Scotted400, <a href="https://commons.wikimedia.org/wiki/File:Illumina_Hiseq_2000_sequencers,_BGI_Hong_Kong_sequencing_room.JPG">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.</figcaption>
+</figure>
+<p>Num experimento de RNA-Seq, o RNA extraído vira uma biblioteca de <abbr title="DNA complementar — sintetizado a partir de RNA pela transcriptase reversa">cDNA</abbr>, que é sequenciada (veja <a href="../rna-seq-bulk/">RNA-Seq bulk</a>). A partir daí, tudo é dado: cada etapa do pipeline lê um formato de arquivo e escreve outro.</p>
+<pre class="mermaid"><code>flowchart LR
+    S[Sequenciador] --&gt; FQ[FASTQ&lt;br/&gt;leituras + qualidade]
+    FA[FASTA&lt;br/&gt;genoma de referência] -.-&gt; AL((alinhamento))
+    FQ --&gt; AL
+    AL --&gt; BAM[BAM&lt;br/&gt;leituras posicionadas]
+    GTF[GTF&lt;br/&gt;anotação dos genes] -.-&gt; CT((contagem))
+    BAM --&gt; CT
+    CT --&gt; M[Matriz de contagens&lt;br/&gt;genes × amostras]
+    M --&gt; DE[Expressão diferencial&lt;br/&gt;DESeq2]</code></pre>
+<p>As linhas contínuas são os <strong>seus dados</strong>, que mudam de formato a cada etapa. As tracejadas são <strong>referências públicas</strong>, baixadas de bancos como o Ensembl ou o <abbr title="Projeto que mantém a anotação de referência dos genes humanos e de camundongo">GENCODE</abbr>, que precisam ser da <strong>mesma versão</strong> entre si.</p>
+<div class="admonition warning">
+<p class="admonition-title">O erro mais comum de iniciante</p>
+<p>Usar um genoma FASTA de uma versão (por exemplo, GRCh38) com um GTF de outra (GRCh37/hg19). As coordenadas não batem, e o resultado sai errado sem nenhuma mensagem de erro. Baixe sempre o FASTA e o GTF do mesmo lançamento.</p>
+</div>
+<hr />
+<h2 id="fastq-leituras-e-qualidade"><abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>: leituras e qualidade<a class="headerlink" href="#fastq-leituras-e-qualidade" title="Link para esta seção">&para;</a></h2>
+<p>O <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> é o arquivo que <strong>sai do sequenciador</strong>. Ele guarda cada leitura (<em>read</em>) e, junto dela, a confiança do equipamento em cada base lida<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Cada leitura ocupa exatamente <strong>quatro linhas</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>@A00123:8:H5KJ2DSXY:1:1101:10004:1000 1:N:0:ATCACG
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>CATTGCTGATCCACAGTTTAGCGA
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>+
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>IIIIIHHHGGGFF@@@&gt;&gt;;;88##
+</span></code></pre></div>
+<ol>
+<li><strong>Identificador</strong>, começando com <code>@</code>. Nos equipamentos Illumina atuais, ele codifica o instrumento, a corrida, a flow cell, a posição do cluster e o número da leitura (1 ou 2).</li>
+<li><strong>Sequência</strong> das bases: A, C, G, T ou N (base não identificada).</li>
+<li><strong>Separador</strong> <code>+</code>, às vezes seguido de uma cópia do identificador.</li>
+<li><strong>Qualidade</strong>: um caractere para cada base da linha 2.</li>
+</ol>
+<h3 id="como-ler-a-linha-de-qualidade">Como ler a linha de qualidade<a class="headerlink" href="#como-ler-a-linha-de-qualidade" title="Link para esta seção">&para;</a></h3>
+<p>Cada caractere representa um <strong>escore Phred</strong> (Q), definido pela probabilidade <em>P</em> de a base estar errada<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>:</p>
+<p><em>Q</em> = −10 × log₁₀(<em>P</em>)</p>
+<p>Q10 significa 1 erro em 10, Q20 significa 1 em 100 e Q30, 1 em 1.000. Para caber em um único caractere, o valor é somado a 33 e gravado como o símbolo ASCII correspondente (codificação <strong>Phred+33</strong>). Assim, <code>I</code> (ASCII 73) vale Q40, e <code>#</code> (ASCII 35) vale Q2.</p>
+<p>Clique em qualquer base abaixo para decodificar a qualidade:</p>
+<div class="mw-widget" id="fq-widget">
+<style>
+#fq-widget { border: 1px solid var(--md-default-fg-color--lightest); border-radius: 10px; padding: 20px; margin: 1.5rem 0; background: var(--md-default-bg-color); }
+#fq-widget h4 { margin: 0 0 4px; font-size: 1.05rem; }
+#fq-widget .fq-sub { color: var(--md-default-fg-color--light); font-size: .85rem; margin-bottom: 14px; }
+#fq-widget .fq-row { display: flex; flex-wrap: wrap; gap: 3px; font-family: var(--md-code-font-family); }
+#fq-widget .fq-cell { display: flex; flex-direction: column; align-items: center; width: 1.9em; padding: 4px 0; border-radius: 6px; cursor: pointer; border: 1.5px solid transparent; background: var(--md-code-bg-color); }
+#fq-widget .fq-cell:hover, #fq-widget .fq-cell.sel { border-color: var(--md-primary-fg-color); }
+#fq-widget .fq-b { font-weight: 700; color: var(--md-primary-fg-color); }
+#fq-widget .fq-q { font-size: .8em; color: var(--md-default-fg-color--light); }
+#fq-widget .fq-bar { width: 70%; margin-top: 4px; border-radius: 2px; }
+#fq-widget .fq-out { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+#fq-widget .fq-box { border: 1px solid var(--md-default-fg-color--lightest); border-radius: 8px; padding: 10px 12px; }
+#fq-widget .fq-box small { display: block; color: var(--md-default-fg-color--light); font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; }
+#fq-widget .fq-box b { font-size: 1.2rem; font-family: var(--md-code-font-family); }
+#fq-widget .fq-note { margin-top: 12px; font-size: .82rem; color: var(--md-default-fg-color--light); }
+</style>
+<h4>🔎 Decodificador de qualidade (Phred+33)</h4>
+<div class="fq-sub">Cada coluna é uma base da leitura. A barra mostra o escore de qualidade: quanto mais alta, mais confiável.</div>
+<div class="fq-row" id="fq-row"></div>
+<div class="fq-out" id="fq-out"></div>
+<div class="fq-note" id="fq-note"></div>
+<script>
+(function(){
+  var seq = "CATTGCTGATCCACAGTTTAGCGA", qual = "IIIIIHHHGGGFF@@@>>;;88##";
+  var row = document.getElementById("fq-row"), out = document.getElementById("fq-out"), note = document.getElementById("fq-note");
+  function color(q){ return q >= 30 ? "#2e9d5b" : (q >= 20 ? "#d9a514" : "#d0463b"); }
+  function show(i){
+    var c = qual[i], code = c.charCodeAt(0), q = code - 33, p = Math.pow(10, -q/10);
+    var cells = row.children;
+    for (var k = 0; k < cells.length; k++) cells[k].classList.toggle("sel", k === i);
+    out.innerHTML =
+      '<div class="fq-box"><small>Posição</small><b>' + (i+1) + '</b></div>' +
+      '<div class="fq-box"><small>Base</small><b>' + seq[i] + '</b></div>' +
+      '<div class="fq-box"><small>Símbolo</small><b>' + c.replace("<","&lt;") + '</b></div>' +
+      '<div class="fq-box"><small>Código ASCII</small><b>' + code + '</b></div>' +
+      '<div class="fq-box"><small>Phred (ASCII − 33)</small><b style="color:' + color(q) + '">Q' + q + '</b></div>' +
+      '<div class="fq-box"><small>Chance de erro</small><b>' + (p < 0.01 ? '1 em ' + Math.round(1/p).toLocaleString("pt-BR") : Math.round(p*100) + '%') + '</b></div>';
+    note.textContent = q >= 30 ? "Base confiável: Q30 ou mais é o padrão usado para dizer que uma corrida tem boa qualidade."
+      : (q >= 20 ? "Qualidade intermediária. Ferramentas de trimming costumam cortar a ponta da leitura quando a qualidade cai abaixo de Q20."
+      : "Qualidade muito baixa: essa base tem grande chance de estar errada. É comum no fim das leituras, e é por isso que o trimming existe.");
+  }
+  for (var i = 0; i < seq.length; i++) {
+    var q = qual.charCodeAt(i) - 33, d = document.createElement("div");
+    d.className = "fq-cell"; d.tabIndex = 0;
+    d.innerHTML = '<span class="fq-b">' + seq[i] + '</span><span class="fq-q">' + qual[i].replace("<","&lt;") + '</span><span class="fq-bar" style="height:' + (q*1.1+2) + 'px;background:' + color(q) + '"></span>';
+    (function(k){ d.addEventListener("click", function(){ show(k); }); d.addEventListener("keydown", function(e){ if (e.key === "Enter") show(k); }); })(i);
+    row.appendChild(d);
+  }
+  show(0);
+})();
+</script>
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">Por que +33?</p>
+<p>Os primeiros 32 códigos da tabela ASCII são caracteres invisíveis (quebra de linha, tabulação etc.), e o 32 é o espaço. Começar no 33 (<code>!</code>) garante que todo escore vire um símbolo imprimível. Equipamentos Illumina antigos (versões 1.3 a 1.7 do pipeline) usavam <strong>Phred+64</strong>: se um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> antigo parecer ter qualidades absurdas, essa é a primeira suspeita<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+</div>
+<figure>
+<p><img alt="Slide do carrossel MW Explica explicando as quatro linhas do FASTQ" src="../../assets/arquivos_rnaseq/slide-fastq.jpg" width="380" /></p>
+<figcaption>As quatro linhas do FASTQ no carrossel do Instagram.</figcaption>
+</figure>
+<h3 id="r1-r2-e-gz">R1, R2 e .gz<a class="headerlink" href="#r1-r2-e-gz" title="Link para esta seção">&para;</a></h3>
+<ul>
+<li><strong>Paired-end</strong>: quando os dois lados de cada fragmento são sequenciados, cada amostra tem <strong>dois arquivos</strong>, <code>_R1.fastq.gz</code> e <code>_R2.fastq.gz</code>. A leitura de número <em>n</em> do R1 é o par da leitura <em>n</em> do R2, por isso os dois arquivos nunca devem ser ordenados ou filtrados separadamente.</li>
+<li><strong>Compressão</strong>: <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> quase sempre vem comprimido com gzip (<code>.fastq.gz</code> ou <code>.fq.gz</code>). As ferramentas de bioinformática leem o arquivo comprimido diretamente, então não é preciso descompactar.</li>
+</ul>
+<hr />
+<h2 id="fasta-a-sequencia-de-referencia">FASTA: a sequência de referência<a class="headerlink" href="#fasta-a-sequencia-de-referencia" title="Link para esta seção">&para;</a></h2>
+<p>O formato FASTA nasceu com o programa de mesmo nome, de busca por similaridade de sequências<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. Ele é o formato mais simples possível: uma linha de cabeçalho começando com <code>&gt;</code> e, abaixo, a sequência.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&gt;chrM
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>GATCACAGGTCTATCACCCTATTAACCACTCACGGGAGCTCTCCATGCATTTGGTATT
+</span></code></pre></div>
+<p>Este é o início real do DNA mitocondrial humano, na sequência de referência revisada de Cambridge (rCRS)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>, que também faz parte do genoma de referência GRCh38.</p>
+<figure>
+<p><img alt="Flow cell do sequenciador Illumina NextSeq" src="../../assets/arquivos_rnaseq/flowcell.jpg" /></p>
+<figcaption>Flow cell de um Illumina NextSeq: é na superfície de vidro dela que os fragmentos de DNA são lidos. O que sai daí é FASTQ; o FASTA é a referência contra a qual comparamos. Foto: Cirosantilli2, <a href="https://commons.wikimedia.org/wiki/File:Illumina_NextSeq_flow_cell.jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>.</figcaption>
+</figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></th>
+<th>FASTA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Começa com</td>
+<td><code>@</code></td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td>Linhas por registro</td>
+<td>sempre 4</td>
+<td>1 de cabeçalho + quantas forem precisas</td>
+</tr>
+<tr>
+<td>Tem qualidade?</td>
+<td>sim, uma por base</td>
+<td>não</td>
+</tr>
+<tr>
+<td>De onde vem</td>
+<td>do <strong>seu</strong> sequenciamento</td>
+<td>de bancos públicos (Ensembl, <abbr title="Projeto que mantém a anotação de referência dos genes humanos e de camundongo">GENCODE</abbr>, NCBI)</td>
+</tr>
+<tr>
+<td>Tamanho típico de cada sequência</td>
+<td>50 a 300 bases (Illumina)</td>
+<td>de um gene a um cromossomo inteiro</td>
+</tr>
+</tbody>
+</table>
+<p>Um mesmo arquivo pode conter várias sequências (<em>multi-FASTA</em>): o genoma humano inteiro é um único FASTA com um registro por cromossomo. Para acessar um trecho rapidamente sem ler o arquivo todo, as ferramentas criam um índice <code>.fai</code> (com <code>samtools faidx</code>)<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Genoma ou transcriptoma?</p>
+<p>Alinhadores como o <abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr> usam o <strong>genoma</strong> em FASTA. Ferramentas de pseudo-alinhamento, como o Salmon, usam o <strong>transcriptoma</strong>: um FASTA com a sequência de cada transcrito já processado (sem íntrons). Os dois são baixados dos mesmos bancos.</p>
+</div>
+<p>Já mostramos como baixar um FASTA do NCBI no carrossel <strong>MW na Prática #001</strong>.</p>
+<hr />
+<h2 id="gtf-o-mapa-dos-genes">GTF: o mapa dos genes<a class="headerlink" href="#gtf-o-mapa-dos-genes" title="Link para esta seção">&para;</a></h2>
+<p>O FASTA diz <strong>qual é</strong> a sequência do genoma, mas não diz onde estão os genes. Essa informação vem da <strong>anotação</strong>, distribuída em GTF (<em>Gene Transfer Format</em>) ou no formato irmão GFF3<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup><sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>. Cada linha descreve um elemento (gene, transcrito, éxon, CDS…) em <strong>9 colunas</strong> separadas por tabulação:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Coluna</th>
+<th>Exemplo (TP53)</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>seqname</td>
+<td><code>chr17</code></td>
+<td>cromossomo</td>
+</tr>
+<tr>
+<td>2</td>
+<td>source</td>
+<td><code>HAVANA</code></td>
+<td>quem anotou</td>
+</tr>
+<tr>
+<td>3</td>
+<td>feature</td>
+<td><code>gene</code></td>
+<td>tipo do elemento</td>
+</tr>
+<tr>
+<td>4</td>
+<td>start</td>
+<td><code>7661779</code></td>
+<td>início</td>
+</tr>
+<tr>
+<td>5</td>
+<td>end</td>
+<td><code>7687538</code></td>
+<td>fim</td>
+</tr>
+<tr>
+<td>6</td>
+<td>score</td>
+<td><code>.</code></td>
+<td>não usado na anotação de genes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>strand</td>
+<td><code>-</code></td>
+<td>fita (+ ou −)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>frame</td>
+<td><code>.</code></td>
+<td>fase de leitura (só para CDS)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>attributes</td>
+<td><code>gene_id "ENSG00000141510"; gene_name "TP53";</code></td>
+<td>identificadores e nomes</td>
+</tr>
+</tbody>
+</table>
+<p>O TP53, o mesmo gene do nosso carrossel sobre o NCBI, fica na <strong>fita −</strong> do cromossomo 17. Isso significa que ele é lido "de trás para frente" em relação à numeração do cromossomo.</p>
+<div class="admonition warning">
+<p class="admonition-title">Coordenadas: GTF começa em 1, BED começa em 0</p>
+<p>No GTF, a primeira base do cromossomo é a posição <strong>1</strong>, e o intervalo inclui o início e o fim. No formato BED, outro muito usado, a contagem começa em <strong>0</strong> e o fim não é incluído. Converter entre os dois sem ajustar gera erros de uma base, difíceis de perceber.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">GTF</label><label for="__tabbed_1_2">GFF3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chr17  HAVANA  gene  7661779  7687538  .  -  .  gene_id "ENSG00000141510"; gene_name "TP53";
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>chr17  HAVANA  gene  7661779  7687538  .  -  .  ID=ENSG00000141510;gene_name=TP53
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>A diferença está só na última coluna: o GTF usa <code>chave "valor";</code> e o GFF3 usa <code>chave=valor</code>, com relações de parentesco explícitas (<code>Parent=</code>) entre gene, transcrito e éxon.</p>
+<hr />
+<h2 id="sam-e-bam-cada-leitura-no-seu-lugar">SAM e BAM: cada leitura no seu lugar<a class="headerlink" href="#sam-e-bam-cada-leitura-no-seu-lugar" title="Link para esta seção">&para;</a></h2>
+<p>O alinhador (<abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr>, HISAT2, BWA…) pega cada leitura do <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>, procura de onde ela veio no genoma FASTA e escreve o resultado em <strong>SAM</strong> (<em>Sequence Alignment/Map</em>)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>. O SAM é texto puro, com um cabeçalho (linhas começando com <code>@</code>) e uma linha por alinhamento, com <strong>11 colunas obrigatórias</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Campo</th>
+<th>O que guarda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>QNAME</td>
+<td>nome da leitura (o mesmo do <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FLAG</td>
+<td>um número que resume o estado da leitura (veja o decodificador abaixo)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>RNAME</td>
+<td>cromossomo onde ela alinhou</td>
+</tr>
+<tr>
+<td>4</td>
+<td>POS</td>
+<td>posição da primeira base alinhada (começa em 1)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MAPQ</td>
+<td>confiança de que a posição está certa, em escala Phred</td>
+</tr>
+<tr>
+<td>6</td>
+<td>CIGAR</td>
+<td>como a leitura alinhou: bases iguais, inserções, deleções, íntrons</td>
+</tr>
+<tr>
+<td>7–9</td>
+<td>RNEXT, PNEXT, TLEN</td>
+<td>onde está o par (em paired-end) e o tamanho do fragmento</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SEQ</td>
+<td>a sequência da leitura</td>
+</tr>
+<tr>
+<td>11</td>
+<td>QUAL</td>
+<td>a qualidade, igual à do <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></td>
+</tr>
+</tbody>
+</table>
+<p>O <strong>BAM</strong> é o mesmo conteúdo, comprimido em formato binário. Ele é bem menor que o SAM e, depois de ordenado por posição e indexado (arquivo <code>.bai</code>), permite ir direto a qualquer região do genoma. É assim que visualizadores como o IGV mostram as leituras de um gene instantaneamente<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>. Na prática, quase ninguém guarda SAM: o <code>samtools</code> converte, ordena e indexa<sup id="fnref2:9"><a class="footnote-ref" href="#fn:9">9</a></sup>.</p>
+<figure>
+<p><img alt="Slide do carrossel mostrando leituras empilhadas sobre a referência" src="../../assets/arquivos_rnaseq/slide-bam.jpg" width="380" /></p>
+<figcaption>Leituras alinhadas, uma diferença em relação à referência e uma leitura dividida por splicing.</figcaption>
+</figure>
+<h3 id="a-flag-muita-informacao-num-numero-so">A FLAG: muita informação num número só<a class="headerlink" href="#a-flag-muita-informacao-num-numero-so" title="Link para esta seção">&para;</a></h3>
+<p>A FLAG soma potências de 2. Cada uma é uma pergunta de sim ou não sobre a leitura. Marque as caixas, ou digite um valor, para ver a soma:</p>
+<div class="mw-widget" id="flag-widget">
+<style>
+#flag-widget { border: 1px solid var(--md-default-fg-color--lightest); border-radius: 10px; padding: 20px; margin: 1.5rem 0; background: var(--md-default-bg-color); }
+#flag-widget h4 { margin: 0 0 12px; font-size: 1.05rem; }
+#flag-widget .fl-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+#flag-widget input[type=number] { width: 7em; font: 700 1.2rem var(--md-code-font-family); padding: 6px 10px; border-radius: 8px; border: 1.5px solid var(--md-primary-fg-color); background: var(--md-code-bg-color); color: var(--md-default-fg-color); }
+#flag-widget .fl-pre button { margin: 2px; padding: 4px 10px; border-radius: 14px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); cursor: pointer; font: .8rem var(--md-code-font-family); }
+#flag-widget .fl-pre button:hover { border-color: var(--md-primary-fg-color); }
+#flag-widget .fl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 6px 16px; }
+#flag-widget label { display: flex; gap: 8px; align-items: baseline; font-size: .85rem; cursor: pointer; }
+#flag-widget label code { min-width: 3.4em; text-align: right; }
+#flag-widget label.on { color: var(--md-primary-fg-color); font-weight: 600; }
+</style>
+<h4>🧮 Decodificador de FLAG do SAM</h4>
+<div class="fl-top">
+  <input type="number" id="fl-val" min="0" max="4095" value="99" aria-label="Valor da FLAG">
+  <span class="fl-pre">Exemplos:
+    <button type="button" data-v="99">99</button><button type="button" data-v="147">147</button><button type="button" data-v="4">4</button><button type="button" data-v="16">16</button><button type="button" data-v="1024">1024</button>
+  </span>
+</div>
+<div class="fl-grid" id="fl-grid"></div>
+<script>
+(function(){
+  var bits = [[1,"leitura pareada (paired-end)"],[2,"par alinhado corretamente"],[4,"leitura NÃO alinhou"],[8,"o par NÃO alinhou"],[16,"alinhou na fita reversa"],[32,"o par alinhou na fita reversa"],[64,"é a leitura 1 do par (R1)"],[128,"é a leitura 2 do par (R2)"],[256,"alinhamento secundário"],[512,"falhou no controle de qualidade"],[1024,"duplicata de PCR ou óptica"],[2048,"alinhamento suplementar (quimérico)"]];
+  var grid = document.getElementById("fl-grid"), val = document.getElementById("fl-val");
+  bits.forEach(function(b){
+    var l = document.createElement("label");
+    l.innerHTML = '<input type="checkbox" data-b="' + b[0] + '"><code>' + b[0] + '</code><span>' + b[1] + '</span>';
+    grid.appendChild(l);
+  });
+  function fromValue(v){
+    grid.querySelectorAll("input").forEach(function(c){ var on = (v & +c.dataset.b) !== 0; c.checked = on; c.parentNode.classList.toggle("on", on); });
+  }
+  grid.addEventListener("change", function(){
+    var v = 0; grid.querySelectorAll("input").forEach(function(c){ if (c.checked) v += +c.dataset.b; c.parentNode.classList.toggle("on", c.checked); });
+    val.value = v;
+  });
+  val.addEventListener("input", function(){ fromValue(Math.max(0, Math.min(4095, parseInt(val.value || "0", 10)))); });
+  document.querySelectorAll("#flag-widget .fl-pre button").forEach(function(b){ b.addEventListener("click", function(){ val.value = b.dataset.v; fromValue(+b.dataset.v); }); });
+  fromValue(99);
+})();
+</script>
+</div>
+
+<p>Os valores <strong>99</strong> e <strong>147</strong> são os mais comuns num BAM de paired-end: R1 e R2 de um mesmo par, ambos bem alinhados, um em cada fita.</p>
+<h3 id="o-cigar-como-a-leitura-se-encaixou">O CIGAR: como a leitura se encaixou<a class="headerlink" href="#o-cigar-como-a-leitura-se-encaixou" title="Link para esta seção">&para;</a></h3>
+<p>O CIGAR descreve o alinhamento como uma sequência de <strong>número + letra</strong>. <code>50M</code> significa 50 bases alinhadas. No RNA-Seq, a letra mais importante é o <strong>N</strong>: um salto no genoma sem bases da leitura, ou seja, um <strong>íntron</strong> que o splicing removeu. É assim que uma leitura de <abbr title="RNA mensageiro — leva a informação do gene até o ribossomo">mRNA</abbr> maduro aparece "partida" em dois éxons distantes.</p>
+<div class="mw-widget" id="cig-widget">
+<style>
+#cig-widget { border: 1px solid var(--md-default-fg-color--lightest); border-radius: 10px; padding: 20px; margin: 1.5rem 0; background: var(--md-default-bg-color); }
+#cig-widget h4 { margin: 0 0 12px; font-size: 1.05rem; }
+#cig-widget .cg-top { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+#cig-widget input[type=text] { font: 700 1.1rem var(--md-code-font-family); padding: 6px 10px; border-radius: 8px; border: 1.5px solid var(--md-primary-fg-color); background: var(--md-code-bg-color); color: var(--md-default-fg-color); width: 12em; }
+#cig-widget .cg-pre button { margin: 2px; padding: 4px 10px; border-radius: 14px; border: 1px solid var(--md-default-fg-color--lightest); background: transparent; color: var(--md-default-fg-color); cursor: pointer; font: .8rem var(--md-code-font-family); }
+#cig-widget svg { width: 100%; height: auto; display: block; }
+#cig-widget ul { margin: 10px 0 0; font-size: .85rem; }
+#cig-widget .cg-err { color: #d0463b; font-size: .85rem; }
+</style>
+<h4>✂️ Visualizador de CIGAR</h4>
+<div class="cg-top">
+  <input type="text" id="cg-in" value="20M1500N30M" aria-label="String CIGAR" spellcheck="false">
+  <span class="cg-pre">Exemplos:
+    <button type="button">50M</button><button type="button">20M1500N30M</button><button type="button">5S45M</button><button type="button">22M2I26M</button><button type="button">25M3D25M</button>
+  </span>
+</div>
+<svg id="cg-svg" viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg"></svg>
+<ul id="cg-list"></ul>
+<script>
+(function(){
+  var NS = "http://www.w3.org/2000/svg";
+  var info = { M: ["alinhada", "#0097a7"], I: ["inserção na leitura", "#7cb342"], D: ["deleção na leitura", "#e53935"], N: ["íntron (salto no genoma)", "#5c6bc0"], S: ["soft-clip: não alinhou, mas fica no BAM", "#9e9e9e"], H: ["hard-clip: removida do BAM", "#bdbdbd"], "=": ["igual à referência", "#00897b"], X: ["diferente da referência", "#f57c00"], P: ["padding", "#bdbdbd"] };
+  var input = document.getElementById("cg-in"), svg = document.getElementById("cg-svg"), list = document.getElementById("cg-list");
+  function el(t, a){ var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function draw(){
+    var s = input.value.trim().toUpperCase(), ops = [], re = /(\d+)([MIDNSHP=X])/g, m, used = 0;
+    while ((m = re.exec(s))) { ops.push([+m[1], m[2]]); used += m[0].length; }
+    svg.innerHTML = ""; list.innerHTML = "";
+    if (!ops.length || used !== s.length) { list.innerHTML = '<li class="cg-err">CIGAR inválido. Use número + letra, como 20M1500N30M.</li>'; return; }
+    // largura visual: íntrons longos são comprimidos para caber
+    function vis(n, op){ return op === "N" ? Math.min(120, 30 + Math.log10(n + 1) * 25) : n * 6; }
+    var total = ops.reduce(function(a, o){ return a + (o[1] === "H" || o[1] === "P" ? 0 : vis(o[0], o[1])); }, 0);
+    var scale = Math.min(1, 700 / total), x = 30;
+    svg.appendChild(el("text", { x: 30, y: 26, "font-size": 14, fill: "currentColor", opacity: .7 })).textContent = "genoma";
+    svg.appendChild(el("line", { x1: 30, y1: 40, x2: 730, y2: 40, stroke: "currentColor", "stroke-opacity": .3, "stroke-width": 4 }));
+    svg.appendChild(el("text", { x: 30, y: 136, "font-size": 14, fill: "currentColor", opacity: .7 })).textContent = "leitura";
+    ops.forEach(function(o){
+      var n = o[0], op = o[1], c = info[op][1];
+      if (op === "H" || op === "P") return;
+      var w = vis(n, op) * scale;
+      if (op === "N") {
+        svg.appendChild(el("path", { d: "M" + x + " 80 Q " + (x + w/2) + " 50 " + (x + w) + " 80", fill: "none", stroke: c, "stroke-width": 3, "stroke-dasharray": "6 5" }));
+      } else if (op === "D") {
+        svg.appendChild(el("line", { x1: x, y1: 80, x2: x + w, y2: 80, stroke: c, "stroke-width": 3 }));
+      } else if (op === "I") {
+        svg.appendChild(el("rect", { x: x, y: 92, width: Math.max(w, 6), height: 18, rx: 4, fill: c }));
+      } else {
+        svg.appendChild(el("rect", { x: x, y: 70, width: w, height: 22, rx: 6, fill: c, opacity: op === "S" ? .55 : 1 }));
+      }
+      var t = el("text", { x: x + Math.max(w, 6)/2, y: op === "N" ? 46 : 66, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: c });
+      t.textContent = n + op; svg.appendChild(t);
+      if (op !== "I") x += w; else x += Math.max(w, 6);
+    });
+    ops.forEach(function(o){ var li = document.createElement("li"); li.innerHTML = "<code>" + o[0] + o[1] + "</code>: " + o[0] + " base" + (o[0] > 1 ? "s" : "") + " — " + info[o[1]][0]; list.appendChild(li); });
+  }
+  input.addEventListener("input", draw);
+  document.querySelectorAll("#cig-widget .cg-pre button").forEach(function(b){ b.addEventListener("click", function(){ input.value = b.textContent; draw(); }); });
+  draw();
+})();
+</script>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">E o CRAM?</p>
+<p>Projetos grandes usam cada vez mais o <strong>CRAM</strong>, que comprime ainda mais guardando só as <strong>diferenças</strong> em relação ao genoma de referência<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>. A contrapartida: para abrir um CRAM, é preciso ter exatamente o mesmo FASTA usado para criá-lo.</p>
+</div>
+<hr />
+<h2 id="a-matriz-de-contagens">A matriz de contagens<a class="headerlink" href="#a-matriz-de-contagens" title="Link para esta seção">&para;</a></h2>
+<p>O último passo antes da estatística é <strong>contar</strong>. Para cada amostra, uma ferramenta percorre o BAM e, usando as coordenadas do GTF, decide a qual gene pertence cada leitura. O resultado é uma tabela com <strong>uma linha por gene e uma coluna por amostra</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>gene</th>
+<th style="text-align: right;">ctrl_1</th>
+<th style="text-align: right;">ctrl_2</th>
+<th style="text-align: right;">trat_1</th>
+<th style="text-align: right;">trat_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TP53</td>
+<td style="text-align: right;">812</td>
+<td style="text-align: right;">790</td>
+<td style="text-align: right;">1.640</td>
+<td style="text-align: right;">1.702</td>
+</tr>
+<tr>
+<td>GAPDH</td>
+<td style="text-align: right;">15.230</td>
+<td style="text-align: right;">14.987</td>
+<td style="text-align: right;">15.102</td>
+<td style="text-align: right;">15.511</td>
+</tr>
+<tr>
+<td>MYC</td>
+<td style="text-align: right;">402</td>
+<td style="text-align: right;">388</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr>
+<td>BRCA1</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">251</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">236</td>
+</tr>
+</tbody>
+</table>
+<p><small>Valores ilustrativos.</small></p>
+<p>Há três caminhos comuns para chegar a ela:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">featureCounts / HTSeq</label><label for="__tabbed_2_2"><abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr> --quantMode GeneCounts</label><label for="__tabbed_2_3">Salmon + tximport</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Contam as leituras de um BAM que caem nos éxons de cada gene do GTF<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup><sup id="fnref:12"><a class="footnote-ref" href="#fn:12">12</a></sup>. São os métodos clássicos depois de um alinhador como o <abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr> ou o HISAT2.</p>
+</div>
+<div class="tabbed-block">
+<p>O próprio <abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr> conta as leituras por gene enquanto alinha e grava um arquivo <code>ReadsPerGene.out.tab</code> por amostra<sup id="fnref:13"><a class="footnote-ref" href="#fn:13">13</a></sup>. Basta juntar as colunas de todas as amostras.</p>
+</div>
+<div class="tabbed-block">
+<p>O Salmon pula o BAM e estima a abundância de cada <strong>transcrito</strong> direto do <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>. O pacote tximport soma os transcritos por gene e entrega uma matriz pronta para o <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr><sup id="fnref:14"><a class="footnote-ref" href="#fn:14">14</a></sup>.</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Contagens brutas, não normalizadas</p>
+<p>O <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr> espera <strong>contagens brutas</strong>: números inteiros, exatamente como saíram da contagem. Ele faz a própria normalização internamente<sup id="fnref:15"><a class="footnote-ref" href="#fn:15">15</a></sup>. Dar a ele valores já normalizados (TPM, FPKM, CPM) quebra o modelo estatístico. Os próximos ciclos do MW Explica vão explicar o porquê.</p>
+</div>
+<hr />
+<h2 id="tabela-resumo">Tabela-resumo<a class="headerlink" href="#tabela-resumo" title="Link para esta seção">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Extensões</th>
+<th>Guarda</th>
+<th>Etapa</th>
+<th>Como espiar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr></td>
+<td><code>.fastq.gz</code>, <code>.fq.gz</code></td>
+<td>leituras + qualidade</td>
+<td>sai do sequenciador</td>
+<td><code>zcat arquivo.fastq.gz \| head -8</code></td>
+</tr>
+<tr>
+<td>FASTA</td>
+<td><code>.fa</code>, <code>.fasta</code>, <code>.fna</code></td>
+<td>sequência de referência</td>
+<td>referência do alinhamento</td>
+<td><code>head arquivo.fa</code></td>
+</tr>
+<tr>
+<td>GTF/GFF3</td>
+<td><code>.gtf</code>, <code>.gff3</code></td>
+<td>posição dos genes</td>
+<td>referência da contagem</td>
+<td><code>grep -v "^#" anotacao.gtf \| head</code></td>
+</tr>
+<tr>
+<td>SAM/BAM</td>
+<td><code>.sam</code>, <code>.bam</code> (+ <code>.bai</code>)</td>
+<td>leituras alinhadas</td>
+<td>sai do alinhador</td>
+<td><code>samtools view arquivo.bam \| head</code></td>
+</tr>
+<tr>
+<td>Matriz</td>
+<td><code>.tsv</code>, <code>.csv</code>, <code>.txt</code></td>
+<td>contagens gene × amostra</td>
+<td>entrada do <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr></td>
+<td><code>head contagens.tsv</code></td>
+</tr>
+</tbody>
+</table>
+<p>Os comandos dessa última coluna são o assunto do próximo post, no <strong>MW Toolbox</strong>: <a href="../terminal-linux/">Terminal Linux para biólogos</a>.</p>
+<hr />
+<h2 id="teste-seus-conhecimentos">Teste seus conhecimentos<a class="headerlink" href="#teste-seus-conhecimentos" title="Link para esta seção">&para;</a></h2>
+<details class="question">
+<summary>1. Quantas linhas ocupa cada leitura em um <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr>, e o que cada uma guarda?</summary>
+<p>Quatro: o identificador (começa com <code>@</code>), a sequência, o separador <code>+</code> e a qualidade, com um símbolo por base.</p>
+</details>
+<details class="question">
+<summary>2. Uma base tem o símbolo <code>5</code> na linha de qualidade. Qual é o escore Phred dela?</summary>
+<p>O caractere <code>5</code> tem código ASCII 53. Em Phred+33, Q = 53 − 33 = <strong>20</strong>, ou seja, 1 chance em 100 de estar errada.</p>
+</details>
+<details class="question">
+<summary>3. Por que não dá para usar o FASTA do GRCh38 com o GTF do GRCh37?</summary>
+<p>Porque as coordenadas dos genes mudam entre as versões do genoma. As leituras seriam contadas nos genes errados, sem nenhuma mensagem de erro.</p>
+</details>
+<details class="question">
+<summary>4. O que significa a letra N no CIGAR, e por que ela é tão comum em RNA-Seq?</summary>
+<p>N é um salto no genoma que não consome bases da leitura: um íntron. Como o RNA maduro já não tem íntrons, uma leitura que atravessa a junção entre dois éxons aparece dividida no genoma.</p>
+</details>
+<details class="question">
+<summary>5. Por que o <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr> precisa de contagens brutas, e não de TPM?</summary>
+<p>Porque o modelo estatístico dele (binomial negativa) assume números inteiros de leituras e calcula a própria normalização. Valores já normalizados perdem a informação sobre a profundidade de cada amostra, da qual a estimativa de variância depende.</p>
+</details>
+<hr />
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Link para esta seção">&para;</a></h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Cock PJA, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> file format for sequences with quality scores, and the Solexa/Illumina <abbr title="Formato de texto com as leituras de sequenciamento e a qualidade de cada base">FASTQ</abbr> variants. <em>Nucleic Acids Research</em>. 2010;38(6):1767–1771. doi: <a href="https://doi.org/10.1093/nar/gkp1137">10.1093/nar/gkp1137</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Ewing B, Green P. Base-calling of automated sequencer traces using Phred. II. Error probabilities. <em>Genome Research</em>. 1998;8(3):186–194. doi: <a href="https://doi.org/10.1101/gr.8.3.186">10.1101/gr.8.3.186</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Pearson WR, Lipman DJ. Improved tools for biological sequence comparison. <em>Proceedings of the National Academy of Sciences USA</em>. 1988;85(8):2444–2448. doi: <a href="https://doi.org/10.1073/pnas.85.8.2444">10.1073/pnas.85.8.2444</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Andrews RM, Kubacka I, Chinnery PF, Lightowlers RN, Turnbull DM, Howell N. Reanalysis and revision of the Cambridge reference sequence for human mitochondrial DNA. <em>Nature Genetics</em>. 1999;23(2):147. doi: <a href="https://doi.org/10.1038/13779">10.1038/13779</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Mudge JM, Carbonell-Sala S, Diekhans M, et al. <abbr title="Projeto que mantém a anotação de referência dos genes humanos e de camundongo">GENCODE</abbr> 2025: reference gene annotation for human and mouse. <em>Nucleic Acids Research</em>. 2025;53(D1):D966–D975. doi: <a href="https://doi.org/10.1093/nar/gkae1078">10.1093/nar/gkae1078</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Ensembl. GFF/GTF file format. Documentação oficial: <a href="https://www.ensembl.org/info/website/upload/gff.html">https://www.ensembl.org/info/website/upload/gff.html</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Li H, Handsaker B, Wysoker A, et al. The Sequence Alignment/Map format and SAMtools. <em>Bioinformatics</em>. 2009;25(16):2078–2079. doi: <a href="https://doi.org/10.1093/bioinformatics/btp352">10.1093/bioinformatics/btp352</a>. Especificação atual: <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">https://samtools.github.io/hts-specs/SAMv1.pdf</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Robinson JT, Thorvaldsdóttir H, Winckler W, et al. Integrative genomics viewer. <em>Nature Biotechnology</em>. 2011;29(1):24–26. doi: <a href="https://doi.org/10.1038/nbt.1754">10.1038/nbt.1754</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. <em>GigaScience</em>. 2021;10(2):giab008. doi: <a href="https://doi.org/10.1093/gigascience/giab008">10.1093/gigascience/giab008</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Hsi-Yang Fritz M, Leinonen R, Cochrane G, Birney E. Efficient storage of high throughput DNA sequencing data using reference-based compression. <em>Genome Research</em>. 2011;21(5):734–740. doi: <a href="https://doi.org/10.1101/gr.114819.110">10.1101/gr.114819.110</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Liao Y, Smyth GK, Shi W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. <em>Bioinformatics</em>. 2014;30(7):923–930. doi: <a href="https://doi.org/10.1093/bioinformatics/btt656">10.1093/bioinformatics/btt656</a>.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Anders S, Pyl PT, Huber W. HTSeq — a Python framework to work with high-throughput sequencing data. <em>Bioinformatics</em>. 2015;31(2):166–169. doi: <a href="https://doi.org/10.1093/bioinformatics/btu638">10.1093/bioinformatics/btu638</a>.&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>Dobin A, Davis CA, Schlesinger F, et al. <abbr title="Spliced Transcripts Alignment to a Reference — alinhador de RNA-Seq ciente de splicing">STAR</abbr>: ultrafast universal RNA-seq aligner. <em>Bioinformatics</em>. 2013;29(1):15–21. doi: <a href="https://doi.org/10.1093/bioinformatics/bts635">10.1093/bioinformatics/bts635</a>.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Soneson C, Love MI, Robinson MD. Differential analyses for RNA-seq: transcript-level estimates improve gene-level inferences. <em>F1000Research</em>. 2015;4:1521. doi: <a href="https://doi.org/10.12688/f1000research.7563.1">10.12688/f1000research.7563.1</a>.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with <abbr title="Pacote R/Bioconductor de expressão diferencial a partir de contagens">DESeq2</abbr>. <em>Genome Biology</em>. 2014;15:550. doi: <a href="https://doi.org/10.1186/s13059-014-0550-8">10.1186/s13059-014-0550-8</a>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+
+  
+    <aside class="mw-cta">
+      <div>
+        <h3>Este texto nasceu no Instagram</h3>
+        <p>Resumos visuais, dicas e bastidores da bioinformática em @MWInSilico.</p>
+      </div>
+      <a class="md-button" href="https://www.instagram.com/mwinsilico/" target="_blank" rel="noopener">
+        <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg></span>
+        Seguir @MWInSilico
+      </a>
+    </aside>
+  
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../transcriptomica-espacial/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Transcriptômica espacial">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Transcriptômica espacial
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../terminal-linux/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Terminal Linux para biólogos">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Terminal Linux para biólogos
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Márcio Wilson · MwInSilico — conteúdo livre: textos sob <a href="https://creativecommons.org/licenses/by/4.0/deed.pt-br">CC BY 4.0</a>, código sob <a href="https://github.com/mwdbrito/bioinformatics-tutorials/blob/main/LICENSE">MIT</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.instagram.com/mwinsilico/" target="_blank" rel="noopener" title="Instagram @MWInSilico" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/mwdbrito" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/marcio-wilson/" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="http://lattes.cnpq.br/8280972369170529" target="_blank" rel="noopener" title="Currículo Lattes" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m48 195.8 209.2 86.1c9.8 4 20.2 6.1 30.8 6.1s21-2.1 30.8-6.1l242.4-99.8c9-3.7 14.8-12.4 14.8-22.1s-5.8-18.4-14.8-22.1L318.8 38.1c-9.8-4-20.2-6.1-30.8-6.1s-21 2.1-30.8 6.1L14.8 137.9C5.8 141.6 0 150.3 0 160v296c0 13.3 10.7 24 24 24s24-10.7 24-24zm48 71.7V384c0 53 86 96 192 96s192-43 192-96V267.4l-142.9 58.9c-15.6 6.4-32.2 9.7-49.1 9.7s-33.5-3.3-49.1-9.7L96 267.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "toc.follow", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

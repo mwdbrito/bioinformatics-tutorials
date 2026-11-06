@@ -1,0 +1,27 @@
+<svg viewBox="0 0 720 640" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#00695c"/></marker></defs>
+<rect x="1" y="1" width="718" height="638" rx="16" fill="#ffffff" stroke="#cfd8dc" stroke-width="2"/>
+<text x="40" y="50" font-family='Helvetica, Arial, sans-serif' font-size="19" font-weight="700" fill="#004d40" text-anchor="start">Bioinformática: da sequência ao conhecimento biológico</text>
+<text x="40" y="74" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">um fluxo típico de análise de RNA-seq</text>
+<rect x="100.0" y="100" width="520" height="58" rx="10" fill="#e0f2f1" stroke="#00897b" stroke-width="2.2"/>
+<text x="360.0" y="135.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#263238" text-anchor="middle">Dados brutos</text>
+<line x1="360.0" y1="160" x2="360.0" y2="170" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="172" width="520" height="58" rx="10" fill="#cfebe9" stroke="#007f71" stroke-width="2.2"/>
+<text x="360.0" y="207.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#263238" text-anchor="middle">Controle de qualidade</text>
+<line x1="360.0" y1="232" x2="360.0" y2="242" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="244" width="520" height="58" rx="10" fill="#bee4e1" stroke="#007567" stroke-width="2.2"/>
+<text x="360.0" y="279.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#263238" text-anchor="middle">Pré-processamento</text>
+<line x1="360.0" y1="304" x2="360.0" y2="314" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="316" width="520" height="58" rx="10" fill="#adddd9" stroke="#006b5e" stroke-width="2.2"/>
+<text x="360.0" y="351.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#263238" text-anchor="middle">Alinhamento ou quantificação</text>
+<line x1="360.0" y1="376" x2="360.0" y2="386" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="388" width="520" height="58" rx="10" fill="#9cd6d1" stroke="#006154" stroke-width="2.2"/>
+<text x="360.0" y="423.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#ffffff" text-anchor="middle">Matriz de expressão</text>
+<line x1="360.0" y1="448" x2="360.0" y2="458" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="460" width="520" height="58" rx="10" fill="#8bcfc9" stroke="#00574a" stroke-width="2.2"/>
+<text x="360.0" y="495.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#ffffff" text-anchor="middle">Análise estatística</text>
+<line x1="360.0" y1="520" x2="360.0" y2="530" stroke="#00695c" stroke-width="2.6" marker-end="url(#arrow)"/>
+<rect x="100.0" y="532" width="520" height="58" rx="10" fill="#7ac8c1" stroke="#004d40" stroke-width="2.2"/>
+<text x="360.0" y="567.0" font-family='Helvetica, Arial, sans-serif' font-size="15.5" font-weight="600" font-style="normal" fill="#ffffff" text-anchor="middle">Visualização e interpretação biológica</text>
+<text x="360.0" y="624" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">Baseado em Conesa et al. (2016); Wang, Gerstein &amp; Snyder (2009)</text>
+</svg>

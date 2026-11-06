@@ -1,0 +1,29 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="898" height="458" rx="16" fill="#ffffff" stroke="#cfd8dc" stroke-width="2"/>
+<text x="40" y="50" font-family='Helvetica, Arial, sans-serif' font-size="20" font-weight="700" fill="#004d40" text-anchor="start">Leituras curtas x leituras longas</text>
+<text x="40" y="74" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">o mesmo trecho de DNA, visto por duas estratégias diferentes</text>
+<rect x="90" y="115" width="740" height="14" rx="7" fill="#cfd8dc"/>
+<text x="460.0" y="105" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">trecho de DNA a ser sequenciado (com uma região repetitiva)</text>
+<rect x="420" y="115" width="100" height="14" rx="7" fill="#f9a825"/>
+<text x="470.0" y="145" font-family='Helvetica, Arial, sans-serif' font-size="10.5" font-weight="700" font-style="normal" fill="#f9a825" text-anchor="middle">região repetitiva</text>
+<text x="90" y="176" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#004d40" text-anchor="start">Leituras curtas (Illumina) — ~150–300 pb</text>
+<rect x="92" y="190" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="154" y="206" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="230" y="222" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="287" y="190" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="356" y="206" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="425" y="222" width="55" height="8" rx="4" fill="#e57373"/>
+<rect x="501" y="190" width="55" height="8" rx="4" fill="#e57373"/>
+<rect x="559" y="206" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="642" y="222" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="700" y="190" width="55" height="8" rx="4" fill="#00897b"/>
+<rect x="763" y="206" width="55" height="8" rx="4" fill="#00897b"/>
+<text x="90" y="260" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">Alta precisão e baixo custo, mas cada leitura é curta —</text>
+<text x="90" y="278" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">dentro de uma região repetitiva, fica ambíguo montá-las de volta.</text>
+<text x="90" y="316" font-family='Helvetica, Arial, sans-serif' font-size="13" font-weight="700" font-style="normal" fill="#004d40" text-anchor="start">Leituras longas (PacBio / Nanopore) — kb a Mb</text>
+<rect x="90" y="340" width="700" height="10" rx="5" fill="#004d40"/>
+<rect x="150" y="362" width="620" height="10" rx="5" fill="#00695c"/>
+<text x="90" y="400" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">Uma única leitura atravessa toda a região repetitiva —</text>
+<text x="90" y="418" font-family='Helvetica, Arial, sans-serif' font-size="11.5" font-weight="400" font-style="normal" fill="#455a64" text-anchor="start">monta genomas completos, mas custa mais e erra mais por base.</text>
+<text x="450.0" y="444" font-family='Helvetica, Arial, sans-serif' font-size="12.5" font-weight="400" font-style="italic" fill="#78909c" text-anchor="middle">Baseado em Eid et al. (2009); Deamer, Akeson &amp; Branton (2016); Goodwin, McPherson &amp; McCombie (2016)</text>
+</svg>
